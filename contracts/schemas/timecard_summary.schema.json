@@ -1,0 +1,45 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/timecard_summary.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "break_hours": {
+      "type": "number"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "exceptions": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "gross_work_hours": {
+      "type": "number"
+    },
+    "period_end": {
+      "type": "string"
+    },
+    "period_start": {
+      "type": "string"
+    },
+    "regular_hours": {
+      "type": "number"
+    },
+    "source_event_count": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "employee_id",
+    "period_start",
+    "period_end",
+    "regular_hours",
+    "break_hours",
+    "gross_work_hours",
+    "exceptions"
+  ],
+  "title": "Timecard Summary",
+  "type": "object"
+}

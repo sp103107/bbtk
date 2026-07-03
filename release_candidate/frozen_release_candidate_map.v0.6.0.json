@@ -1,0 +1,27 @@
+{
+  "current_status": "frozen_candidate_package_generated",
+  "map_version": "0.6.0",
+  "non_claims": [
+    "candidate package does not equal live production approval",
+    "candidate package does not equal legal/payroll compliance seal"
+  ],
+  "optional_next": "v0.7.0_live_pilot_acceptance_pack",
+  "recommended_frozen_candidate": "v0.6.0",
+  "release_candidate_lanes": [
+    {
+      "phase": "rc3_policy_adjustments_and_manager_review",
+      "status": "preserved",
+      "version": "0.4.0"
+    },
+    {
+      "phase": "rc4_backup_restore_and_deployment_operator_hardening",
+      "status": "preserved",
+      "version": "0.5.0"
+    },
+    {
+      "phase": "rc5_frontend_surface_and_validation_freeze_candidate",
+      "status": "current",
+      "version": "0.6.0"
+    }
+  ]
+}

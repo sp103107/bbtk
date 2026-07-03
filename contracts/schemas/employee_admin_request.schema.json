@@ -1,0 +1,46 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/employee_admin_request.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "display_name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "employee_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "owner_token": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "pin": {
+      "minLength": 4,
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "employee",
+        "manager",
+        "owner"
+      ]
+    },
+    "status": {
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    }
+  },
+  "required": [
+    "owner_token",
+    "employee_id",
+    "display_name",
+    "pin",
+    "status",
+    "role"
+  ],
+  "title": "Employee Admin Request",
+  "type": "object"
+}

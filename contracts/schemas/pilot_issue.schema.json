@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "created_at_utc": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "issue_id": {
+      "type": "string"
+    },
+    "payload_hash": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "blocking"
+      ],
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "monitoring",
+        "resolved",
+        "deferred"
+      ],
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "updated_at_utc": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "issue_id",
+    "severity",
+    "status",
+    "title",
+    "created_at_utc",
+    "payload_hash"
+  ],
+  "title": "Pilot issue",
+  "type": "object"
+}

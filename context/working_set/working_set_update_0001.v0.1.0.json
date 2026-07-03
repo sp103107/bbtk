@@ -1,0 +1,20 @@
+{
+  "active_goal": "Standalone AoS capsule time clock app with simple UI, hours calculation, and owner outputs.",
+  "decisions": [
+    "JSONL source of truth",
+    "SQLite mirror",
+    "CSV/JSON/Markdown/HTML exports",
+    "simple index.html UI",
+    "native XLSX deferred"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed."
+  ],
+  "update_seq": 1,
+  "updated_at": "2026-05-29T00:16:02.592908+00:00",
+  "version": "0.2.0"
+}

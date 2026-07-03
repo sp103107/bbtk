@@ -1,0 +1,33 @@
+{
+  "employee_entry_url": "http://127.0.0.1:8080/employee",
+  "frontend_surface": "local_dev_review_session",
+  "generated_at": "2026-06-24T01:52:30Z",
+  "notes": [
+    "Stale duplicate listeners on port 8080 were cleared before restart.",
+    "Backend serves both owner console (/) and employee portal (/employee).",
+    "Use emp_001 / PIN 1234 from seed data for smoke testing."
+  ],
+  "owner_entry_url": "http://127.0.0.1:8080/",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "runtime_claimed": false,
+  "runtime_local_review": {
+    "employee_page_status": 200,
+    "health_ok": true,
+    "host": "127.0.0.1",
+    "port": 8080,
+    "server_script": "scripts/start_kiosk_server.py",
+    "version_reported": "0.8.6"
+  },
+  "start_commands": [
+    "scripts\\start_all.bat",
+    "python scripts/start_kiosk_server.py --host 127.0.0.1 --port 8080"
+  ],
+  "status": "release_candidate_zip_packaged",
+  "version": "0.8.6",
+  "zip_artifact": {
+    "path": "C:\\bbtc_v0_8_6.zip",
+    "receipt": "release_candidate/rc7_6_employee_qr_entry_and_kiosk_fit/package_zip_receipt.v0.8.6.json",
+    "root_folder": "bbtc_v0_8_6",
+    "sha256": "d936c031779685155c9482f4db477f0f2cc7e1af4e141869f6ac69528ace61ea"
+  }
+}

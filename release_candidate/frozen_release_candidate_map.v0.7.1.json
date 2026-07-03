@@ -1,0 +1,7 @@
+{
+  "current_patch": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "guard": "Do not treat v0.7.1 as production deployment.",
+  "recommended_next": "v0.8.0 production installation readiness only after operator review",
+  "status": "frozen_candidate_plus_ui_hardening_patch",
+  "version": "0.7.1"
+}

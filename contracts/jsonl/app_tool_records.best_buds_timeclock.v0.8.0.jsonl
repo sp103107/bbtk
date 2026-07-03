@@ -1,0 +1,4 @@
+{"phase": "rc7_production_installation_readiness_candidate", "previous_version": "0.7.1", "record_type": "bump_record", "scope": "ui_ux_hardening_patch", "version": "0.8.0"}
+{"artifact": "employee_kiosk_surface.v0.7.1.json", "phase": "rc7_production_installation_readiness_candidate", "previous_version": "0.7.1", "record_type": "frontend_surface_record", "status": "added", "version": "0.8.0"}
+{"artifact": "validate_no_scope_expansion.py", "phase": "rc7_production_installation_readiness_candidate", "previous_version": "0.7.1", "record_type": "validation_record", "status": "added", "version": "0.8.0"}
+{"backend_connectivity_guard": "required", "generated_at": "2026-05-29T19:39:42+00:00", "local_network_launcher": "scripts/start_kiosk_server.py", "phase": "rc7_production_installation_readiness_candidate", "record_type": "release_readiness_record", "version": "0.8.0"}

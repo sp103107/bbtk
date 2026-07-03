@@ -1,0 +1,53 @@
+{
+  "$id": "https://bestbuds.local/timeclock/manager_review_report.v0.4.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted_event_count": {
+      "type": "integer"
+    },
+    "generated_at_utc": {
+      "type": "string"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "owner_adjustment_count": {
+      "type": "integer"
+    },
+    "rejected_event_count": {
+      "type": "integer"
+    },
+    "review_flags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "review_id": {
+      "type": "string"
+    },
+    "source_ledger_hash": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "review_id",
+    "version",
+    "generated_at_utc",
+    "source_ledger_hash",
+    "accepted_event_count",
+    "rejected_event_count",
+    "owner_adjustment_count",
+    "review_flags",
+    "non_claims"
+  ],
+  "title": "Manager Review Report",
+  "type": "object"
+}

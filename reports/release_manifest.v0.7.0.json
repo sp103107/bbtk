@@ -1,0 +1,25 @@
+{
+  "deployment_preflight_status": "warn",
+  "frontend_surface_validation_status": "pass",
+  "generated_at": "2026-05-29T00:57:24+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production deployment is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No cannabis compliance certification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Live pilot acceptance pack is pre-production operator evidence only."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc6_live_pilot_acceptance_pack",
+  "pilot_acceptance_validation_status": "pass",
+  "policy_validation_status": "pass",
+  "previous_version": "0.6.0",
+  "runtime_smoke_status": "pass",
+  "status": "candidate_validated",
+  "validated_at": "2026-05-29T00:59:46+00:00",
+  "validation_status": "pass",
+  "version": "0.7.0"
+}

@@ -1,0 +1,36 @@
+{
+  "loops": [
+    {
+      "loop": "setup",
+      "steps": [
+        "change owner_token",
+        "change pin_pepper",
+        "add employees",
+        "run validation"
+      ]
+    },
+    {
+      "loop": "operations",
+      "steps": [
+        "clock in/out",
+        "start/end break",
+        "owner summary",
+        "owner export",
+        "owner backup"
+      ]
+    },
+    {
+      "loop": "verification",
+      "steps": [
+        "validate_repo",
+        "runtime_smoke",
+        "verify_ledger",
+        "review export manifests"
+      ]
+    }
+  ],
+  "next_internal_phase": "rc2_pay_period_close_and_exception_review",
+  "pipeline_name": "best_buds_timeclock_capsule_runtime_pipeline",
+  "previous_version": "0.1.0",
+  "version": "0.2.0"
+}

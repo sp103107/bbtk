@@ -1,0 +1,1 @@
+{"component":"ExportPanel","runtime_target":"repo_scaffold/app/static/index.html","employee_export":"POST /api/owner/export","guest_export":"POST /api/owner/guests/export","separate_outputs":true,"status":"implemented","version":"0.9.0"}

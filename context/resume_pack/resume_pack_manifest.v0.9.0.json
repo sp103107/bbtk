@@ -1,0 +1,21 @@
+{
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "continue_from": [
+    "docs/SYSTEM_STATE_CURRENT.md",
+    "pipeline/arc_employee_management_kiosk_timeclock.v0.9.0.json",
+    "repo_scaffold/app/server.py",
+    "validation/employee_management_validation_report.json"
+  ],
+  "local_review_urls": {
+    "employee_kiosk": "http://127.0.0.1:8080/employee",
+    "health": "http://127.0.0.1:8080/api/health",
+    "manager": "http://127.0.0.1:8080/"
+  },
+  "next_phase": "arc_role_based_manager_permissions",
+  "next_recommended_command": "plan named manager users and capability-scoped tokens",
+  "phase": "rc8_validation_and_context_checkpoint",
+  "runtime_claimed": true,
+  "runtime_claim_scope": "temporary isolated validation fixture only",
+  "updated_at": "2026-07-01T13:00:00Z",
+  "version": "0.9.0"
+}

@@ -1,0 +1,19 @@
+{
+  "next_phase": "rc7_4_owner_console_operator_clarity",
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "pipeline_type": "employee_kiosk_ui_polish",
+  "runtime_execution_authorized": false,
+  "steps": [
+    "read_v0_8_2_release_state",
+    "fix_stale_server_app_version_drift",
+    "add_employee_focus_card",
+    "add_input_guard",
+    "add_today_hours_card",
+    "update_receipt_rendering",
+    "validate_employee_kiosk_gold_path",
+    "update_context",
+    "package_full_repo"
+  ],
+  "version": "0.8.3",
+  "visual_redesign_authorized": "bounded_employee_surface_only"
+}

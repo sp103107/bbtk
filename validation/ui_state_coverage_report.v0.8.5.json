@@ -1,0 +1,18 @@
+{
+  "state_count": 11,
+  "states": [
+    "backend_checking",
+    "backend_offline",
+    "backend_online",
+    "employee_ready",
+    "offline_saved_local",
+    "offline_synced_pending_review",
+    "owner_action_error",
+    "owner_action_success",
+    "owner_authorized",
+    "punch_rejected",
+    "punch_success"
+  ],
+  "status": "pass",
+  "version": "0.8.5"
+}

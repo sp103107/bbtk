@@ -1,0 +1,134 @@
+{
+  "interactions": [
+    {
+      "actor": "employee",
+      "failure_modes": [
+        "invalid_pin",
+        "backend_offline",
+        "employee_inactive"
+      ],
+      "input": [
+        "employee_id",
+        "pin"
+      ],
+      "interaction_id": "employee_clock_in",
+      "output": [
+        "punch_receipt",
+        "today_hours"
+      ],
+      "surface": "employee_kiosk"
+    },
+    {
+      "actor": "employee",
+      "failure_modes": [
+        "not_clocked_in",
+        "backend_offline",
+        "invalid_pin"
+      ],
+      "input": [
+        "employee_id",
+        "pin"
+      ],
+      "interaction_id": "employee_clock_out",
+      "output": [
+        "punch_receipt",
+        "today_hours"
+      ],
+      "surface": "employee_kiosk"
+    },
+    {
+      "actor": "employee",
+      "failure_modes": [
+        "not_clocked_in",
+        "already_on_break",
+        "backend_offline"
+      ],
+      "input": [
+        "employee_id",
+        "pin",
+        "break action"
+      ],
+      "interaction_id": "employee_break_start_end",
+      "output": [
+        "punch_receipt",
+        "status"
+      ],
+      "surface": "employee_kiosk"
+    },
+    {
+      "actor": "employee_or_owner_at_device",
+      "failure_modes": [
+        "empty_queue",
+        "browser_storage_unavailable"
+      ],
+      "input": [
+        "local queued items"
+      ],
+      "interaction_id": "offline_recovery_export",
+      "output": [
+        "jsonl export",
+        "csv export"
+      ],
+      "surface": "offline_queue"
+    },
+    {
+      "actor": "owner",
+      "failure_modes": [
+        "unauthorized",
+        "no_data"
+      ],
+      "input": [
+        "owner_token",
+        "date range"
+      ],
+      "interaction_id": "owner_summary_export",
+      "output": [
+        "summary",
+        "export link"
+      ],
+      "surface": "owner_console"
+    },
+    {
+      "actor": "owner",
+      "failure_modes": [
+        "unauthorized",
+        "blocking_exceptions",
+        "archive_failure"
+      ],
+      "input": [
+        "owner_token",
+        "period range",
+        "owner note"
+      ],
+      "interaction_id": "pay_period_close",
+      "output": [
+        "closed period package",
+        "download link"
+      ],
+      "surface": "owner_console"
+    },
+    {
+      "actor": "owner",
+      "failure_modes": [
+        "unauthorized",
+        "invalid_timestamp",
+        "missing_reason"
+      ],
+      "input": [
+        "employee_id",
+        "event_type",
+        "timestamp",
+        "reason"
+      ],
+      "interaction_id": "owner_adjustment",
+      "output": [
+        "adjustment receipt"
+      ],
+      "surface": "owner_console"
+    }
+  ],
+  "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+  "schema_version": "1.0.0",
+  "status": "locked_candidate",
+  "version": "0.8.2"
+}

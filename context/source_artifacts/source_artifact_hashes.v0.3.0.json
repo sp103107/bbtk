@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-05-29T00:28:30.046816+00:00",
+  "non_claims": [
+    "hashes record source references only; raw foundation packs are not vendored into the business capsule"
+  ],
+  "source_artifacts": {
+    "best_buds_timeclock_capsule_v0_2_0_full_repo.zip": "sha256:f8c7ba8ec693c3cce54418248bd6d842114318e95e8218339b5e29e80bfcef2f",
+    "factory_request.schema.json": "sha256:3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+    "foundation_stack.manifest.json": "sha256:c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+    "pack_jsonl_manifest.json": "sha256:da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18"
+  },
+  "version": "0.3.0"
+}

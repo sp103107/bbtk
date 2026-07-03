@@ -1,0 +1,3 @@
+{"artifact": "contracts/capsule_contract.v0.8.5.json", "phase": "rc7_5_frontend_flow_graphics_status_language", "record_type": "module_contract", "version": "0.8.5"}
+{"artifact": "contracts/frontend_surface/frontend_flow_status_surface.v0.8.5.json", "phase": "rc7_5_frontend_flow_graphics_status_language", "record_type": "frontend_surface", "version": "0.8.5"}
+{"artifact": "validation/frontend_flow_status_language_validation_report.v0.8.5.json", "phase": "rc7_5_frontend_flow_graphics_status_language", "record_type": "validation_report", "version": "0.8.5"}

@@ -1,0 +1,9 @@
+{
+  "next_phase": "rc7_4_owner_console_operator_clarity",
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "preserved_versions": "0.1.0-0.8.2",
+  "status": "added",
+  "summary": "Employee kiosk gold-path polish: focus card, input guard, today-hours card, receipt clarity, validator.",
+  "update_seq": 12,
+  "version": "0.8.3"
+}

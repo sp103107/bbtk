@@ -1,0 +1,16 @@
+[
+  {
+    "display_name": "Sample Employee",
+    "employee_id": "emp_001",
+    "pin": "1234",
+    "role": "employee",
+    "status": "active"
+  },
+  {
+    "display_name": "Owner Demo User",
+    "employee_id": "owner_demo",
+    "pin": "9999",
+    "role": "owner",
+    "status": "inactive"
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "applied_to_v0_7_1": [
+    "larger kiosk action buttons",
+    "workflow strip",
+    "owner task cards",
+    "success/error banners",
+    "local time header",
+    "backup verify exposed in existing owner backup panel",
+    "technical JSON hidden under details"
+  ],
+  "generated_at": "2026-05-29T18:26:50+00:00",
+  "non_claims": [
+    "Research patterns inform UI layout only; this package does not copy vendor designs or assets.",
+    "No external vendor integration is included."
+  ],
+  "report_type": "ui_timeclock_app_research_notes",
+  "sources": [
+    {
+      "name": "Clockify Punch Clock",
+      "observed_patterns": [
+        "shared phone/tablet kiosk",
+        "one-button clock in/out",
+        "PIN sign-in",
+        "break tracking",
+        "activity/report/export"
+      ]
+    },
+    {
+      "name": "Homebase time clock kiosk article",
+      "observed_patterns": [
+        "centralized iPad/Android kiosk",
+        "unique PIN or QR workflow",
+        "manager alerts",
+        "payroll-ready hours"
+      ]
+    },
+    {
+      "name": "QuickBooks Time Kiosk App Store listing",
+      "observed_patterns": [
+        "traditional wall-mounted punch clock metaphor",
+        "4-digit PIN",
+        "day/week totals",
+        "reports in PDF/CSV/HTML",
+        "edit/approval history"
+      ]
+    },
+    {
+      "name": "Connecteam Kiosk App",
+      "observed_patterns": [
+        "few-click employee flow",
+        "clear toolbars",
+        "easy navigation",
+        "personal PIN",
+        "daily/weekly schedule surface"
+      ]
+    }
+  ],
+  "version": "0.7.1"
+}

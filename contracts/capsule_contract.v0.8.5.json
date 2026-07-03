@@ -1,0 +1,9 @@
+{
+  "capsule_shape": "aos_cell_capsule",
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "scope": "frontend_flow_graphics_status_language_and_kickoff_entrypoints",
+  "version": "0.8.5"
+}

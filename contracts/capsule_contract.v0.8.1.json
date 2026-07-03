@@ -1,0 +1,20 @@
+{
+  "contract_id": "best_buds_timeclock_capsule_contract.v0.8.1",
+  "non_claims": [
+    "No Hugging Face Space adapter included.",
+    "No hosted deployment claim.",
+    "Offline browser queue is not payroll source-of-truth.",
+    "CSV is a mirror/export, not source-of-truth."
+  ],
+  "phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "previous_version": "0.8.0",
+  "runtime_surfaces": [
+    "offline_browser_queue",
+    "offline_sync_endpoint",
+    "server_jsonl_ledger",
+    "server_csv_mirror",
+    "offline_sync_receipts"
+  ],
+  "scope": "offline_timekeeper_reliability_patch",
+  "version": "0.8.1"
+}

@@ -1,0 +1,40 @@
+{
+  "constraints": {
+    "deterministic_ordering_required": true,
+    "no_speculative_families": true,
+    "schema_first": true,
+    "strict_naming_required": true
+  },
+  "contract_families": [
+    "request",
+    "plan",
+    "schema_manifest",
+    "module_contract",
+    "frontend_surface",
+    "validation_report"
+  ],
+  "generation_scope": {
+    "generate_annotated": true,
+    "generate_filled_examples": true,
+    "generate_frontend_contracts": true,
+    "generate_runtime_contracts": false,
+    "generate_unfilled": true
+  },
+  "notes": [
+    "No new backend route family in this bump.",
+    "Hugging Face adapter remains deferred."
+  ],
+  "output_modes": {
+    "emit_cursor_blocks": true,
+    "emit_json": true,
+    "emit_markdown": true,
+    "emit_repo_files": true
+  },
+  "request_id": "best_buds_timeclock_capsule_v0.8.5",
+  "request_name": "Best Buds Time Clock Frontend Flow Status Language and Kickoff Entrypoints",
+  "target_module": {
+    "module_class": "ui_module",
+    "module_name": "best_buds_timeclock_capsule",
+    "module_purpose": "Add restrained frontend flow status language plus developer and product entrypoints."
+  }
+}

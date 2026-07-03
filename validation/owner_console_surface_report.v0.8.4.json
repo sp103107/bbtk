@@ -1,0 +1,17 @@
+{
+  "evidence": [
+    "owner_action_summary",
+    "owner_task_rail",
+    "operator_console_grid",
+    "technical_json_details",
+    "owner_card_result_hints"
+  ],
+  "non_claims": [
+    "static surface report only",
+    "no visual regression execution"
+  ],
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "status": "pass",
+  "surface": "owner_console",
+  "version": "0.8.4"
+}

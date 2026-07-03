@@ -1,0 +1,14 @@
+{
+  "lanes": [
+    "employee_qr_entry",
+    "employee_summary_api",
+    "owner_kiosk_link_qr",
+    "dev_startup_scripts",
+    "context_update"
+  ],
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "previous_version": "0.8.5",
+  "runtime_claimed": false,
+  "version": "0.8.6"
+}

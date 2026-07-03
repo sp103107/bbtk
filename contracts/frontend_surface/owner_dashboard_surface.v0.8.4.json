@@ -1,0 +1,23 @@
+{
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "result_channels": [
+    "owner_notice",
+    "owner_action_summary",
+    "owner_card_result",
+    "technical_owner_json"
+  ],
+  "runtime_claimed": false,
+  "schema_version": "1.0.0",
+  "screens": [
+    "owner_console",
+    "payroll_exports",
+    "pay_period_close",
+    "people_review",
+    "backup_restore",
+    "offline_recovery_review",
+    "release_checklist"
+  ],
+  "surface_id": "owner_console_operator_clarity",
+  "technical_json_default": "hidden_under_details",
+  "version": "0.8.4"
+}

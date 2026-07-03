@@ -1,0 +1,1 @@
+{"component":"ActiveSessionList","runtime_target":"repo_scaffold/app/static/index.html#active_session_list","transport":"authenticated_websocket_with_http_polling_fallback","interval_seconds":15,"server_authoritative":true,"includes":["employee","guest"],"status":"implemented","version":"0.9.0"}

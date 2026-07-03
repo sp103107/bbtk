@@ -1,0 +1,24 @@
+{
+  "contract_type": "visual_design_tokens",
+  "previous_version": "0.7.1",
+  "release_readiness_note": "v0.8.0 adds backend connectivity guard and phone/tablet kiosk startup clarity.",
+  "tokens": {
+    "layout": {
+      "employee_kiosk": "large card with workflow strip",
+      "owner_dashboard": "task-grouped cards",
+      "technical_json": "details disclosure"
+    },
+    "status": {
+      "error": "red rejected/error state",
+      "neutral": "slate waiting/idle",
+      "success": "green accepted receipt",
+      "warning": "amber preflight/pilot gate"
+    },
+    "touch_targets": {
+      "large_kiosk_actions": true,
+      "minimum_button_padding_px": 16
+    }
+  },
+  "updated_at": "2026-05-29T19:39:42+00:00",
+  "version": "0.8.0"
+}

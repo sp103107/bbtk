@@ -1,0 +1,33 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/offline_sync_receipt.v0.8.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "offline_batch_id": {
+      "type": "string"
+    },
+    "pending_review_count": {
+      "type": "integer"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "rejected_count": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "receipt_id",
+    "offline_batch_id",
+    "pending_review_count",
+    "rejected_count",
+    "non_claims"
+  ],
+  "title": "Offline Sync Receipt",
+  "type": "object"
+}

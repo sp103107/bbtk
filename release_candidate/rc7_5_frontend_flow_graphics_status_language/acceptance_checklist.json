@@ -1,0 +1,13 @@
+{
+  "items": [
+    "employee_flow_rail_present",
+    "owner_flow_rail_present",
+    "offline_flow_rail_present",
+    "agent_onboarding_script_present",
+    "product_user_entrypoint_present",
+    "validators_pass"
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "version": "0.8.5"
+}

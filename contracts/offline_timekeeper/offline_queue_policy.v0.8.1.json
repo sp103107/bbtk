@@ -1,0 +1,14 @@
+{
+  "browser_queue_role": "temporary_recovery_evidence",
+  "canonical_payroll_counting": "backend_accepted_or_owner_adjusted_events_only",
+  "csv_mirror": "enabled_after_jsonl_write",
+  "non_claims": [
+    "Offline browser queue is not payroll truth.",
+    "CSV mirror is not source-of-truth.",
+    "No HF Space adapter included in v0.8.1."
+  ],
+  "pin_persistence": "forbidden",
+  "policy_id": "offline_queue_policy.v0.8.1",
+  "sync_status": "offline_recovery_pending_owner_review",
+  "version": "0.8.1"
+}

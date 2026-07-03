@@ -1,0 +1,18 @@
+{
+  "design_posture": "professional_kiosk_dashboard",
+  "layout_principles": [
+    "large tap targets",
+    "clear receipt feedback",
+    "owner functions visually separated",
+    "technical JSON hidden behind details by default"
+  ],
+  "token_version": "0.6.0",
+  "tokens": {
+    "brand": "#0f172a",
+    "error_background": "#fef2f2",
+    "panel_shadow": "0 18px 50px rgba(15,23,42,.10)",
+    "primary_surface": "#ffffff",
+    "radius": "24px",
+    "success_background": "#ecfdf5"
+  }
+}

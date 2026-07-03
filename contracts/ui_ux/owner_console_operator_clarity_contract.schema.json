@@ -1,0 +1,47 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/ui_ux/owner_console_operator_clarity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "acceptance": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "forbidden_scope": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "phase": {
+      "type": "string"
+    },
+    "required_surfaces": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "scope": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "phase",
+    "scope",
+    "required_surfaces",
+    "forbidden_scope",
+    "acceptance"
+  ],
+  "title": "Owner console operator clarity contract",
+  "type": "object"
+}

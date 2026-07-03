@@ -1,0 +1,18 @@
+{
+  "components": [
+    "employee_flow_rail",
+    "owner_flow_rail",
+    "offline_flow_rail"
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "status_states": [
+    "active",
+    "done",
+    "pending",
+    "warning",
+    "error"
+  ],
+  "surface": "frontend_flow_status_language",
+  "version": "0.8.5"
+}

@@ -1,0 +1,15 @@
+{
+  "continue_from": [
+    "README.md",
+    "repo_release_state.json",
+    "docs/FRONTEND_FLOW_GRAPHICS_STATUS_LANGUAGE_v0.8.5.md",
+    "scripts/onboard_agent.py",
+    "scripts/start_here_user.py"
+  ],
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "next_recommended_command": "continue rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "updated_at": "2026-06-23T23:34:48Z",
+  "version": "0.8.5"
+}

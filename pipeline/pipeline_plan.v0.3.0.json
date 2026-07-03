@@ -1,0 +1,44 @@
+{
+  "acceptance": [
+    "JSON/JSONL parse",
+    "Python compile",
+    "runtime smoke closes period",
+    "full repo zip contains v0.1.0-v0.3.0 state",
+    "no fragmented RC zip"
+  ],
+  "phase": "rc2_pay_period_close_and_audit_exports",
+  "pipeline_id": "best_buds_timeclock_pipeline_plan.v0.3.0",
+  "steps": [
+    {
+      "name": "preserve_v0_2_0_repo_state",
+      "order": 1,
+      "status": "done"
+    },
+    {
+      "name": "add_pay_period_close_contracts",
+      "order": 2,
+      "status": "done"
+    },
+    {
+      "name": "add_owner_close_runtime_routes",
+      "order": 3,
+      "status": "done"
+    },
+    {
+      "name": "update_static_owner_ui",
+      "order": 4,
+      "status": "done"
+    },
+    {
+      "name": "extend_runtime_smoke_for_close_package",
+      "order": 5,
+      "status": "done"
+    },
+    {
+      "name": "validate_full_repo_shape",
+      "order": 6,
+      "status": "pending_until_validation_run"
+    }
+  ],
+  "version": "0.3.0"
+}

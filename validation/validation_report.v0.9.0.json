@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "agent_entrypoint_present": true,
+    "current_phase_alignment": true,
+    "employee_management_kiosk_arc_present": true,
+    "employee_qr_entry_present": true,
+    "entrypoints_execute": true,
+    "flow_status_language_present": true,
+    "forbidden_claims_absent": true,
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "next_phase_alignment": true,
+    "owner_token_generator_present": true,
+    "product_entrypoint_present": true,
+    "pycache_absent": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "shell_syntax": true,
+    "short_zip_policy_present": true,
+    "start_all_present": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 462,
+  "jsonl_lines_checked": 132,
+  "phase": "rc8_validation_and_context_checkpoint",
+  "shell_scripts_checked": 3,
+  "status": "pass",
+  "version": "0.9.0"
+}

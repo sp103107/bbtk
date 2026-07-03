@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "context_version_alignment": true,
+    "employee_receipt_surface_preserved": true,
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "internal_phase_not_external_zip": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "pilot_frontend_surface": true,
+    "pilot_runtime_surface": true,
+    "pycache_absent": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 142,
+  "jsonl_lines_checked": 57,
+  "status": "pass",
+  "version": "0.7.0"
+}

@@ -1,0 +1,23 @@
+{
+  "non_claims": [
+    "pilot UI is not a production deployment seal"
+  ],
+  "required_controls": [
+    "pilot_readiness_btn",
+    "pilot_issue_btn",
+    "pilot_signoff_btn",
+    "pilot_pack_btn"
+  ],
+  "required_outputs": [
+    "pilot_result",
+    "pilot_download_slot"
+  ],
+  "screens": [
+    "pilot_readiness",
+    "pilot_issue_log",
+    "pilot_signoff",
+    "pilot_acceptance_pack_download"
+  ],
+  "surface_type": "pilot_acceptance_surface",
+  "version": "0.7.0"
+}

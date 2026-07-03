@@ -1,0 +1,31 @@
+{
+  "$id": "https://bestbuds.local/timeclock/owner_security_policy.v0.4.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allow_owner_adjustments": {
+      "type": "boolean"
+    },
+    "app_security_policy_version": {
+      "type": "string"
+    },
+    "manager_review_required_before_pay_period_close": {
+      "type": "boolean"
+    },
+    "min_pin_length": {
+      "minimum": 4,
+      "type": "integer"
+    },
+    "owner_adjustment_reason_required": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "app_security_policy_version",
+    "min_pin_length",
+    "allow_owner_adjustments",
+    "owner_adjustment_reason_required"
+  ],
+  "title": "Owner Security Policy",
+  "type": "object"
+}

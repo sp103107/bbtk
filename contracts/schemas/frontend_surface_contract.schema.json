@@ -1,0 +1,48 @@
+{
+  "$id": "https://bestbuds.local/contracts/frontend_surface_contract.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "acceptance_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "contract_id": {
+      "type": "string"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "screens": {
+      "type": "array"
+    },
+    "source_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "surface_class": {
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "contract_id",
+    "version",
+    "surface_class",
+    "source_files",
+    "screens",
+    "acceptance_requirements"
+  ],
+  "title": "Frontend Surface Contract",
+  "type": "object"
+}

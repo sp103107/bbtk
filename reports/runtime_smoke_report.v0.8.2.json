@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-06-23T15:42:30.800805+00:00",
+  "checks": {
+    "backup_created": true,
+    "backup_verify_pass": true,
+    "bad_pin_rejected": true,
+    "clock_sequence_accepted": true,
+    "csv_export_created": true,
+    "csv_ledger_mirror_created": true,
+    "employee_success_receipt": true,
+    "employee_today_hours_visible_payload": true,
+    "employee_upsert": true,
+    "init_db": true,
+    "manager_review_generated": true,
+    "offline_sync_pending_review": true,
+    "offline_sync_receipt_written": true,
+    "owner_adjustment_created": true,
+    "pay_period_archive_valid": true,
+    "pay_period_close_created": true,
+    "pay_period_listed": true,
+    "pilot_acceptance_pack_created": true,
+    "pilot_issue_logged": true,
+    "pilot_readiness_report": true,
+    "pilot_signoff_recorded": true,
+    "restore_dry_run_pass": true,
+    "setup_warnings_present": true,
+    "summary_generated": true
+  },
+  "errors": [],
+  "non_claims": [
+    "runtime smoke used temporary app copy only",
+    "restore proof is dry-run extraction only",
+    "pilot acceptance pack is pre-production operator evidence only",
+    "no production deployment was performed",
+    "no legal/payroll/cannabis compliance seal is claimed"
+  ],
+  "status": "pass",
+  "version": "0.8.2"
+}

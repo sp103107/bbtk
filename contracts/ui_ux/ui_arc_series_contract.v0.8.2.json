@@ -1,0 +1,53 @@
+{
+  "deferred": [
+    "huggingface_space_adapter_preview"
+  ],
+  "non_scope": [
+    "production deployment",
+    "biometrics",
+    "geofence",
+    "camera",
+    "payroll-provider integration"
+  ],
+  "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+  "schema_version": "1.0.0",
+  "series": [
+    {
+      "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+      "scope": "Register complete UI/UX surface before visual changes.",
+      "version": "0.8.2"
+    },
+    {
+      "phase": "rc7_3_employee_kiosk_gold_path_polish",
+      "scope": "Polish employee gold path.",
+      "version": "0.8.3"
+    },
+    {
+      "phase": "rc7_4_owner_console_operator_clarity",
+      "scope": "Polish owner console task grouping and results.",
+      "version": "0.8.4"
+    },
+    {
+      "phase": "rc7_5_frontend_flow_graphics_status_language",
+      "scope": "Apply restrained flow/status language from graphics pack.",
+      "version": "0.8.5"
+    },
+    {
+      "phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+      "scope": "Mobile/tablet accessibility fit and finish.",
+      "version": "0.8.6"
+    },
+    {
+      "phase": "rc7_7_preview_gallery_and_visual_regression_baseline",
+      "scope": "Static preview gallery and baseline contracts.",
+      "version": "0.8.7"
+    },
+    {
+      "phase": "rc8_professional_release_candidate_ui_shell",
+      "scope": "Professional UI shell release-candidate checkpoint.",
+      "version": "0.9.0"
+    }
+  ],
+  "status": "arc_series_locked",
+  "version": "0.8.2"
+}

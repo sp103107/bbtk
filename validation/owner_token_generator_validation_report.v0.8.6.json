@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "atomic_temp_files_cleaned": true,
+    "audit_receipts_redact_tokens": true,
+    "authenticated_rotation_succeeds": true,
+    "backup_token_recovers_and_is_single_use": true,
+    "backup_tokens_stored_as_hashes_only": true,
+    "bad_rotation_rejected": true,
+    "configured_status_does_not_disclose_token": true,
+    "default_warning_cleared": true,
+    "frontend_component_present": true,
+    "frontend_does_not_persist_owner_token": true,
+    "frontend_uses_backend_generator": true,
+    "generated_token_is_strong": true,
+    "initial_generation_includes_recovery_set": true,
+    "initial_generation_succeeds": true,
+    "initial_recovery_set_stored_as_hashes_only": true,
+    "initial_status_is_local_setup": true,
+    "local_computer_address_gate": true,
+    "local_computer_gate_present": true,
+    "new_backup_set_invalidates_prior_set": true,
+    "old_token_revoked_new_token_valid": true,
+    "recovery_file_download_present": true,
+    "ten_unique_backup_tokens_generated": true,
+    "token_persisted": true
+  },
+  "errors": [],
+  "non_claims": [
+    "Validation reset only the temporary app copy to first-run state; repository settings were not changed.",
+    "Generated token values are intentionally omitted from this report.",
+    "This is local application security validation, not a security certification."
+  ],
+  "status": "pass",
+  "version": "0.8.6"
+}

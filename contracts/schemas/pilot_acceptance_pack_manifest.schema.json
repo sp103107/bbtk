@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "created_at_utc": {
+      "type": "string"
+    },
+    "files": {
+      "type": "array"
+    },
+    "manifest_type": {
+      "const": "live_pilot_acceptance_pack_manifest"
+    },
+    "non_claims": {
+      "type": "array"
+    },
+    "pack_id": {
+      "type": "string"
+    },
+    "source_ledger_hash": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "manifest_type",
+    "pack_id",
+    "version",
+    "created_at_utc",
+    "status",
+    "files",
+    "non_claims"
+  ],
+  "title": "Pilot acceptance pack manifest",
+  "type": "object"
+}

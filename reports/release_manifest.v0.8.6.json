@@ -1,0 +1,19 @@
+{
+  "bump_scope": "full_repo",
+  "generated_at": "2026-06-24T02:00:30Z",
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "non_claims": [
+    "No production deployment.",
+    "No hosted public employee URL.",
+    "Employee QR is LAN entry helper only."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "short_zip_name": "bbtc_v0_8_6.zip",
+  "validation_status": "pass",
+  "version": "0.8.6",
+  "zip_file_count": 592,
+  "zip_path": "C:\\bbtc_v0_8_6.zip",
+  "zip_sha256": "d936c031779685155c9482f4db477f0f2cc7e1af4e141869f6ac69528ace61ea",
+  "zip_status": "packaged"
+}

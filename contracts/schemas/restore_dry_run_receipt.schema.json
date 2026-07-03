@@ -1,0 +1,54 @@
+{
+  "$id": "https://bestbuds.example/aos/timeclock/v0.5.0/restore_dry_run_receipt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "backup_file": {
+      "type": "string"
+    },
+    "checked_at_utc": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "array"
+    },
+    "extracted_file_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "restore_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "target": {
+      "type": "string"
+    },
+    "verify_ok": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "restore_id",
+    "checked_at_utc",
+    "backup_file",
+    "target",
+    "verify_ok",
+    "extracted_file_count",
+    "errors",
+    "status",
+    "non_claims"
+  ],
+  "title": "Restore Dry Run Receipt",
+  "type": "object"
+}

@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-05-29T00:16:02.592908+00:00",
+  "policy": "hash-only; raw foundation packs not vendored",
+  "source_artifacts": [
+    {
+      "basename": "factory_request.schema.json",
+      "bytes": 3345,
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "vendored": false
+    },
+    {
+      "basename": "pack_jsonl_manifest.json",
+      "bytes": 3099,
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.manifest.json",
+      "bytes": 573,
+      "sha256": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.stats.json",
+      "bytes": 2609,
+      "sha256": "0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf",
+      "vendored": false
+    },
+    {
+      "basename": "Cursor Bootstrap Capsule_current.txt",
+      "bytes": 4498,
+      "sha256": "464961f9a91e055b7b73f9958a8fc20df3661a5638d958f503ab9ff97cd819da",
+      "vendored": false
+    },
+    {
+      "basename": "schema_record.schema.json",
+      "bytes": 1151,
+      "sha256": "a149be4280a91c929f124aae53950ce0562363e55a9364b0157725e2867af6cf",
+      "vendored": false
+    }
+  ],
+  "version": "0.2.0"
+}

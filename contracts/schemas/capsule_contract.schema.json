@@ -1,0 +1,42 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/capsule_contract.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capsule_class": {
+      "type": "string"
+    },
+    "capsule_id": {
+      "type": "string"
+    },
+    "contracts": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "runtime_mode": {
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "capsule_id",
+    "version",
+    "capsule_class",
+    "runtime_mode",
+    "contracts",
+    "non_claims"
+  ],
+  "title": "AoS Capsule Contract",
+  "type": "object"
+}

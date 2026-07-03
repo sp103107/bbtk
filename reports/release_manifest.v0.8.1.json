@@ -1,0 +1,16 @@
+{
+  "added": [
+    "offline_queue.js",
+    "/api/offline/sync",
+    "csv ledger mirror",
+    "offline validation"
+  ],
+  "non_claims": [
+    "no HF adapter",
+    "no production deployment"
+  ],
+  "phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "preserved": "full prior repo state",
+  "previous_version": "0.8.0",
+  "version": "0.8.1"
+}

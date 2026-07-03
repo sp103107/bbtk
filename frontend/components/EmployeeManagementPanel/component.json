@@ -1,0 +1,1 @@
+{"component":"EmployeeManagementPanel","runtime_target":"repo_scaffold/app/static/index.html#employee_management_panel","data":["GET /api/owner/employees","POST /api/owner/employees","POST /api/owner/employees/status"],"status":"implemented","version":"0.9.0"}

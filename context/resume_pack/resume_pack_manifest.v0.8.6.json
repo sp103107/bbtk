@@ -1,0 +1,19 @@
+{
+  "continue_from": [
+    "frontend/save_state/local_dev_review_session_save_state.v0.8.6.json",
+    "docs/EMPLOYEE_QR_ENTRY_PORTAL_v0.8.6.md",
+    "repo_scaffold/app/static/employee.html"
+  ],
+  "local_review_urls": {
+    "employee": "http://127.0.0.1:8080/employee",
+    "health": "http://127.0.0.1:8080/api/health",
+    "owner": "http://127.0.0.1:8080/"
+  },
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "next_recommended_command": "continue rc7_7_owner_employee_admin_clarity",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "runtime_claimed": false,
+  "session_note": "Local dev server started for employee portal review after clearing stale port 8080 listeners.",
+  "updated_at": "2026-06-24T01:52:30Z",
+  "version": "0.8.6"
+}

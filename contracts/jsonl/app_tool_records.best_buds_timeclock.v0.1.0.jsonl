@@ -1,0 +1,5 @@
+{"artifact_family": "module_contract", "module": "best_buds_timeclock_capsule", "record_type": "module_contract", "status": "draft_locked", "version": "0.2.0"}
+{"artifact_family": "runtime_surface", "persistence": ["sqlite", "jsonl"], "record_type": "runtime_surface", "server": "python_stdlib_http_server", "status": "scaffolded", "version": "0.2.0"}
+{"artifact_family": "frontend_surface", "entrypoint": "repo_scaffold/app/static/index.html", "record_type": "frontend_surface", "screens": ["employee_clock", "owner_dashboard"], "version": "0.2.0"}
+{"artifact_family": "state_surface", "exports": ["json", "csv", "markdown", "html"], "mirrors": ["sqlite"], "record_type": "state_surface", "source_of_truth": "append_only_jsonl", "version": "0.2.0"}
+{"artifact_family": "validation_surface", "checks": ["json_parse", "jsonl_parse", "required_files", "version_consistency", "python_compile", "zip_full_repo_shape"], "record_type": "validation_surface", "version": "0.2.0"}

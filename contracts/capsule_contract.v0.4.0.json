@@ -1,0 +1,34 @@
+{
+  "contract_id": "best_buds_timeclock_capsule_contract_v0_4_0",
+  "contract_scope": "policy_adjustments_and_manager_review",
+  "generated_at": "2026-05-29T00:36:12.876816+00:00",
+  "new_capabilities": [
+    "owner_adjustment_lane",
+    "manager_review_report",
+    "policy_validation_script",
+    "frozen_release_candidate_map"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation remains scaffolded until restore proof is added."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "previous_version": "0.3.0",
+  "runtime_surfaces": [
+    "/api/clock",
+    "/api/owner/summary",
+    "/api/owner/export",
+    "/api/owner/pay_period/close",
+    "/api/owner/review",
+    "/api/owner/adjustment"
+  ],
+  "source_of_truth": [
+    "JSONL clock event ledger",
+    "closed pay-period package snapshots"
+  ],
+  "version": "0.4.0"
+}

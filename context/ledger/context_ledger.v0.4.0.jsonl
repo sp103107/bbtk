@@ -1,0 +1,5 @@
+{"event_id": "ctx_v040_001", "event_type": "bump_started", "previous_version": "0.3.0", "timestamp": "2026-05-29T00:36:12.876816+00:00", "version": "0.4.0"}
+{"event_id": "ctx_v040_002", "event_type": "owner_adjustment_manager_review_added", "timestamp": "2026-05-29T00:36:12.876816+00:00", "version": "0.4.0"}
+{"event_id": "ctx_v040_003", "event_type": "frozen_rc_map_added", "recommended_frozen_rc_target": "v0.6.0", "timestamp": "2026-05-29T00:36:12.876816+00:00", "version": "0.4.0"}
+{"event_id": "ctx_v040_004", "event_type": "validation_completed", "status": "pending_at_generation_time", "timestamp": "2026-05-29T00:36:12.876816+00:00", "version": "0.4.0"}
+{"event_id": "ctx_v040_005", "event_type": "validation_completed", "status": "pass", "timestamp": "2026-05-29T00:36:16.656956+00:00", "version": "0.4.0"}

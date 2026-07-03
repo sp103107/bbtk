@@ -1,0 +1,4 @@
+{"detail": "Initialized v0.2.0 full repo package.", "event_seq": 1, "event_type": "bump_started", "timestamp": "2026-05-29T00:16:02.592908+00:00", "version": "0.2.0"}
+{"detail": "Added schemas and capsule contract.", "event_seq": 2, "event_type": "contracts_added", "timestamp": "2026-05-29T00:16:02.592908+00:00", "version": "0.2.0"}
+{"detail": "Added server, simple UI, JSONL ledger, SQLite mirror, owner exports.", "event_seq": 3, "event_type": "runtime_scaffold_added", "timestamp": "2026-05-29T00:16:02.592908+00:00", "version": "0.2.0"}
+{"detail": "Added working set, episode checkpoint, ledger events, resume pack.", "event_seq": 4, "event_type": "context_updated", "timestamp": "2026-05-29T00:16:02.592908+00:00", "version": "0.2.0"}

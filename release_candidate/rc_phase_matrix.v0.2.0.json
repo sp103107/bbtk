@@ -1,0 +1,35 @@
+{
+  "current_phase": "rc1_owner_setup_hardening",
+  "next_phase": "rc2_pay_period_close_and_exception_review",
+  "package_name": "best_buds_timeclock_capsule",
+  "phases": [
+    {
+      "introduced_in": "0.1.0",
+      "phase": "rc0_contract_runtime_blueprint",
+      "status": "preserved"
+    },
+    {
+      "evidence": [
+        "validation/validation_report.v0.2.0.json",
+        "reports/runtime_smoke_report.v0.2.0.json"
+      ],
+      "introduced_in": "0.2.0",
+      "phase": "rc1_owner_setup_hardening",
+      "status": "current"
+    },
+    {
+      "phase": "rc2_pay_period_close_and_exception_review",
+      "status": "planned"
+    },
+    {
+      "phase": "rc3_auth_backup_restore_hardening",
+      "status": "planned"
+    },
+    {
+      "phase": "rc4_release_candidate_freeze",
+      "status": "planned"
+    }
+  ],
+  "previous_version": "0.1.0",
+  "version": "0.2.0"
+}

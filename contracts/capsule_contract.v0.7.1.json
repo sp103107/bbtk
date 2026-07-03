@@ -1,0 +1,22 @@
+{
+  "contract_type": "capsule_contract",
+  "module_class": "runtime_module",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production deployment is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed."
+  ],
+  "non_scope_expansion_guard": true,
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "previous_version": "0.7.0",
+  "scope": "full_repo_patch_hardening",
+  "source_of_truth": [
+    "repo_scaffold/app/data/ledger/clock_events/**/*.jsonl",
+    "closed pay period JSON snapshots once generated"
+  ],
+  "ui_scope": "existing static web UI hardening",
+  "version": "0.7.1"
+}

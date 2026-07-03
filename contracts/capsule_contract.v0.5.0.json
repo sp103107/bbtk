@@ -1,0 +1,37 @@
+{
+  "adds": [
+    "backup_manifest_schema",
+    "restore_dry_run_receipt_schema",
+    "deployment_preflight_report_schema",
+    "owner_backup_verify_route",
+    "restore_runtime_data_script",
+    "deployment_preflight_script"
+  ],
+  "contract_class": "aos_cell_capsule_standalone_app",
+  "contract_id": "best_buds_timeclock_capsule_contract_v0_5_0",
+  "internal_phase": "rc4_backup_restore_and_deployment_operator_hardening",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Backup restore proof is limited to disposable dry-run extraction/verification; no production restore was performed.",
+    "Deployment preflight is an operator readiness check, not a production deployment seal."
+  ],
+  "preserves": [
+    "jsonl_source_ledger",
+    "sqlite_operational_mirror",
+    "owner_exports",
+    "pay_period_close",
+    "manager_review",
+    "owner_adjustments"
+  ],
+  "previous_version": "0.4.0",
+  "source_of_truth": [
+    "repo_scaffold/app/data/ledger/clock_events/**/*.jsonl",
+    "closed pay period JSON snapshots",
+    "backup_manifest.json inside runtime backup archives"
+  ],
+  "version": "0.5.0"
+}

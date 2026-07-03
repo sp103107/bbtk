@@ -1,0 +1,37 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/ledger_verify_report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "checked_at_utc": {
+      "type": "string"
+    },
+    "errors": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "event_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ledger_hash": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "event_count",
+    "errors",
+    "checked_at_utc"
+  ],
+  "title": "Ledger Verify Report",
+  "type": "object"
+}

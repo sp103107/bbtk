@@ -1,0 +1,17 @@
+{
+  "artifacts": [
+    "pilot readiness report",
+    "pilot issue log",
+    "pilot signoff receipt",
+    "pilot acceptance pack zip"
+  ],
+  "non_claims": [
+    "no production deployment",
+    "no compliance seal"
+  ],
+  "objective": "Add live pilot acceptance evidence without claiming production deployment.",
+  "phase": "rc6_live_pilot_acceptance_pack",
+  "previous_version": "0.6.0",
+  "status": "implemented",
+  "version": "0.7.0"
+}

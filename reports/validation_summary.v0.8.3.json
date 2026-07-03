@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "employee_kiosk_gold_path": "pass",
+    "json_files_checked": 321,
+    "jsonl_lines_checked": 99,
+    "release_readiness": "pass",
+    "repo_validation": "pass",
+    "runtime_smoke_temporary_copy": "pass",
+    "shell_scripts_checked": 2
+  },
+  "generated_at": "2026-06-23T15:44:44Z",
+  "non_claims": [
+    "runtime smoke used temporary app copy only",
+    "no production deployment",
+    "no release seal",
+    "no legal/payroll/cannabis compliance seal",
+    "no hosted adapter"
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "status": "pass",
+  "version": "0.8.3",
+  "warnings": [
+    "owner_token_default_change_required_before_live_use",
+    "pin_pepper_default_change_required_before_live_use"
+  ]
+}

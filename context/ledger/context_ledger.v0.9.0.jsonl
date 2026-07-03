@@ -1,0 +1,6 @@
+{"arc":"arc_employee_management_kiosk_timeclock","event":"arc_started","phase":"rc0_manager_employee_truth_lock","ts":"2026-07-01T13:00:00Z","version":"0.9.0"}
+{"event":"employee_lifecycle_added","soft_delete":true,"statuses":["active","inactive","removed"],"ts":"2026-07-01T13:00:00Z","version":"0.9.0"}
+{"event":"guest_ledger_and_export_added","separate_from_employee_time":true,"ts":"2026-07-01T13:00:00Z","version":"0.9.0"}
+{"event":"manager_buttons_repaired","manage_target":"employee_management_panel","summary_target":"timeclock_summary_panel","ts":"2026-07-01T13:00:00Z","version":"0.9.0"}
+{"event":"live_transport_selected","interval_seconds":15,"server_authoritative":true,"transport":"http_polling","ts":"2026-07-01T13:00:00Z","version":"0.9.0","websocket_sse_runtime_claimed":false}
+{"event":"temporary_runtime_validation_completed","persistence_scope":"isolated fixture","status":"pass","ts":"2026-07-01T13:00:00Z","version":"0.9.0"}

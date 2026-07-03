@@ -1,0 +1,12 @@
+{
+  "continue_from": [
+    "README.md",
+    "repo_release_state.json",
+    "contracts/capsule_contract.v0.2.0.json",
+    "repo_scaffold/app/server.py"
+  ],
+  "handoff_prompt": "Continue to next full repo/package bump. Preserve v0.2.0 and add owner setup hardening, employee management, admin corrections, and validation fixtures.",
+  "next_recommended_bump": "v0.2.0 owner setup hardening and admin correction workflow",
+  "updated_at": "2026-05-29T00:16:02.592908+00:00",
+  "version": "0.2.0"
+}

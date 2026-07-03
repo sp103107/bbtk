@@ -1,0 +1,33 @@
+{
+  "allowed_claims": [
+    "release-readiness candidate package",
+    "local pilot capable after operator setup",
+    "backend-required static web UI with local Python runtime"
+  ],
+  "contract_type": "release_readiness_contract",
+  "forbidden_claims": [
+    "production deployed",
+    "legal compliance certified",
+    "payroll-provider integrated",
+    "cannabis compliance certified"
+  ],
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "known_live_use_blockers": [
+    "default owner token must be changed",
+    "default PIN pepper must be changed",
+    "operator must run server backend; index.html alone is not live-use capable"
+  ],
+  "readiness_status": "candidate_with_operator_warnings",
+  "required_checks": [
+    "validate_repo",
+    "runtime_smoke",
+    "frontend_surface_validation",
+    "backend_connectivity_guard_validation",
+    "deployment_preflight",
+    "release_readiness_check",
+    "backup_verify",
+    "restore_dry_run",
+    "pilot_acceptance_validation"
+  ],
+  "version": "0.8.0"
+}

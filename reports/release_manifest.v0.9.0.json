@@ -1,0 +1,17 @@
+{
+  "bump_scope": "full_repo",
+  "generated_at": "2026-07-01T13:10:00Z",
+  "next_phase": "arc_role_based_manager_permissions",
+  "non_claims": [
+    "No production deployment.",
+    "No hosted public employee URL.",
+    "No legal, payroll, tax, or cannabis-compliance certification.",
+    "Live status is HTTP polling, not WebSocket or SSE."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc8_validation_and_context_checkpoint",
+  "short_zip_name": "bbtc_v0_9_0.zip",
+  "validation_status": "pass",
+  "version": "0.9.0",
+  "zip_status": "ready_for_sanitized_package"
+}

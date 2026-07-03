@@ -1,0 +1,44 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/employee.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at_utc": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "pin_hash": {
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "employee",
+        "owner",
+        "manager"
+      ],
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "employee_id",
+    "display_name",
+    "pin_hash",
+    "status",
+    "role",
+    "created_at_utc"
+  ],
+  "title": "Employee",
+  "type": "object"
+}

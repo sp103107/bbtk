@@ -1,0 +1,17 @@
+{
+  "current_internal_phase": "rc7_production_installation_readiness_candidate",
+  "focus": "professional release-readiness backend connectivity guard and kiosk startup",
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "preserved_versions": [
+    "0.1.0",
+    "0.2.0",
+    "0.3.0",
+    "0.4.0",
+    "0.5.0",
+    "0.6.0",
+    "0.7.0",
+    "0.7.1"
+  ],
+  "update_seq": 9,
+  "version": "0.8.0"
+}

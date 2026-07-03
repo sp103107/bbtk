@@ -1,0 +1,12 @@
+{
+  "_update_seq": 16,
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "next_phase": "arc_role_based_manager_permissions",
+  "phase": "rc8_validation_and_context_checkpoint",
+  "preserved_prior_state": true,
+  "runtime_claimed": true,
+  "runtime_claim_scope": "temporary isolated fixture only",
+  "summary": "Added manager employee lifecycle, soft removal, kiosk guest visits, separate readable exports, repaired manager buttons, and server-authoritative active-session polling.",
+  "updated_at": "2026-07-01T13:00:00Z",
+  "version": "0.9.0"
+}

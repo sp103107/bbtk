@@ -1,0 +1,17 @@
+{
+  "added_files": [
+    "contracts/schemas/pay_period_close_manifest.schema.json",
+    "docs/PAY_PERIOD_CLOSE_AND_AUDIT.md",
+    "release_candidate/rc2_pay_period_close_and_audit_exports/README.md"
+  ],
+  "created_at": "2026-05-29T00:28:30.046816+00:00",
+  "next_focus": "policy_adjustments_and_manager_review",
+  "preserved_versions": [
+    "0.1.0",
+    "0.2.0"
+  ],
+  "source_artifact_hashes_ref": "context/source_artifacts/source_artifact_hashes.v0.3.0.json",
+  "update_seq": 3,
+  "version": "0.3.0",
+  "working_set_focus": "pay_period_close_and_audit_exports"
+}

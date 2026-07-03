@@ -1,0 +1,31 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.3.0/pay_period_close_request.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "end": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "owner_note": {
+      "type": "string"
+    },
+    "owner_token": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "start": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "owner_token"
+  ],
+  "title": "Best Buds Pay Period Close Request",
+  "type": "object"
+}

@@ -1,0 +1,15 @@
+{
+  "current_phase": "rc7_production_installation_readiness_candidate",
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "known_blockers_before_live_use": [
+    "default owner token",
+    "default PIN pepper",
+    "operator must run backend server"
+  ],
+  "non_claims": [
+    "No production deployment is claimed."
+  ],
+  "recommended_next": "v0.8.1 operator secret rotation and terminal registry hardening",
+  "release_readiness_status": "candidate_with_operator_warnings",
+  "version": "0.8.0"
+}

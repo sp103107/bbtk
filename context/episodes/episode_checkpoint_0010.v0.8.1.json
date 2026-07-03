@@ -1,0 +1,8 @@
+{
+  "checkpoint_type": "offline_reliability_patch",
+  "episode_seq": 10,
+  "notes": "Backend interruption safety added without PIN persistence or hosted adapter scope.",
+  "phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "status": "created",
+  "version": "0.8.1"
+}

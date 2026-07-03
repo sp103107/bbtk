@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "backend_guard_status_pass": true,
+    "full_repo_scope": true,
+    "non_claims_preserved": true,
+    "python_parses:repo_scaffold/app/server.py": true,
+    "python_parses:scripts/start_kiosk_server.py": true,
+    "release_readiness_status_set": true,
+    "required_release_files_present": true
+  },
+  "errors": [],
+  "non_claims": [
+    "Release readiness is not a production deployment claim.",
+    "Default secrets must be changed before live use."
+  ],
+  "status": "pass",
+  "version": "0.8.2",
+  "warnings": []
+}

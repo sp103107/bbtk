@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/realtime/live_clocked_in_status.v1",
+  "title": "Live Clocked-In Status Envelope",
+  "type": "object",
+  "required": ["active_sessions", "active_guest_sessions", "active_roster", "server_calculated_at_utc", "transport", "poll_interval_seconds"],
+  "properties": {
+    "active_sessions": {"type": "array", "items": {"$ref": "../timeclock/active_session.v1.schema.json"}},
+    "active_guest_sessions": {"type": "array", "items": {"type": "object"}},
+    "active_roster": {"type": "array", "items": {"type": "object"}},
+    "server_calculated_at_utc": {"type": "string", "format": "date-time"},
+    "transport": {"enum": ["websocket", "http_polling_fallback"]},
+    "poll_interval_seconds": {"type": "integer", "minimum": 5},
+    "websocket_or_sse_runtime_claimed": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

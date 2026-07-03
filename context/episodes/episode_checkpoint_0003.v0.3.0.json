@@ -1,0 +1,15 @@
+{
+  "checkpoint": "v0.3.0 full repo bump with pay-period close package runtime",
+  "created_at": "2026-05-29T00:28:30.046816+00:00",
+  "episode_seq": 3,
+  "truth_state": [
+    "JSONL ledger remains source of truth",
+    "pay-period close packages are owner review artifacts",
+    "no legal/payroll compliance seal claimed"
+  ],
+  "validation_refs": [
+    "validation/validation_report.v0.3.0.json",
+    "reports/runtime_smoke_report.v0.3.0.json"
+  ],
+  "version": "0.3.0"
+}

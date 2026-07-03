@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-05-29T19:58:00+00:00",
+  "project_files_hashes": {
+    "app_tool_schema_inventory.v1.jsonl": "235129f5376f5610c1fac77f3913a4843d37e1dc4510aa535ec13e59f7c91dd7",
+    "factory_request.schema.json": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+    "foundation_stack.manifest.json": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+    "pack_jsonl_manifest.json": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18"
+  },
+  "raw_foundation_material_vendored": false,
+  "source_package": {
+    "path": "/mnt/data/best_buds_timeclock_capsule_v0_8_0_full_repo.zip",
+    "sha256": "9eb059b5eac52393c82f5149a062a3e8ed607ced6bbc574f55ef3573120f4ad3"
+  },
+  "version": "0.8.1"
+}

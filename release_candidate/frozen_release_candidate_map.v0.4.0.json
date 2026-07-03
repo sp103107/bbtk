@@ -1,0 +1,62 @@
+{
+  "current_internal_phase": "rc3_policy_adjustments_and_manager_review",
+  "generated_at": "2026-05-29T00:36:12.876816+00:00",
+  "hard_freeze_requirements": [
+    "JSON/JSONL parse clean",
+    "runtime smoke pass",
+    "backup restore proof pass",
+    "ledger verify pass",
+    "pay-period close verify pass",
+    "owner adjustment/review proof pass",
+    "no forbidden fragmented RC ZIPs",
+    "final zip full repo only"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation remains scaffolded until restore proof is added."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phases": [
+    {
+      "phase": "rc0_contract_runtime_blueprint",
+      "status": "complete",
+      "version": "0.1.0"
+    },
+    {
+      "phase": "rc1_owner_setup_hardening",
+      "status": "complete",
+      "version": "0.2.0"
+    },
+    {
+      "phase": "rc2_pay_period_close_and_audit_exports",
+      "status": "complete",
+      "version": "0.3.0"
+    },
+    {
+      "phase": "rc3_policy_adjustments_and_manager_review",
+      "status": "complete",
+      "version": "0.4.0"
+    },
+    {
+      "phase": "rc4_backup_restore_and_deployment_operator_hardening",
+      "status": "next",
+      "version": "0.5.0"
+    },
+    {
+      "phase": "rc5_validation_freeze_and_artifact_seal_candidate",
+      "status": "freeze_candidate_target",
+      "version": "0.6.0"
+    },
+    {
+      "phase": "rc6_live_pilot_acceptance_pack",
+      "status": "optional_pre_1_0",
+      "version": "0.7.0"
+    }
+  ],
+  "recommended_frozen_rc_target": "v0.6.0",
+  "version": "0.4.0"
+}

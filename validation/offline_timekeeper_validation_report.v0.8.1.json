@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-06-23T06:25:43.548080+00:00",
+  "checks": {
+    "csv_mirror_present": true,
+    "employee_handler_saves_offline_on_backend_interrupt": true,
+    "offline_queue_script_present": true,
+    "offline_ui_controls_present": true,
+    "pending_owner_review_status_present": true,
+    "pin_not_persisted_claim_present": true,
+    "sync_endpoint_present": true
+  },
+  "non_claims": [
+    "Offline queue is recovery evidence only.",
+    "Employee PINs must not be persisted in browser storage.",
+    "Offline synced events require owner review before payroll counting."
+  ],
+  "status": "pass",
+  "version": "0.8.1"
+}

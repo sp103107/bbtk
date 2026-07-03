@@ -1,0 +1,19 @@
+{
+  "acceptance": [
+    "frontend_contract_pack_present",
+    "employee_success_receipt_present",
+    "today_hours_visible",
+    "runtime_smoke_pass",
+    "repo_validation_pass",
+    "no_fragmented_external_rc_zip"
+  ],
+  "non_claims": [
+    "No production deployment seal.",
+    "No legal compliance seal.",
+    "No payroll provider integration."
+  ],
+  "phase_id": "rc5_frontend_surface_and_validation_freeze_candidate",
+  "previous_phase": "rc4_backup_restore_and_deployment_operator_hardening",
+  "status": "candidate",
+  "version": "0.6.0"
+}

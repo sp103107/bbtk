@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "backend_connection_guard_present": true,
+    "backup_verify_existing_route_exposed": true,
+    "employee_receipt_panel_present": true,
+    "owner_grouped_cards_present": true,
+    "pilot_acceptance_panel_preserved": true,
+    "professional_style_tokens_present": true,
+    "receipt_renderer_present": true,
+    "required_frontend_files_present": true,
+    "technical_json_disclosure_present": true
+  },
+  "errors": [],
+  "status": "pass",
+  "version": "0.8.5"
+}

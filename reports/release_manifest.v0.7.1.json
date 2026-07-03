@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-05-29T18:26:50+00:00",
+  "included_new_files": [
+    "contracts/frontend_surface/*.v0.7.1.json",
+    "docs/*v0.7.1.md",
+    "scripts/validate_ui_copy.py",
+    "scripts/validate_accessibility_static.py",
+    "scripts/validate_no_scope_expansion.py"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production deployment is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No cannabis compliance certification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "UI research informed generic layout patterns only; no vendor assets/designs were copied."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "previous_version": "0.7.0",
+  "validated_at": "2026-05-29T18:27:49+00:00",
+  "validation_reports": [
+    "validation/frontend_surface_validation_report.v0.7.1.json",
+    "validation/ui_copy_validation_report.v0.7.1.json",
+    "validation/accessibility_static_check_report.v0.7.1.json",
+    "validation/no_scope_expansion_report.v0.7.1.json",
+    "validation/policy_validation_report.v0.7.1.json",
+    "validation/pilot_acceptance_validation_report.v0.7.1.json",
+    "validation/validation_report.v0.7.1.json",
+    "reports/runtime_smoke_report.v0.7.1.json",
+    "reports/deployment_preflight_report.v0.7.1.json"
+  ],
+  "validation_status": "pass_with_deployment_preflight_warnings",
+  "version": "0.7.1"
+}

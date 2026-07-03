@@ -1,0 +1,21 @@
+{
+  "data_warning": "Do not delete ledger without backup.",
+  "generated_at": "2026-05-29T00:44:25+00:00",
+  "mode": "manual_safe",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Backup restore proof is limited to disposable dry-run extraction/verification; no production restore was performed.",
+    "Deployment preflight is an operator readiness check, not a production deployment seal."
+  ],
+  "plan_id": "uninstall_best_buds_timeclock_capsule_v0_1_0",
+  "steps": [
+    "Stop server.",
+    "Archive data/ledger and data/exports.",
+    "Delete app directory only after confirmed backup."
+  ],
+  "version": "0.5.0"
+}

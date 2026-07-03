@@ -1,0 +1,11 @@
+{
+  "current_phase": "rc7_5_frontend_flow_graphics_status_language",
+  "frozen_candidate_status": "not_release_sealed",
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "non_claims": [
+    "no production readiness claim",
+    "no release seal",
+    "no visual regression execution"
+  ],
+  "version": "0.8.5"
+}

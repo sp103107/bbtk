@@ -1,0 +1,11 @@
+{
+  "checkpoint": "live_pilot_acceptance_pack_added",
+  "created_at": "2026-05-29T00:57:24+00:00",
+  "episode_seq": 7,
+  "immutable": true,
+  "non_claims": [
+    "no production deployment",
+    "no compliance seal"
+  ],
+  "version": "0.7.0"
+}

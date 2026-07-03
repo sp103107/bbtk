@@ -1,0 +1,17 @@
+{
+  "file_count": 592,
+  "generated_at": "2026-06-24T02:00:30Z",
+  "non_claims": [
+    "Release-candidate ZIP packaging only.",
+    "No production deployment claim.",
+    "No release seal claim."
+  ],
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "runtime_claimed": false,
+  "sha256": "d936c031779685155c9482f4db477f0f2cc7e1af4e141869f6ac69528ace61ea",
+  "version": "0.8.6",
+  "zip_bytes": 720619,
+  "zip_name": "bbtc_v0_8_6.zip",
+  "zip_path": "C:\\bbtc_v0_8_6.zip",
+  "zip_root_folder": "bbtc_v0_8_6"
+}

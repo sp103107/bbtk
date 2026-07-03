@@ -1,0 +1,33 @@
+{
+  "acceptance": [
+    "frontend_surface_contract_pack_present",
+    "employee_success_receipt_present",
+    "today_hours_visible_after_punch",
+    "runtime_smoke_pass",
+    "repo_validation_pass"
+  ],
+  "capsule_name": "best_buds_timeclock_capsule",
+  "contract_id": "best_buds_timeclock_capsule_contract.v0.6.0",
+  "frontend_surfaces": [
+    "employee_station",
+    "owner_dashboard",
+    "manager_adjustment",
+    "employee_setup"
+  ],
+  "non_claims": [
+    "No production deployment seal.",
+    "No legal compliance seal.",
+    "No biometric/geofence identity proof."
+  ],
+  "phase": "rc5_frontend_surface_and_validation_freeze_candidate",
+  "previous_version": "0.5.0",
+  "runtime_surfaces": [
+    "clock_event_ledger",
+    "owner_export",
+    "pay_period_close",
+    "manager_review",
+    "backup_restore_dry_run",
+    "employee_punch_receipt"
+  ],
+  "version": "0.6.0"
+}

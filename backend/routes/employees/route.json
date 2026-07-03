@@ -1,0 +1,1 @@
+{"surface":"employees","runtime_target":"repo_scaffold/app/server.py","routes":["GET /api/owner/employees","POST /api/owner/employees","POST /api/owner/employees/status","POST /api/owner/manual-hours"],"soft_delete":true,"version":"0.9.0"}

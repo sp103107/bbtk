@@ -1,0 +1,14 @@
+{
+  "artifact_type": "full_repo_zip",
+  "generated_at": "2026-05-29T00:16:02.592908+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "validation_report": "validation/validation_report.v0.2.0.json",
+  "version": "0.2.0"
+}

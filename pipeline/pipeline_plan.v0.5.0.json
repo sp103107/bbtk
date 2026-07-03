@@ -1,0 +1,29 @@
+{
+  "current_internal_phase": "rc4_backup_restore_and_deployment_operator_hardening",
+  "generated_at": "2026-05-29T00:44:25+00:00",
+  "next_internal_phase": "rc5_validation_freeze_and_artifact_seal_candidate",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Backup restore proof is limited to disposable dry-run extraction/verification; no production restore was performed.",
+    "Deployment preflight is an operator readiness check, not a production deployment seal."
+  ],
+  "pipeline_id": "best_buds_timeclock_capsule_pipeline_v0_5_0",
+  "previous_version": "0.4.0",
+  "stages": [
+    "read_previous_package",
+    "preserve_full_repo_state",
+    "add_backup_manifest_contracts",
+    "add_restore_dry_run_script",
+    "add_deployment_preflight",
+    "update_context_module",
+    "validate_json_jsonl_python",
+    "run_runtime_smoke",
+    "run_deployment_preflight",
+    "package_full_repo"
+  ],
+  "version": "0.5.0"
+}

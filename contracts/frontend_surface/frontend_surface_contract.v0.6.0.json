@@ -1,0 +1,74 @@
+{
+  "acceptance_requirements": [
+    "Employee receives a visible success notification after accepted clock_in, clock_out, break_start, and break_end.",
+    "Employee visible receipt includes today net hours calculated from accepted ledger events.",
+    "Technical JSON receipt remains available under details for audit/debug review.",
+    "Owner actions remain gated by owner token.",
+    "No biometric/geofence/payroll compliance claim is made from UI state."
+  ],
+  "contract_id": "best_buds_timeclock.frontend_surface.v0.6.0",
+  "non_claims": [
+    "Frontend receipt is not payroll approval.",
+    "Static UI is not a production security boundary."
+  ],
+  "screens": [
+    {
+      "primary_user": "employee",
+      "required_outputs": [
+        "punch_receipt.message",
+        "today_summary.net_work_hours",
+        "today_summary.current_status"
+      ],
+      "required_states": [
+        "idle",
+        "accepted_success",
+        "rejected_error"
+      ],
+      "screen_id": "employee_station"
+    },
+    {
+      "primary_user": "owner",
+      "required_outputs": [
+        "json_result",
+        "download_link_when_available"
+      ],
+      "required_states": [
+        "summary",
+        "export_created",
+        "pay_period_closed",
+        "backup_created"
+      ],
+      "screen_id": "owner_dashboard"
+    },
+    {
+      "primary_user": "owner",
+      "required_outputs": [
+        "audit_marked_event",
+        "adjustment_receipt"
+      ],
+      "required_states": [
+        "adjustment_created",
+        "adjustment_rejected"
+      ],
+      "screen_id": "manager_adjustment"
+    },
+    {
+      "primary_user": "owner",
+      "required_outputs": [
+        "employee_result_json"
+      ],
+      "required_states": [
+        "employee_created_or_updated",
+        "employee_rejected"
+      ],
+      "screen_id": "employee_setup"
+    }
+  ],
+  "source_files": [
+    "repo_scaffold/app/static/index.html",
+    "repo_scaffold/app/static/app.js",
+    "repo_scaffold/app/static/style.css"
+  ],
+  "surface_class": "static_html_kiosk_owner_dashboard",
+  "version": "0.6.0"
+}

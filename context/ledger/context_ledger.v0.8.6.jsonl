@@ -1,0 +1,6 @@
+{"event": "bump_started", "phase": "rc7_6_employee_qr_entry_and_kiosk_fit", "ts": "2026-06-24T00:00:00Z", "version": "0.8.6"}
+{"event": "employee_portal_added", "path": "/employee", "ts": "2026-06-24T00:00:00Z", "version": "0.8.6"}
+{"event": "start_all_scripts_added", "paths": ["scripts/start_all.bat", "scripts/start_all.sh"], "ts": "2026-06-24T00:00:00Z", "version": "0.8.6"}
+{"event": "validation_completed", "status": "pass", "ts": "2026-06-24T00:00:00Z", "validators": ["validate_employee_qr_entry", "validate_dev_startup_scripts", "validate_repo", "runtime_smoke"], "version": "0.8.6"}
+{"event": "local_dev_review_session_started", "employee_url": "http://127.0.0.1:8080/employee", "owner_url": "http://127.0.0.1:8080/", "save_state": "frontend/save_state/local_dev_review_session_save_state.v0.8.6.json", "ts": "2026-06-24T01:52:30Z", "version": "0.8.6"}
+{"event": "release_candidate_zip_packaged", "zip_path": "C:\\bbtc_v0_8_6.zip", "zip_name": "bbtc_v0_8_6.zip", "file_count": 592, "sha256": "d936c031779685155c9482f4db477f0f2cc7e1af4e141869f6ac69528ace61ea", "ts": "2026-06-24T02:00:30Z", "version": "0.8.6"}

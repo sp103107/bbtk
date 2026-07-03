@@ -1,0 +1,22 @@
+{
+  "checked": [
+    "VERSION",
+    "repo_release_state.json",
+    "package.json",
+    "guide_pack.json",
+    "README.md",
+    "CHANGELOG.md",
+    "release_candidate",
+    "frontend/save_state",
+    "validation",
+    "scripts/onboard_agent.py",
+    "scripts/start_here_user.py"
+  ],
+  "findings": [
+    "capsule_manifest.json absent at repo root by prior package shape; capsule metadata lives under repo_scaffold/capsule/ and was updated.",
+    "Short ZIP/root naming introduced for Windows path-length reduction while package metadata preserves canonical package name."
+  ],
+  "resolved": [],
+  "status": "pass_no_blocking_drift",
+  "version": "0.8.5"
+}

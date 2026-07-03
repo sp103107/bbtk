@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "current_phase_alignment": true,
+    "forbidden_claims_absent": true,
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "hf_adapter_not_included": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "next_phase_alignment": true,
+    "owner_console_operator_clarity_present": true,
+    "pycache_absent": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "shell_syntax": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 356,
+  "jsonl_lines_checked": 105,
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "shell_scripts_checked": 2,
+  "status": "pass",
+  "version": "0.8.4"
+}

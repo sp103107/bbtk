@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-05-29T00:22:41+00:00",
+  "preserved_previous_working_set": "context/working_set/working_set_update_0001.v0.1.0.json",
+  "previous_version": "0.1.0",
+  "source_artifact_hashes": "context/source_artifacts/source_artifact_hashes.v0.2.0.json",
+  "update_seq": 2,
+  "version": "0.2.0",
+  "working_set_focus": "owner setup hardening, authenticated owner dashboard, employee administration, downloadable exports, runtime smoke, ledger verification, backup receipts"
+}

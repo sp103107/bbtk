@@ -1,0 +1,24 @@
+{
+  "loops": [
+    "setup",
+    "operations",
+    "verification"
+  ],
+  "operations": [
+    "clock in/out",
+    "owner export"
+  ],
+  "pipeline_id": "best_buds_timeclock_capsule_pipeline_v0_1_0",
+  "setup": [
+    "configure owner token",
+    "seed employees"
+  ],
+  "verification": [
+    "json parse",
+    "jsonl parse",
+    "python compile",
+    "required files",
+    "version consistency"
+  ],
+  "version": "0.2.0"
+}

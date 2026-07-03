@@ -1,0 +1,3 @@
+{"event": "bump_started", "phase": "rc7_4_owner_console_operator_clarity", "ts": "2026-06-23T16:18:00Z", "version": "0.8.4"}
+{"details": ["contracts", "docs", "validator", "release_candidate", "frontend_save_state"], "event": "files_added", "ts": "2026-06-23T16:18:00Z", "version": "0.8.4"}
+{"event": "validation_planned", "ts": "2026-06-23T16:18:00Z", "validator": "scripts/validate_owner_console_operator_clarity.py", "version": "0.8.4"}

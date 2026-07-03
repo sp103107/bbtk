@@ -1,0 +1,20 @@
+{
+  "episodes": [
+    {"id": "E00_state_lock", "purpose": "Read VERSION, repo_release_state, and declared rc7_6 scope"},
+    {"id": "E01_employee_qr_entry", "purpose": "Employee portal route, QR/link card, PIN-gated summary API"},
+    {"id": "E02_mobile_kiosk_fit", "purpose": "Mobile-first employee shell, reduced-motion, compact touch targets"},
+    {"id": "E03_dev_startup_ergonomics", "purpose": "start_all.bat/sh and dev startup validation"},
+    {"id": "E04_validation_and_handoff", "purpose": "Validators, context update, next phase rc7_7"}
+  ],
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "non_claims": [
+    "Arc planning record only.",
+    "No production deployment claim.",
+    "runtime_claimed remains false until explicit operator authorization elsewhere."
+  ],
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "planned_task_id": "plan-0_8_6-rc7_6_employee_qr_entry_and_kiosk_fit",
+  "runtime_claimed": false,
+  "season": "S1_bbtc_time_clock_hardening",
+  "version": "0.8.6"
+}

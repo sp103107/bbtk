@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "source_artifacts": [
+    {
+      "basename": "best_buds_timeclock_capsule_v0_7_1_full_repo.zip",
+      "bytes": 285475,
+      "sha256": "bf1b037bf767f7879086a9a3aa0b977edd2f01d801b9199ee26e73cca3a828d9",
+      "vendored": false
+    },
+    {
+      "basename": "factory_request.schema.json",
+      "bytes": 3345,
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "vendored": false
+    },
+    {
+      "basename": "pack_jsonl_manifest.json",
+      "bytes": 3099,
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.manifest.json",
+      "bytes": 573,
+      "sha256": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.stats.json",
+      "bytes": 2609,
+      "sha256": "0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf",
+      "vendored": false
+    }
+  ],
+  "version": "0.8.0"
+}

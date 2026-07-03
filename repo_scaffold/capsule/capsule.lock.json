@@ -1,0 +1,110 @@
+{
+  "capsule_id": "best_buds_timeclock_capsule",
+  "capsule_version": "0.9.0",
+  "current_internal_phase": "rc8_validation_and_context_checkpoint",
+  "generated_at": "2026-06-23T23:34:48Z",
+  "lock_scope": "v0.9.0_employee_management_kiosk_timeclock",
+  "locked_at": "2026-05-29T00:59:46+00:00",
+  "next_internal_phase": "arc_role_based_manager_permissions",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production deployment is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No cannabis compliance certification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Live pilot acceptance pack is pre-production operator evidence only."
+  ],
+  "previous_version": "0.8.6",
+  "runtime_file_hashes": [
+    {
+      "bytes": 123732,
+      "relative_path": "repo_scaffold/app/server.py",
+      "sha256": "sha256:2fc8acaea43abecd025c92c915b4ee33fec59b24270b011fa2830c1bc4d989b7"
+    },
+    {
+      "bytes": 33110,
+      "relative_path": "repo_scaffold/app/static/index.html",
+      "sha256": "sha256:8b35e9c6ceb429cb0fd5420a7bc8a6085c298f3d716724bda5ff47df9a5871c9"
+    },
+    {
+      "bytes": 50900,
+      "relative_path": "repo_scaffold/app/static/app.js",
+      "sha256": "sha256:346009626f7dde98d93c2d30ad805ab73436886b9f5dd42e6a35704e730e20a9"
+    },
+    {
+      "bytes": 22912,
+      "relative_path": "repo_scaffold/app/static/style.css",
+      "sha256": "sha256:704bc352d5f5de84dbdfb2555e7cb754652957bdb8c94aefdb4cb0063920e479"
+    },
+    {
+      "bytes": 10558,
+      "relative_path": "scripts/validate_repo.py",
+      "sha256": "sha256:457e920a2518be2734cc44cb61e0c7ea33e11ca0d0691af58503f6cac0b423e1"
+    },
+    {
+      "bytes": 6433,
+      "relative_path": "scripts/runtime_smoke.py",
+      "sha256": "sha256:443b4201acfa28ac1ae4a79615d61b992bee1136aa6b032889cff4d76868d919"
+    },
+    {
+      "bytes": 2659,
+      "relative_path": "scripts/validate_owner_console_operator_clarity.py",
+      "sha256": "sha256:3636f90eb3c72336229fefca0e9478db9a99b152f7a9b6e620d89cc378ca3089"
+    },
+    {
+      "bytes": 2588,
+      "relative_path": "scripts/validate_employee_kiosk_gold_path.py",
+      "sha256": "sha256:3942df5d43dd470c254cb86fdf37804840d40ba27ac7ff4f2da81948dac4fd85"
+    },
+    {
+      "bytes": 2780,
+      "relative_path": "scripts/validate_frontend_surface.py",
+      "sha256": "sha256:b27c4493949668dfaffe64321fcf5d3dab4c6dda6f794d6f63c946950ce73a24"
+    },
+    {
+      "bytes": 1204,
+      "relative_path": "scripts/validate_ui_copy.py",
+      "sha256": "sha256:0ea4b8a18a1e10a8f27b52ed026803e78e64e199bf674619b6b56ae4de5b7b28"
+    },
+    {
+      "bytes": 2376,
+      "relative_path": "scripts/validate_policy.py",
+      "sha256": "sha256:2f56519d77e1b1c08d247e5198f12cf909eddd75b023cc0c2d89521d5c29d5d4"
+    }
+  ],
+  "source_artifact_hashes": [
+    {
+      "basename": "best_buds_timeclock_capsule_v0_7_1_full_repo.zip",
+      "bytes": 285475,
+      "sha256": "bf1b037bf767f7879086a9a3aa0b977edd2f01d801b9199ee26e73cca3a828d9",
+      "vendored": false
+    },
+    {
+      "basename": "factory_request.schema.json",
+      "bytes": 3345,
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "vendored": false
+    },
+    {
+      "basename": "pack_jsonl_manifest.json",
+      "bytes": 3099,
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.manifest.json",
+      "bytes": 573,
+      "sha256": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.stats.json",
+      "bytes": 2609,
+      "sha256": "0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf",
+      "vendored": false
+    }
+  ],
+  "version": "0.9.0"
+}

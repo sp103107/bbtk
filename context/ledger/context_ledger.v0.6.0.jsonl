@@ -1,0 +1,5 @@
+{"at": "2026-05-29T00:53:25+00:00", "event_type": "bump_started", "previous_version": "0.5.0", "version": "0.6.0"}
+{"at": "2026-05-29T00:53:25+00:00", "event_type": "frontend_surface_contract_pack_added", "version": "0.6.0"}
+{"at": "2026-05-29T00:53:25+00:00", "event_type": "employee_receipt_ui_added", "version": "0.6.0"}
+{"at": "2026-05-29T00:53:25+00:00", "event_type": "validation_pending", "version": "0.6.0"}
+{"at": "2026-05-29T00:53:32+00:00", "event_type": "validation_completed", "status": "pass", "version": "0.6.0"}

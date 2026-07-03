@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "backend_banner_present": true,
+    "fetch_errors_are_caught": true,
+    "file_protocol_detection": true,
+    "health_check_function_present": true,
+    "kiosk_launcher_present": true,
+    "offline_css_present": true,
+    "offline_payload_present": true,
+    "operator_copy_present": true,
+    "runtime_card_state_present": true
+  },
+  "errors": [],
+  "status": "pass",
+  "version": "0.8.5"
+}

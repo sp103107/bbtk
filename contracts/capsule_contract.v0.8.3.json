@@ -1,0 +1,21 @@
+{
+  "capsule_id": "best_buds_timeclock_capsule",
+  "capsule_shape": "aos_cell_capsule",
+  "module_class": "ui_module",
+  "non_claims": [
+    "No production deployment.",
+    "No legal/payroll/cannabis compliance seal.",
+    "No payroll-provider integration.",
+    "No biometric, geofence, GPS, or camera proof."
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "preserves_runtime": true,
+  "runtime_execution_authorized": false,
+  "scope": "employee_kiosk_gold_path_polish",
+  "source_of_truth": [
+    "VERSION",
+    "repo_release_state.json",
+    "contracts/ui_ux/employee_kiosk_gold_path_contract.v0.8.3.json"
+  ],
+  "version": "0.8.3"
+}

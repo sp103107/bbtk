@@ -1,0 +1,4 @@
+{"artifact": "contracts/capsule_contract.v0.8.2.json", "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory", "record_type": "module_contract", "status": "added", "version": "0.8.2"}
+{"artifact": "contracts/ui_ux/ui_component_inventory.v0.8.2.json", "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory", "record_type": "frontend_surface", "status": "added", "version": "0.8.2"}
+{"artifact": "contracts/ui_ux/ui_state_contract.v0.8.2.json", "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory", "record_type": "frontend_surface", "status": "added", "version": "0.8.2"}
+{"artifact": "validation/ui_ux_truth_lock_validation_report.v0.8.2.json", "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory", "record_type": "validation_report", "status": "planned", "version": "0.8.2"}

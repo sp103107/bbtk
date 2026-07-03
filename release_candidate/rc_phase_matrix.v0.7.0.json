@@ -1,0 +1,16 @@
+{
+  "current_phase": "rc6_live_pilot_acceptance_pack",
+  "next_phase": "rc7_production_installation_readiness_candidate",
+  "no_external_rc_zip": true,
+  "phases": [
+    "rc0_contract_runtime_blueprint",
+    "rc1_owner_setup_hardening",
+    "rc2_pay_period_close_and_audit_exports",
+    "rc3_policy_adjustments_and_manager_review",
+    "rc4_backup_restore_and_deployment_operator_hardening",
+    "rc5_frontend_surface_and_validation_freeze_candidate",
+    "rc6_live_pilot_acceptance_pack"
+  ],
+  "previous_phase": "rc5_frontend_surface_and_validation_freeze_candidate",
+  "version": "0.7.0"
+}

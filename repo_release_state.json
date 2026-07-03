@@ -1,0 +1,63 @@
+{
+  "backend_connectivity_guard_status": "pass",
+  "bump_scope": "full_repo",
+  "context_update_status": {
+    "context_validation": "pass",
+    "episode_checkpoint": "added",
+    "ledger_events": "appended",
+    "resume_pack": "updated",
+    "source_artifact_hashes_recorded": true,
+    "working_set_update": "added"
+  },
+  "current_internal_phase": "rc8_validation_and_context_checkpoint",
+  "deployment_operator_warnings": [
+    "owner_token_default_change_required_before_live_use",
+    "pin_pepper_default_change_required_before_live_use",
+    "backend_server_required_for_phone_tablet_buttons",
+    "employee_qr_url_is_lan_only_not_public_hosting"
+  ],
+  "drift_check_status": "pass_no_blocking_drift",
+  "generated_at": "2026-07-01T13:00:00Z",
+  "next_internal_phase": "arc_role_based_manager_permissions",
+  "non_claims": [
+    "No production deployment.",
+    "No legal/payroll/cannabis compliance seal.",
+    "No payroll-provider integration.",
+    "No biometric, geofence, GPS, or camera proof.",
+    "No Hugging Face Space adapter included in v0.8.6.",
+    "No visual regression execution claim.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation.",
+    "Offline browser queue remains recovery evidence only and is not payroll truth.",
+    "Employee QR/link is LAN entry helper only and does not prove identity.",
+    "Local development library bindings are not release truth."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "previous_version": "0.8.6",
+  "release_readiness_status": "pass_with_operator_warnings",
+  "source_of_truth": [
+    "VERSION",
+    "repo_release_state.json",
+    "README.md",
+    "CHANGELOG.md",
+    "pipeline/arc_employee_management_kiosk_timeclock.v0.9.0.json",
+    "contracts/employee/employee_record.v1.schema.json",
+    "contracts/guest/guest_sign_in.v1.schema.json",
+    "contracts/export/human_readable_csv.v1.schema.json",
+    "contracts/realtime/live_clocked_in_status.v1.schema.json",
+    "docs/SYSTEM_STATE_CURRENT.md",
+    "contracts/ui_ux/employee_qr_entry_contract.v0.8.6.json",
+    "contracts/frontend_surface/employee_portal_surface.v0.8.6.json",
+    "scripts/start_all.bat",
+    "scripts/start_all.sh",
+    "release_candidate/rc7_6_employee_qr_entry_and_kiosk_fit/README.md",
+    "validation/employee_qr_entry_validation_report.v0.8.6.json",
+    "context/resume_pack/resume_pack_manifest.v0.8.6.json"
+  ],
+  "validation_status": "pass",
+  "version": "0.9.0",
+  "zip_name_policy": {
+    "reason": "Windows path-length reduction",
+    "short_repo_root": "bbtc_v0_9_0",
+    "short_zip_name": "bbtc_v0_9_0.zip"
+  }
+}

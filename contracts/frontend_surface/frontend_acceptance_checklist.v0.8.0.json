@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "large punch buttons",
+    "text-based success/error states",
+    "owner grouped cards",
+    "technical JSON not default employee focus",
+    "all existing IDs preserved for runtime JS",
+    "no new business scope"
+  ],
+  "contract_type": "frontend_acceptance_checklist",
+  "previous_version": "0.7.1",
+  "release_readiness_note": "v0.8.0 adds backend connectivity guard and phone/tablet kiosk startup clarity.",
+  "updated_at": "2026-05-29T19:39:42+00:00",
+  "version": "0.8.0"
+}

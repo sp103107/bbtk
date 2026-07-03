@@ -1,0 +1,63 @@
+{
+  "$id": "https://bestbuds.local/contracts/employee_punch_receipt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "type": "boolean"
+    },
+    "captured_local": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "event_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "event_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "message": {
+      "type": "string"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "receipt_type": {
+      "const": "employee_punch_receipt"
+    },
+    "today_summary": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "validation_status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "receipt_type",
+    "accepted",
+    "message",
+    "employee_id",
+    "event_id",
+    "event_type",
+    "validation_status"
+  ],
+  "title": "Employee Punch Receipt",
+  "type": "object"
+}

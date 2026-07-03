@@ -1,0 +1,49 @@
+{
+  "accessibility_requirements": [
+    "labels_for_inputs",
+    "aria_live_employee_receipt",
+    "button_group_labels",
+    "keyboard_accessible_native_controls"
+  ],
+  "responsive_breakpoints": [
+    "930px",
+    "620px"
+  ],
+  "screen_map_version": "0.6.0",
+  "screens": {
+    "employee_station": {
+      "actions": [
+        "clock_in",
+        "clock_out",
+        "break_start",
+        "break_end"
+      ],
+      "html_section": ".employee-panel",
+      "live_region": "#employee_receipt"
+    },
+    "manager_adjustment": {
+      "actions": [
+        "create_owner_adjustment"
+      ],
+      "html_section": "#adjustment-title"
+    },
+    "owner_dashboard": {
+      "actions": [
+        "summary",
+        "export",
+        "close_period",
+        "list_pay_periods",
+        "manager_review",
+        "list_employees",
+        "backup"
+      ],
+      "html_section": ".owner-panel"
+    },
+    "owner_setup": {
+      "actions": [
+        "save_employee"
+      ],
+      "html_section": "#setup-title"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "referenced_project_files": [
+    "aos_ks_frontend_flow_graphics_v0_1_15.zip",
+    "aos_meta_knowledge_library_blueprint_contract_pack_v1_2_4.zip"
+  ],
+  "source_package": "best_buds_timeclock_capsule_v0_8_3_full_repo.zip",
+  "source_package_sha256": "813a5eb99b8d209da86991e419c3fcc6c3dafa68e4b9037baf051d8c3277a40e",
+  "vendored": false,
+  "version": "0.8.4"
+}

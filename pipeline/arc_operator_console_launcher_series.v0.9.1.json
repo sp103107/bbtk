@@ -1,0 +1,76 @@
+{
+  "arc_id": "arc_operator_console_launcher_series",
+  "version": "0.9.1-planned",
+  "status": "mapped_after_v0.9.0_initial_publish",
+  "launch_surface": "repo_scaffold/app/static/index.html",
+  "objective": "Turn the owner console into a calm operator cockpit with immediate live people awareness, task-based controls, and explicit security boundaries.",
+  "series": [
+    {
+      "launcher": "L1_operator_entry",
+      "outcome": "Start scripts open the operator console while the employee kiosk remains a separate shared-device route.",
+      "acceptance": [
+        "Windows start-all opens /",
+        "Employee kiosk remains available at /employee",
+        "Operator header communicates runtime state without a marketing-style hero"
+      ]
+    },
+    {
+      "launcher": "L2_ephemeral_owner_access",
+      "outcome": "The owner token validates once, clears from the visible field, and remains only in tab memory until lock or reset.",
+      "acceptance": [
+        "Enter and Unlock share the same validation path",
+        "Invalid tokens clear from the field",
+        "Lock session closes the owner WebSocket and removes the in-memory token"
+      ]
+    },
+    {
+      "launcher": "L3_live_people_first",
+      "outcome": "Employee and guest WebSocket information appears near the top with polling fallback and owner clock-out actions.",
+      "acceptance": [
+        "Employee and guest counts are visible above task controls",
+        "Roster filters support all, employee, and guest views",
+        "Owner actions refresh the live roster without a page reload"
+      ]
+    },
+    {
+      "launcher": "L4_task_navigation",
+      "outcome": "Dense owner controls are separated into Today, Employees, Payroll, Guests, Recovery, Readiness, and Security tasks.",
+      "acceptance": [
+        "Today is the default task",
+        "Only the selected task cards are visible",
+        "Security setup automatically opens when no owner token is configured"
+      ]
+    },
+    {
+      "launcher": "L5_employee_kiosk_qr",
+      "outcome": "Operators can generate, copy, and open a LAN-aware employee kiosk QR/link.",
+      "acceptance": [
+        "Generate Employee QR refreshes the preferred LAN URL",
+        "QR points only to /employee",
+        "PIN remains required after QR launch"
+      ]
+    },
+    {
+      "launcher": "L6_professional_frontend_hardening",
+      "outcome": "Apply the salvage cockpit visual language with compact hierarchy, accessible states, responsive layout, and reduced card noise.",
+      "acceptance": [
+        "Desktop and mobile layouts remain readable",
+        "Hidden task panels do not remain focusable",
+        "No owner secret is persisted in localStorage or sessionStorage",
+        "Browser flow tests cover unlock, task switching, QR generation, and session lock"
+      ]
+    }
+  ],
+  "source_of_truth_rules": {
+    "employee_time": "accepted append-only JSONL clock events",
+    "guest_visits": "separate append-only guest JSONL ledger",
+    "live_transport": "authenticated WebSocket with 15-second HTTP polling fallback",
+    "owner_secret": "memory-only browser-tab session after validation"
+  },
+  "non_claims": [
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "No internet-hosted kiosk claim.",
+    "The generated QR is a local-network convenience, not an authentication credential."
+  ]
+}

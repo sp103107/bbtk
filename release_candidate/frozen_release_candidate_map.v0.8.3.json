@@ -1,0 +1,19 @@
+{
+  "current_phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "next_phase": "rc7_4_owner_console_operator_clarity",
+  "non_claims": [
+    "no release seal",
+    "no visual regression execution"
+  ],
+  "status": "candidate_map_updated",
+  "ui_arc_series": [
+    "v0.8.2 truth lock",
+    "v0.8.3 employee kiosk gold path",
+    "v0.8.4 owner console operator clarity",
+    "v0.8.5 flow graphics status language",
+    "v0.8.6 accessibility mobile/kiosk fit finish",
+    "v0.8.7 preview gallery baseline",
+    "v0.9.0 professional UI shell candidate"
+  ],
+  "version": "0.8.3"
+}

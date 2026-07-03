@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "component_coverage": true,
+    "non_claims_present": true,
+    "release_readiness_contract_present": true,
+    "required_files_present": true
+  },
+  "errors": [],
+  "status": "pass",
+  "version": "0.8.0"
+}

@@ -1,0 +1,41 @@
+{
+  "bump_scope": "full_repo",
+  "contract_id": "best_buds_timeclock_capsule_contract.v0.3.0",
+  "data_truth_layers": {
+    "closed_period_truth": "pay_period_manifest_json_with_hashes",
+    "exports": "csv_json_markdown_html_zip",
+    "runtime_mirror": "sqlite",
+    "source_of_truth": "append_only_jsonl_clock_events"
+  },
+  "internal_phase": "rc2_pay_period_close_and_audit_exports",
+  "module_class": "runtime_module",
+  "module_name": "best_buds_timeclock_capsule",
+  "new_contracts": [
+    "pay_period_close_request",
+    "pay_period_close_manifest",
+    "pay_period_exception",
+    "closed_pay_period_package"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation is scaffolded only.",
+    "no payroll legal compliance seal",
+    "no external payroll provider integration",
+    "no production deployment performed",
+    "no biometric/geofence identity proof",
+    "no AoS Boot Pod install or QEMU/rootfs/systemd claim"
+  ],
+  "runtime_surfaces": [
+    "employee_clock_events",
+    "owner_summary",
+    "owner_export",
+    "owner_employee_admin",
+    "owner_backup",
+    "owner_pay_period_close"
+  ],
+  "version": "0.3.0"
+}

@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "app_version_not_stale": false,
+    "data_punch_actions_present": true,
+    "employee_focus_card_present": true,
+    "file:contracts/ui_ux/employee_kiosk_gold_path_contract.v0.8.3.json": true,
+    "file:docs/EMPLOYEE_KIOSK_GOLD_PATH_POLISH_v0.8.3.md": true,
+    "file:release_candidate/rc7_3_employee_kiosk_gold_path_polish/README.md": true,
+    "file:repo_scaffold/app/static/app.js": true,
+    "file:repo_scaffold/app/static/index.html": true,
+    "file:repo_scaffold/app/static/style.css": true,
+    "input_guard_present": true,
+    "no_hf_adapter_claim": true,
+    "offline_non_claim_copy_present": true,
+    "receipt_visibility_present": true,
+    "tap_target_css_present": true,
+    "technical_json_hidden_by_details": true,
+    "today_hours_card_present": true
+  },
+  "errors": [
+    "app_version_not_stale"
+  ],
+  "non_claims": [
+    "static UI validation only",
+    "no visual regression execution",
+    "no production deployment",
+    "offline queue remains recovery evidence"
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "status": "fail",
+  "version": "0.8.3"
+}

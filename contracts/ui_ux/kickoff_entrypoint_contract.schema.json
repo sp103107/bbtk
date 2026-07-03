@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "audience": {
+      "type": "string"
+    },
+    "entrypoint": {
+      "type": "string"
+    },
+    "read_only": {
+      "type": "boolean"
+    },
+    "runtime_activation": {
+      "const": false,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "entrypoint",
+    "audience",
+    "read_only",
+    "runtime_activation"
+  ],
+  "title": "Entrypoint contract",
+  "type": "object"
+}

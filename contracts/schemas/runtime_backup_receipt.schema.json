@@ -1,0 +1,33 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/runtime_backup_receipt.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "backup_file": {
+      "type": "string"
+    },
+    "backup_sha256": {
+      "type": "string"
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "included_root": {
+      "type": "string"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "backup_file",
+    "backup_sha256",
+    "created_at_utc",
+    "included_root"
+  ],
+  "title": "Runtime Backup Receipt",
+  "type": "object"
+}

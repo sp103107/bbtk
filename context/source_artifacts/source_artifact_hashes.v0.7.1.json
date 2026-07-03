@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-05-29T18:26:50+00:00",
+  "non_claims": [
+    "Hashes record source references only; raw foundation material is not vendored."
+  ],
+  "source_artifacts": {
+    "aos.app_tool.contract_pack_master.v1.jsonl": "sha256:930b18e3104f547e2ea856373a204d5a3727b4a4a6b8b44ae2344ab96185d3eb",
+    "best_buds_timeclock_capsule_v0_7_0_full_repo.zip": "sha256:4023291d81490121a11678adbfb35ef01696726ceb8593e0f07f5e74c72fab4f",
+    "foundation_stack.manifest.json": "sha256:c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+    "foundation_stack.stats.json": "sha256:0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf"
+  },
+  "version": "0.7.1"
+}

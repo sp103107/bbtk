@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/timeclock/kiosk_event.v1",
+  "title": "Kiosk Event Request",
+  "type": "object",
+  "required": ["employee_id", "pin", "event_type"],
+  "properties": {
+    "employee_id": {"type": "string"},
+    "pin": {"type": "string"},
+    "event_type": {"enum": ["clock_in", "clock_out", "break_start", "break_end"]},
+    "source": {"type": "string", "default": "employee_portal"}
+  },
+  "additionalProperties": false
+}

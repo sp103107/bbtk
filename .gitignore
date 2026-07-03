@@ -1,0 +1,13 @@
+# Local development-only artifacts (not release truth)
+development/local_library_bindings.json
+development/local_qr_posters/
+repo_scaffold/app/__pycache__/
+**/__pycache__/
+**/*.pyc
+
+# Local operator secrets and operational records (never publish)
+repo_scaffold/app/config/settings.json
+repo_scaffold/app/data/
+
+# ARC launcher blueprint training artifacts (untracked; kept locally as ARC evolution training material)
+_arc_blueprints_tmp/

@@ -1,0 +1,43 @@
+{
+  "flows": [
+    {
+      "flow_id": "employee",
+      "steps": [
+        "id",
+        "pin",
+        "punch",
+        "receipt",
+        "synced"
+      ]
+    },
+    {
+      "flow_id": "owner",
+      "steps": [
+        "review",
+        "export",
+        "close",
+        "backup",
+        "verify"
+      ]
+    },
+    {
+      "flow_id": "offline",
+      "steps": [
+        "backend",
+        "local",
+        "sync",
+        "review",
+        "decision"
+      ]
+    }
+  ],
+  "non_claims": [
+    "no visual regression execution",
+    "no hosted deployment",
+    "no new backend route family"
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "scope": "restrained_frontend_flow_status_language",
+  "version": "0.8.5"
+}

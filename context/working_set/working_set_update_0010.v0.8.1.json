@@ -1,0 +1,11 @@
+{
+  "non_claims": [
+    "no HF adapter",
+    "offline queue not payroll truth"
+  ],
+  "phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "preserved": "v0.1.0 through v0.8.0 full repo state",
+  "summary": "Added offline timekeeper reliability patch with browser recovery queue, backend sync, CSV mirror, and deferred HF adapter.",
+  "update_seq": 10,
+  "version": "0.8.1"
+}

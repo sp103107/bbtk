@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "employee_focus_card_present",
+    "input_guard_present",
+    "today_hours_card_present",
+    "receipt_visibility_present",
+    "offline_non_claim_copy_present",
+    "no_owner_scope_expansion"
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "runtime_claimed": false,
+  "status": "candidate",
+  "version": "0.8.3"
+}

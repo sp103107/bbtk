@@ -1,0 +1,26 @@
+{
+  "acceptance_criteria": [
+    "Employee-only page is available at /employee.",
+    "Owner console exposes local-network employee link and QR helper.",
+    "PIN-gated /api/employee/summary returns today hours without requiring a punch.",
+    "QR/link does not bypass PIN authentication.",
+    "Offline queue static asset is served by the backend."
+  ],
+  "employee_entry_url": "/employee",
+  "non_claims": [
+    "No hosted public employee URL.",
+    "QR proves URL reachability only, not identity.",
+    "No payroll approval claim.",
+    "No production deployment claim."
+  ],
+  "owner_qr_surface": "owner_console_kiosk_link_card",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "required_api_routes": [
+    "GET /employee",
+    "POST /api/employee/summary",
+    "GET /api/config/kiosk_urls",
+    "GET /api/kiosk/qr.svg"
+  ],
+  "runtime_claimed": false,
+  "version": "0.8.6"
+}

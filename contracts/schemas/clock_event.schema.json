@@ -1,0 +1,105 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/clock_event.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "admin_adjustment": {
+      "type": "boolean"
+    },
+    "auth_method": {
+      "enum": [
+        "pin",
+        "owner_token",
+        "system",
+        "none"
+      ],
+      "type": "string"
+    },
+    "captured_at_utc": {
+      "type": "string"
+    },
+    "captured_local": {
+      "type": "string"
+    },
+    "employee_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_hash": {
+      "type": "string"
+    },
+    "event_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "clock_in",
+        "clock_out",
+        "break_start",
+        "break_end",
+        "admin_adjustment"
+      ],
+      "type": "string"
+    },
+    "local_timezone": {
+      "const": "America/New_York",
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "policy_flags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "prev_event_hash": {
+      "type": "string"
+    },
+    "site_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "web_index",
+        "qr_url",
+        "owner_admin",
+        "imported_adjustment"
+      ],
+      "type": "string"
+    },
+    "terminal_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "validation_status": {
+      "enum": [
+        "accepted",
+        "rejected",
+        "pending_owner_review"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "employee_id",
+    "site_id",
+    "terminal_id",
+    "event_type",
+    "captured_at_utc",
+    "captured_local",
+    "local_timezone",
+    "source",
+    "auth_method",
+    "validation_status",
+    "admin_adjustment",
+    "prev_event_hash",
+    "event_hash"
+  ],
+  "title": "Clock Event",
+  "type": "object"
+}

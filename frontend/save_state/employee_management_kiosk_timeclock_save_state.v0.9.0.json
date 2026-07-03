@@ -1,0 +1,22 @@
+{
+  "employee_entry_path": "/employee",
+  "frontend_surface": "manager_employee_kiosk_timeclock",
+  "generated_at": "2026-07-01T13:10:00Z",
+  "manager_entry_path": "/",
+  "runtime_claimed": false,
+  "surface_separation": {
+    "employee_kiosk_contains_owner_controls": false,
+    "owner_console_contains_kiosk_controls": false,
+    "owner_console_links_to_employee_kiosk": true
+  },
+  "validated_components": [
+    "ManagerDashboard",
+    "EmployeeManagementPanel",
+    "TimeclockSummaryPanel",
+    "ActiveSessionList",
+    "ExportPanel",
+    "KioskMode",
+    "GuestSignInPanel"
+  ],
+  "version": "0.9.0"
+}

@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "context_version_alignment": true,
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "internal_phase_not_external_zip": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "manager_review_surface_static_check": true,
+    "owner_adjustment_surface_static_check": true,
+    "pycache_absent": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 74,
+  "jsonl_lines_checked": 34,
+  "status": "pass",
+  "version": "0.4.0"
+}

@@ -1,0 +1,10 @@
+{
+  "_update_seq": 15,
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "preserved_prior_state": true,
+  "runtime_claimed": false,
+  "summary": "Added employee QR entry portal; local dev server started for review at /employee and /.",
+  "updated_at": "2026-06-24T01:52:30Z",
+  "version": "0.8.6"
+}

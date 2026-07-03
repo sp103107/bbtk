@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-05-29T00:44:25+00:00",
+  "mode": "local_standalone",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Backup restore proof is limited to disposable dry-run extraction/verification; no production restore was performed.",
+    "Deployment preflight is an operator readiness check, not a production deployment seal."
+  ],
+  "plan_id": "install_best_buds_timeclock_capsule_v0_1_0",
+  "receipts": [
+    "install_receipt.json"
+  ],
+  "steps": [
+    "Copy repo_scaffold/app to target host.",
+    "Edit settings.json owner_token and pin_pepper.",
+    "Edit employees.seed.json.",
+    "Run python server.py --host 127.0.0.1 --port 8080.",
+    "Open or QR-link the URL."
+  ],
+  "version": "0.5.0"
+}

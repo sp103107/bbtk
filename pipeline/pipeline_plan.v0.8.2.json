@@ -1,0 +1,22 @@
+{
+  "next_phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+  "pipeline_type": "ui_ux_truth_lock",
+  "runtime_execution_authorized": false,
+  "schema_version": "1.0.0",
+  "steps": [
+    "read_v0_8_1_release_state",
+    "resolve_huggingface_adapter_deferral",
+    "inventory_current_ui_components",
+    "lock_ui_states",
+    "lock_interactions",
+    "lock_receipt_copy",
+    "lock_mobile_kiosk_surface",
+    "lock_owner_console_surface",
+    "validate_truth_lock",
+    "update_context",
+    "package_full_repo"
+  ],
+  "version": "0.8.2",
+  "visual_redesign_authorized": false
+}

@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "forbidden_claims_absent": true,
+    "forbidden_implementation_terms_absent": true,
+    "non_claims_preserved": true,
+    "phase_is_allowed_hardening_or_release_readiness": true
+  },
+  "errors": [],
+  "status": "pass",
+  "version": "0.8.5"
+}

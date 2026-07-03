@@ -1,0 +1,68 @@
+{
+  "added": [
+    "owner_adjustment_lane",
+    "manager_review_report",
+    "policy_validation",
+    "frozen_release_candidate_map"
+  ],
+  "current_internal_phase": "rc3_policy_adjustments_and_manager_review",
+  "generated_at": "2026-05-29T00:36:12.876816+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation remains scaffolded until restore proof is added."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "policy_validation_status": "pass",
+  "preserved_versions": [
+    "0.1.0",
+    "0.2.0",
+    "0.3.0"
+  ],
+  "previous_version": "0.3.0",
+  "repo_file_count": 119,
+  "runtime_smoke_status": "pass",
+  "source_artifact_hashes": [
+    {
+      "basename": "best_buds_timeclock_capsule_v0_3_0_full_repo.zip",
+      "bytes": 120690,
+      "sha256": "f29f78c159950088a69e332f68633074a12b00cf65f92542bfbaa75deeff5ea9",
+      "vendored": false
+    },
+    {
+      "basename": "factory_request.schema.json",
+      "bytes": 3345,
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "vendored": false
+    },
+    {
+      "basename": "pack_jsonl_manifest.json",
+      "bytes": 3099,
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.manifest.json",
+      "bytes": 573,
+      "sha256": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.stats.json",
+      "bytes": 2609,
+      "sha256": "0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf",
+      "vendored": false
+    },
+    {
+      "basename": "Cursor Bootstrap Capsule_current.txt",
+      "bytes": 4498,
+      "sha256": "464961f9a91e055b7b73f9958a8fc20df3661a5638d958f503ab9ff97cd819da",
+      "vendored": false
+    }
+  ],
+  "validation_status": "pass",
+  "version": "0.4.0"
+}

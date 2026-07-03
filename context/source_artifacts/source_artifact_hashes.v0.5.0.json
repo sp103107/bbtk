@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-05-29T00:44:25+00:00",
+  "source_artifact_hashes": [
+    {
+      "basename": "best_buds_timeclock_capsule_v0_4_0_full_repo.zip",
+      "bytes": 113336,
+      "sha256": "e0a87567855798a5ddb35efda6c64e482d6cc735d93271cc8f2811d581c022d0",
+      "vendored": false
+    },
+    {
+      "basename": "factory_request.schema.json",
+      "bytes": 3345,
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "vendored": false
+    },
+    {
+      "basename": "pack_jsonl_manifest.json",
+      "bytes": 3099,
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.manifest.json",
+      "bytes": 573,
+      "sha256": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.stats.json",
+      "bytes": 2609,
+      "sha256": "0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf",
+      "vendored": false
+    },
+    {
+      "basename": "Cursor Bootstrap Capsule_current.txt",
+      "bytes": 4498,
+      "sha256": "464961f9a91e055b7b73f9958a8fc20df3661a5638d958f503ab9ff97cd819da",
+      "vendored": false
+    }
+  ],
+  "version": "0.5.0"
+}

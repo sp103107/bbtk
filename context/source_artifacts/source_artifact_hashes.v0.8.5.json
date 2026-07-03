@@ -1,0 +1,117 @@
+{
+  "artifact_hashes": [
+    {
+      "path": "repo_release_state.json",
+      "sha256": "b0003d95e919676bddbd3430f7ddcc1cf50e705c8fd7e09aaa844db4b25911e8",
+      "size_bytes": 2174
+    },
+    {
+      "path": "README.md",
+      "sha256": "4937ef76c8183c90319c12778ce9023f28a2138af69e6c0595aaf2f41224f5a8",
+      "size_bytes": 2750
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "606833931b1e0e505cf10fe86d0709c4948bfdd9c6fac0b4832a2f24cbe4656b",
+      "size_bytes": 9870
+    },
+    {
+      "path": "package.json",
+      "sha256": "25dede82981723b9c1a8f276b96f5e5ce96082acaab337919b4e9c1883d2d5a6",
+      "size_bytes": 1192
+    },
+    {
+      "path": "guide_pack.json",
+      "sha256": "680f10ace767e17124a148368e4ed6dc9cca0feac49d1d05c9b16c5d493cfa5a",
+      "size_bytes": 1260
+    },
+    {
+      "path": "scripts/onboard_agent.py",
+      "sha256": "3265f4be91144d0f2e541eee752e43653ba969d62478f2b1252b591a6f44b609",
+      "size_bytes": 4319
+    },
+    {
+      "path": "scripts/start_here_user.py",
+      "sha256": "2fb7f415199985221130837ea8a135c48055e0bc681748394cde66b5d02c70a5",
+      "size_bytes": 2934
+    },
+    {
+      "path": "scripts/validate_repo.py",
+      "sha256": "805013c88df9ed0f2461b39808211248e6c65f73ed30bcc5416319c54e6bd2c6",
+      "size_bytes": 7762
+    },
+    {
+      "path": "scripts/validate_frontend_flow_status_language.py",
+      "sha256": "9f8e9688da45e6c2b9739ad43de0b55488d3eabedec242f43cc2899b5b54f003",
+      "size_bytes": 2694
+    },
+    {
+      "path": "scripts/validate_agent_onboarding_entrypoint.py",
+      "sha256": "9ed34ad7c307ab028bff9aaecf649cd7dbed004b6fd67b255bce4b80fe8b7bc2",
+      "size_bytes": 2389
+    },
+    {
+      "path": "scripts/validate_product_user_entrypoint.py",
+      "sha256": "dd868f1a917f338e8c91ecea9f6fe61088c1ef4abf2deed577457a4ba635b7c8",
+      "size_bytes": 2140
+    },
+    {
+      "path": "repo_scaffold/app/static/index.html",
+      "sha256": "17453c5ceb2f46b019c5cda0cc1bcfea6ac07a7819e12362083574b8b361b397",
+      "size_bytes": 23646
+    },
+    {
+      "path": "repo_scaffold/app/static/app.js",
+      "sha256": "e61126e4a87eea7915f8ac22ef96791a84a3532e050615d4cefbd141d107aae8",
+      "size_bytes": 29686
+    },
+    {
+      "path": "repo_scaffold/app/static/style.css",
+      "sha256": "883be15d4f893ba878c5a2ff4f37b0969f328e881e671e9bbc24818e8b5cfc0d",
+      "size_bytes": 16665
+    },
+    {
+      "path": "repo_scaffold/app/server.py",
+      "sha256": "aab631f2809a0d61b06fcfcb2c11348512945d5338b715daff2f0b2853245c24",
+      "size_bytes": 85075
+    },
+    {
+      "path": "docs/kickoff/Best_Buds_Timeclock_Kickoff_v0_8_5.docx",
+      "sha256": "fff7e1e87bf319f8292df30d77348afcb579b4914214e6077d8744e0fa8da648",
+      "size_bytes": 38339
+    },
+    {
+      "path": "docs/kickoff/Best_Buds_Timeclock_Product_Start_Here_v0_8_5.docx",
+      "sha256": "55a421c87c048fd4e95254c77ac7a439cf15163a6b2bb46e2759cda4cbc48029",
+      "size_bytes": 37457
+    },
+    {
+      "path": "validation/validation_report.v0.8.5.json",
+      "sha256": "f15faf1adddb4d686a1adf210923e2d9028e706108532d1fcbcebfe850860a5e",
+      "size_bytes": 826
+    },
+    {
+      "path": "validation/frontend_flow_status_language_validation_report.v0.8.5.json",
+      "sha256": "8b9bbd5f5e15527074ce89c9b9aba2fd17782cc3dcbad15a2a21490fa414d051",
+      "size_bytes": 1261
+    },
+    {
+      "path": "validation/agent_onboarding_entrypoint_validation_report.v0.8.5.json",
+      "sha256": "522e16d86a5538c64dc06f9369be0d49a522b53c9167fb204beb82d442905409",
+      "size_bytes": 663
+    },
+    {
+      "path": "validation/product_user_entrypoint_validation_report.v0.8.5.json",
+      "sha256": "9cc9610d7a52ae58ad179257cf39a32aaa6791244d9c128a11156c821b6eb369",
+      "size_bytes": 633
+    },
+    {
+      "path": "reports/runtime_smoke_report.v0.8.5.json",
+      "sha256": "8527c1bd2c10123791b9dbff51709008cdf4bc261d809faea25322954985b4df",
+      "size_bytes": 1281
+    }
+  ],
+  "generated_from": "best_buds_timeclock_capsule_v0_8_4_full_repo.zip",
+  "source_zip_sha256": "341d01cdf05af9b11c9312f624891c4c91a1e650cfa79eb253e27a9d0d7f2dfa",
+  "version": "0.8.5"
+}

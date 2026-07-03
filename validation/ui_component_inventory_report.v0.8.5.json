@@ -1,0 +1,26 @@
+{
+  "component_count": 19,
+  "components": [
+    "app_shell",
+    "backend_connection_banner",
+    "backup_restore_panel",
+    "employee_identity_form",
+    "employee_kiosk_panel",
+    "employee_punch_buttons",
+    "employee_receipt",
+    "employee_status_strip",
+    "hero_header",
+    "manager_review_adjustments",
+    "offline_queue_card",
+    "owner_console",
+    "owner_employee_management",
+    "owner_exports",
+    "owner_today_summary",
+    "pay_period_close",
+    "pilot_release_panel",
+    "technical_details_disclosure",
+    "today_hours_card"
+  ],
+  "status": "pass",
+  "version": "0.8.5"
+}

@@ -1,0 +1,39 @@
+{
+  "accepted_event_count": 0,
+  "active_employee_count": 1,
+  "blocking_issue_count": 0,
+  "checked_at_utc": "2026-05-29T00:58:31.954614+00:00",
+  "checks": {
+    "active_employee_present": true,
+    "backup_available_for_pilot": false,
+    "employee_receipt_runtime_available": true,
+    "ledger_readable": true,
+    "no_blocking_pilot_issues": true,
+    "owner_token_changed_before_live_use": false,
+    "pay_period_close_available": true,
+    "pilot_issue_log_available": true,
+    "pin_pepper_changed_before_live_use": false
+  },
+  "hard_blockers": [],
+  "latest_backup": null,
+  "non_claims": [
+    "Pilot readiness is an operator acceptance aid, not a production deployment seal.",
+    "Pilot readiness is not a legal, payroll, cannabis regulatory, or security compliance certification.",
+    "Default owner token and PIN pepper warnings must be resolved before real live use."
+  ],
+  "open_issue_count": 0,
+  "operator_warnings": [
+    "owner_token_changed_before_live_use",
+    "pin_pepper_changed_before_live_use",
+    "backup_available_for_pilot"
+  ],
+  "report_type": "live_pilot_readiness_report",
+  "setup_warnings": [
+    "owner_token_default_change_required",
+    "pin_pepper_default_change_required"
+  ],
+  "site_id": "best_buds_west_warwick_ri",
+  "source_ledger_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "status": "ready_with_warnings",
+  "version": "0.7.0"
+}

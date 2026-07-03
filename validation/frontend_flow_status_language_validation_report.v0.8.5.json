@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "docs_non_claims_present": true,
+    "employee_flow_rail_present": true,
+    "flow_css_present": true,
+    "flow_js_helpers_present": true,
+    "no_busy_cockpit_claim": true,
+    "offline_flow_rail_present": true,
+    "owner_flow_rail_present": true,
+    "present:contracts/frontend_surface/frontend_flow_status_surface.v0.8.5.json": true,
+    "present:contracts/ui_ux/frontend_flow_status_language_contract.schema.json": true,
+    "present:contracts/ui_ux/frontend_flow_status_language_contract.v0.8.5.json": true,
+    "present:docs/FRONTEND_FLOW_GRAPHICS_STATUS_LANGUAGE_v0.8.5.md": true,
+    "present:frontend/save_state/frontend_flow_status_language_save_state.v0.8.5.json": true,
+    "present:release_candidate/rc7_5_frontend_flow_graphics_status_language/README.md": true,
+    "present:repo_scaffold/app/static/app.js": true,
+    "present:repo_scaffold/app/static/index.html": true,
+    "present:repo_scaffold/app/static/style.css": true
+  },
+  "errors": [],
+  "non_claims": [
+    "static flow status language validation only",
+    "no visual regression execution",
+    "no hosted deployment",
+    "no new backend route family"
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "status": "pass",
+  "version": "0.8.5"
+}

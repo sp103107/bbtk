@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-07-01T13:10:00Z",
+  "drift_status": "no_known_release_blocking_drift",
+  "expected_version": "0.9.0",
+  "observations": [
+    "Owner/operator controls render on the root route.",
+    "Employee punches and guest sign-in render on the dedicated employee route.",
+    "Owner console provides a direct employee-kiosk link.",
+    "Live status uses authenticated HTTP polling.",
+    "Guest and employee exports remain separate."
+  ],
+  "runtime_claimed": false,
+  "version": "0.9.0"
+}

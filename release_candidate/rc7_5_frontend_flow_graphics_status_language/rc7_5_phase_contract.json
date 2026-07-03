@@ -1,0 +1,14 @@
+{
+  "deliverables": [
+    "frontend_flow_rails",
+    "agent_onboarding_entrypoint",
+    "product_user_entrypoint",
+    "kickoff_docx_zip"
+  ],
+  "full_repo_bump": true,
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "previous_phase": "rc7_4_owner_console_operator_clarity",
+  "runtime_claimed": false,
+  "version": "0.8.5"
+}

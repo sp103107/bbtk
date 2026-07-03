@@ -1,0 +1,18 @@
+{
+  "current_phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "next_phase": "rc7_2_huggingface_space_adapter_preview",
+  "phases_preserved": [
+    "rc0_contract_runtime_blueprint",
+    "rc1_owner_setup_hardening",
+    "rc2_pay_period_close_and_audit_exports",
+    "rc3_policy_adjustments_and_manager_review",
+    "rc4_backup_restore_and_deployment_operator_hardening",
+    "rc5_frontend_surface_and_validation_freeze_candidate",
+    "rc6_live_pilot_acceptance_pack",
+    "rc6_1_ui_ux_hardening_and_operator_clarity",
+    "rc7_production_installation_readiness_candidate",
+    "rc7_1_offline_timekeeper_reliability_patch"
+  ],
+  "previous_version": "0.8.0",
+  "version": "0.8.1"
+}

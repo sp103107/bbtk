@@ -1,0 +1,27 @@
+{
+  "must_have": [
+    "owner token separation",
+    "grouped task cards",
+    "result near triggering action",
+    "download links persist",
+    "warnings separated from success"
+  ],
+  "non_claims": [
+    "owner console is not production RBAC",
+    "exports are not payroll-provider integration"
+  ],
+  "panel_order": [
+    "Today",
+    "Employees",
+    "Payroll Exports",
+    "Pay Period Close",
+    "Review / Adjustments",
+    "Offline Sync Review",
+    "Backup / Restore",
+    "Pilot / Release Readiness"
+  ],
+  "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+  "schema_version": "1.0.0",
+  "status": "locked_candidate",
+  "version": "0.8.2"
+}

@@ -1,0 +1,27 @@
+{
+  "acceptance": [
+    "offline queue script exists",
+    "PIN is not persisted",
+    "offline sync endpoint exists",
+    "CSV mirror validates",
+    "runtime smoke passes"
+  ],
+  "allowed": [
+    "offline browser queue",
+    "offline sync endpoint",
+    "csv ledger mirror",
+    "offline sync receipts",
+    "UI status hardening"
+  ],
+  "forbidden": [
+    "Hugging Face Space adapter",
+    "hosted deployment claim",
+    "payroll provider integration",
+    "biometric/GPS/camera scope",
+    "PIN persistence in browser storage"
+  ],
+  "phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "previous_version": "0.8.0",
+  "scope": "offline_timekeeper_reliability_patch",
+  "version": "0.8.1"
+}

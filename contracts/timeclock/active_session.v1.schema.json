@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/timeclock/active_session.v1",
+  "title": "Active Session",
+  "type": "object",
+  "required": ["employee_id", "current_status", "clocked_in_at_utc", "elapsed_seconds", "server_calculated_at_utc"],
+  "properties": {
+    "employee_id": {"type": "string"},
+    "display_name": {"type": "string"},
+    "current_status": {"enum": ["clocked_in", "on_break"]},
+    "clocked_in_at_utc": {"type": "string", "format": "date-time"},
+    "elapsed_seconds": {"type": "integer", "minimum": 0},
+    "server_calculated_at_utc": {"type": "string", "format": "date-time"},
+    "requires_manager_review": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

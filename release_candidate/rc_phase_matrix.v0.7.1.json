@@ -1,0 +1,16 @@
+{
+  "current_internal_phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "next_internal_phase": "rc7_production_installation_readiness_candidate",
+  "patch_phase_added": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "phases_preserved": [
+    "rc0_contract_pack",
+    "rc1_owner_setup_hardening",
+    "rc2_pay_period_close_and_audit_exports",
+    "rc3_policy_adjustments_and_manager_review",
+    "rc4_backup_restore_and_deployment_operator_hardening",
+    "rc5_frontend_surface_and_validation_freeze_candidate",
+    "rc6_live_pilot_acceptance_pack"
+  ],
+  "previous_internal_phase": "rc6_live_pilot_acceptance_pack",
+  "version": "0.7.1"
+}

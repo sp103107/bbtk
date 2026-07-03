@@ -1,0 +1,10 @@
+{
+  "acceptance": [
+    "owner actions grouped into task cards",
+    "download slots remain near export/close actions",
+    "owner notice banner present",
+    "backup verify existing route exposed without new backend domain scope"
+  ],
+  "contract_type": "owner_dashboard_surface",
+  "version": "0.7.1"
+}

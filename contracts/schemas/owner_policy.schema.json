@@ -1,0 +1,57 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/owner_policy.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_export_formats": {
+      "items": {
+        "enum": [
+          "csv",
+          "json",
+          "markdown",
+          "html"
+        ]
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "owner_token": {
+      "minLength": 8,
+      "type": "string"
+    },
+    "pin_pepper": {
+      "minLength": 8,
+      "type": "string"
+    },
+    "regular_hours_cap_per_week": {
+      "minimum": 1,
+      "type": "number"
+    },
+    "setup_required_when_default_secret": {
+      "type": "boolean"
+    },
+    "site_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "terminal_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "timezone": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "site_id",
+    "terminal_id",
+    "timezone",
+    "owner_token",
+    "pin_pepper",
+    "regular_hours_cap_per_week",
+    "allowed_export_formats"
+  ],
+  "title": "Owner Policy",
+  "type": "object"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/export/employee_time_export.v1",
+  "title": "Human-Readable Employee Time Export Row",
+  "type": "object",
+  "required": ["Employee Name", "Employee ID", "Date", "Clock In", "Clock Out", "Break Minutes", "Total Hours", "Notes"],
+  "properties": {
+    "Employee Name": {"type": "string"},
+    "Employee ID": {"type": "string"},
+    "Date": {"type": "string"},
+    "Clock In": {"type": "string"},
+    "Clock Out": {"type": "string"},
+    "Break Minutes": {"type": ["integer", "number"]},
+    "Total Hours": {"type": "string"},
+    "Hourly Rate": {"type": "string"},
+    "Gross Pay Estimate": {"type": "string"},
+    "Tax Withheld Estimate": {"type": "string"},
+    "Net Pay Estimate": {"type": "string"},
+    "Notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,10 @@
+{
+  "next_recommended_phase": "rc7_production_installation_readiness_candidate",
+  "operator_notes": [
+    "Run UI on a tablet or local browser for human visual review.",
+    "Do not move to production install until default secrets and local network policy are resolved."
+  ],
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "resume_from": "best_buds_timeclock_capsule_v0_7_1_full_repo.zip",
+  "version": "0.7.1"
+}

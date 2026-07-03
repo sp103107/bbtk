@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "flows": {
+      "items": {
+        "properties": {
+          "flow_id": {
+            "type": "string"
+          },
+          "steps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "flow_id",
+          "steps"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "phase": {
+      "type": "string"
+    },
+    "runtime_claimed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "phase",
+    "flows",
+    "runtime_claimed"
+  ],
+  "title": "Frontend flow status language contract",
+  "type": "object"
+}

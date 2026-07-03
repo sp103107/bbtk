@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/timeclock/time_entry.v1",
+  "title": "Time Entry",
+  "type": "object",
+  "required": ["event_id", "employee_id", "event_type", "captured_at_utc", "validation_status"],
+  "properties": {
+    "event_id": {"type": "string"},
+    "employee_id": {"type": "string"},
+    "event_type": {"enum": ["clock_in", "clock_out", "break_start", "break_end"]},
+    "captured_at_utc": {"type": "string", "format": "date-time"},
+    "validation_status": {"enum": ["accepted", "rejected"]},
+    "source": {"type": "string"},
+    "event_hash": {"type": "string"}
+  },
+  "additionalProperties": true
+}

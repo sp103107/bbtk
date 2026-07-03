@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "context_version_alignment": true,
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "internal_phase_not_external_zip": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "pycache_absent": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "ui_hardening_surface": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 178,
+  "jsonl_lines_checked": 65,
+  "status": "pass",
+  "version": "0.7.1"
+}

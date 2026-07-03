@@ -1,0 +1,10 @@
+{
+  "bump_type": "patch",
+  "generated_at": "2026-05-29T18:26:50+00:00",
+  "next_phase": "rc7_production_installation_readiness_candidate",
+  "non_scope_expansion_required": true,
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "previous_phase": "rc6_live_pilot_acceptance_pack",
+  "scope": "ui_ux_hardening_patch",
+  "version": "0.7.1"
+}

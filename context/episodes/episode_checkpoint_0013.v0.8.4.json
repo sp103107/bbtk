@@ -1,0 +1,17 @@
+{
+  "completed_work": [
+    "owner console status grid",
+    "owner action summary",
+    "owner task rail",
+    "card result hints",
+    "validation lane"
+  ],
+  "episode_seq": 13,
+  "immutable": true,
+  "non_claims": [
+    "no production deployment",
+    "no hosted adapter"
+  ],
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "version": "0.8.4"
+}

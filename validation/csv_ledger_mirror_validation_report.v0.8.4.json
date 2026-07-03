@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-06-23T20:34:49.743663+00:00",
+  "checks": {
+    "csv_file_created": true,
+    "csv_has_event_hash": true,
+    "csv_has_header": true,
+    "jsonl_remains_canonical": true
+  },
+  "errors": [],
+  "non_claims": [
+    "CSV mirror is not source-of-truth.",
+    "JSONL remains canonical."
+  ],
+  "status": "pass",
+  "version": "0.8.4"
+}

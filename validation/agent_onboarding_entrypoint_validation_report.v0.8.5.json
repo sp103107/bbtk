@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "no_network_or_server_start": true,
+    "non_claims_listed": true,
+    "payload_version_alignment": true,
+    "present:cursor/CURSOR_KICKOFF_TIME_CLOCK.md": true,
+    "present:docs/AGENT_ONBOARDING_ENTRYPOINT.md": true,
+    "present:scripts/onboard_agent.py": true,
+    "python_parse": true,
+    "read_only_language_present": true,
+    "script_executes_json": true,
+    "source_of_truth_listed": true
+  },
+  "errors": [],
+  "non_claims": [
+    "read-only onboarding validation only",
+    "no runtime activation",
+    "no network calls"
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "status": "pass",
+  "version": "0.8.5"
+}

@@ -1,0 +1,13 @@
+{
+  "copy_codes": [
+    "backend_unreachable",
+    "blocking_exceptions",
+    "employee_not_found",
+    "invalid_pin",
+    "offline_saved_local",
+    "unauthorized"
+  ],
+  "gaps": [],
+  "status": "pass",
+  "version": "0.8.4"
+}

@@ -1,0 +1,44 @@
+{
+  "$id": "https://bestbuds.local/timeclock/owner_adjustment_request.v0.4.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "captured_at_utc": {
+      "minLength": 10,
+      "type": "string"
+    },
+    "employee_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "clock_in",
+        "clock_out",
+        "break_start",
+        "break_end"
+      ],
+      "type": "string"
+    },
+    "owner_note": {
+      "type": "string"
+    },
+    "owner_token": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "owner_token",
+    "employee_id",
+    "event_type",
+    "captured_at_utc",
+    "reason"
+  ],
+  "title": "Owner Adjustment Request",
+  "type": "object"
+}

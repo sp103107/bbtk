@@ -1,0 +1,48 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.2.0/owner_export.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "export_id": {
+      "type": "string"
+    },
+    "files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "format": {
+      "enum": [
+        "json",
+        "csv",
+        "markdown",
+        "html"
+      ],
+      "type": "string"
+    },
+    "generated_at_utc": {
+      "type": "string"
+    },
+    "period_end": {
+      "type": "string"
+    },
+    "period_start": {
+      "type": "string"
+    },
+    "source_ledger_hash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "export_id",
+    "format",
+    "period_start",
+    "period_end",
+    "generated_at_utc",
+    "source_ledger_hash",
+    "files"
+  ],
+  "title": "Owner Export",
+  "type": "object"
+}

@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "docx_render_qa": "pass",
+    "forbidden_claims": "pass",
+    "js_syntax": "pass",
+    "json_parse": "pass",
+    "jsonl_parse": "pass",
+    "python_compile": "pass",
+    "required_files": "pass",
+    "shell_syntax": "pass",
+    "version_consistency": "pass"
+  },
+  "non_claims": [
+    "runtime smoke used temporary app copy only",
+    "DOCX render QA does not imply product runtime certification",
+    "no production deployment",
+    "no release seal"
+  ],
+  "reports": [
+    "validation/validation_report.v0.8.5.json",
+    "validation/frontend_flow_status_language_validation_report.v0.8.5.json",
+    "validation/agent_onboarding_entrypoint_validation_report.v0.8.5.json",
+    "validation/product_user_entrypoint_validation_report.v0.8.5.json",
+    "reports/runtime_smoke_report.v0.8.5.json",
+    "reports/deployment_preflight_report.v0.8.5.json"
+  ],
+  "status": "pass",
+  "version": "0.8.5"
+}

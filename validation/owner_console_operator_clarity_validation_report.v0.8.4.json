@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "card_result_hints_present": true,
+    "css_operator_console_present": true,
+    "file:contracts/frontend_surface/owner_dashboard_surface.v0.8.4.json": true,
+    "file:contracts/ui_ux/owner_console_operator_clarity_contract.v0.8.4.json": true,
+    "file:docs/OWNER_ACTION_RESULT_COPY_v0.8.4.md": true,
+    "file:docs/OWNER_CONSOLE_ACCEPTANCE_v0.8.4.md": true,
+    "file:docs/OWNER_CONSOLE_OPERATOR_CLARITY_v0.8.4.md": true,
+    "file:release_candidate/rc7_4_owner_console_operator_clarity/README.md": true,
+    "file:repo_scaffold/app/static/app.js": true,
+    "file:repo_scaffold/app/static/index.html": true,
+    "file:repo_scaffold/app/static/style.css": true,
+    "no_hf_adapter_claim": true,
+    "offline_review_non_claim": true,
+    "owner_action_summary_present": true,
+    "owner_cards_have_groups": true,
+    "owner_console_status_grid_present": true,
+    "owner_task_rail_present": true,
+    "owner_token_guard_present": true,
+    "technical_json_hidden_by_default": true
+  },
+  "errors": [],
+  "non_claims": [
+    "static owner console validation only",
+    "no new backend route family",
+    "no visual regression execution",
+    "no production deployment"
+  ],
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "status": "pass",
+  "version": "0.8.4"
+}

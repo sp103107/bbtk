@@ -1,0 +1,13 @@
+{
+  "lanes": [
+    "owner_console_surface",
+    "owner_action_result_copy",
+    "static_frontend_validation",
+    "context_update"
+  ],
+  "next_phase": "rc7_5_frontend_flow_graphics_status_language",
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "previous_version": "0.8.3",
+  "runtime_claimed": false,
+  "version": "0.8.4"
+}

@@ -1,0 +1,57 @@
+{
+  "current_phase": "rc4_backup_restore_and_deployment_operator_hardening",
+  "freeze_gate_for_v0_6_0": [
+    "repo validation pass",
+    "runtime smoke pass",
+    "restore dry-run proof pass",
+    "deployment preflight reviewed",
+    "artifact manifest sealed",
+    "context records validated",
+    "non-claims preserved"
+  ],
+  "generated_at": "2026-05-29T00:44:25+00:00",
+  "next_phase": "rc5_validation_freeze_and_artifact_seal_candidate",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Backup restore proof is limited to disposable dry-run extraction/verification; no production restore was performed.",
+    "Deployment preflight is an operator readiness check, not a production deployment seal."
+  ],
+  "recommended_frozen_rc_target": "v0.6.0",
+  "release_candidate_path": [
+    {
+      "phase": "rc0_contract_runtime_blueprint",
+      "status": "preserved",
+      "version": "0.1.0"
+    },
+    {
+      "phase": "rc1_owner_setup_hardening",
+      "status": "preserved",
+      "version": "0.2.0"
+    },
+    {
+      "phase": "rc2_pay_period_close_and_audit_exports",
+      "status": "preserved",
+      "version": "0.3.0"
+    },
+    {
+      "phase": "rc3_policy_adjustments_and_manager_review",
+      "status": "preserved",
+      "version": "0.4.0"
+    },
+    {
+      "phase": "rc4_backup_restore_and_deployment_operator_hardening",
+      "status": "added",
+      "version": "0.5.0"
+    },
+    {
+      "phase": "rc5_validation_freeze_and_artifact_seal_candidate",
+      "status": "planned_frozen_rc_candidate",
+      "version": "0.6.0"
+    }
+  ],
+  "version": "0.5.0"
+}

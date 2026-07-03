@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "no_claimed_deployment": true,
+    "payload_version_alignment": true,
+    "present:docs/KICKOFF_ENTRYPOINTS_v0.8.5.md": true,
+    "present:docs/PRODUCT_USER_ENTRYPOINT.md": true,
+    "present:scripts/start_here_user.py": true,
+    "product_language_present": true,
+    "python_parse": true,
+    "script_executes_json": true,
+    "short_windows_path_present": true
+  },
+  "errors": [],
+  "non_claims": [
+    "product entrypoint prints instructions only",
+    "no backend started",
+    "no deployment claim"
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "status": "pass",
+  "version": "0.8.5"
+}

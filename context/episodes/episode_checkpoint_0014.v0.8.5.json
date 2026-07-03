@@ -1,0 +1,20 @@
+{
+  "checkpoint_at": "2026-06-23T23:34:48Z",
+  "episode_seq": 14,
+  "immutable": true,
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "non_claims": [
+    "No production deployment.",
+    "No legal/payroll/cannabis compliance seal.",
+    "No payroll-provider integration.",
+    "No biometric, geofence, GPS, or camera proof.",
+    "No Hugging Face Space adapter included in v0.8.5.",
+    "No visual regression execution claim.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation.",
+    "Offline browser queue remains recovery evidence only and is not payroll truth.",
+    "Product entrypoint prints operator guidance only and does not start the backend automatically."
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "summary": "v0.8.5 frontend flow/status and kickoff entrypoint checkpoint",
+  "version": "0.8.5"
+}

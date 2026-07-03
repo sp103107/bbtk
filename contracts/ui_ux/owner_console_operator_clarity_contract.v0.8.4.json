@@ -1,0 +1,34 @@
+{
+  "acceptance": [
+    "Owner actions grouped by task",
+    "Plain-language result appears before technical JSON",
+    "Download slots persist near action cards",
+    "Offline sync review states recovery evidence only",
+    "Owner token is visually separate from employee PIN"
+  ],
+  "forbidden_scope": [
+    "new backend route family",
+    "payroll-provider integration",
+    "hosted adapter",
+    "production deployment claim",
+    "legal compliance seal"
+  ],
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "required_surfaces": [
+    "owner_console_status_grid",
+    "owner_action_summary",
+    "owner_task_rail",
+    "operator_console_grid",
+    "owner_json_details"
+  ],
+  "schema_version": "1.0.0",
+  "scope": [
+    "owner task grouping",
+    "owner action summary",
+    "card result hints",
+    "offline review visibility",
+    "technical JSON disclosure"
+  ],
+  "status": "candidate_static_surface_contract",
+  "version": "0.8.4"
+}

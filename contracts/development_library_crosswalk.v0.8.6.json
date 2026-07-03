@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "local_example_path": "development/local_library_bindings.example.json",
+      "local_only": true,
+      "name": "aos_meta_knowledge_library_blueprint_contract_pack",
+      "purpose": "claim authority, false-green detection, intake validation gates",
+      "runtime_claimed": false
+    },
+    {
+      "local_example_path": "development/local_library_bindings.example.json",
+      "local_only": true,
+      "name": "aos_ks_frontend_flow_graphics",
+      "purpose": "flow stage tokens, status palette, mobile density patterns",
+      "runtime_claimed": false
+    },
+    {
+      "local_example_path": "development/local_library_bindings.example.json",
+      "local_only": true,
+      "name": "aos_arc_launcher",
+      "purpose": "arc series planning and episode receipts",
+      "runtime_claimed": false
+    }
+  ],
+  "non_claims": [
+    "Crosswalk documents local development pointers only.",
+    "CI and release validation do not require these paths to exist."
+  ],
+  "version": "0.8.6"
+}

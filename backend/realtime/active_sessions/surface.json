@@ -1,0 +1,1 @@
+{"surface":"active_sessions","runtime_target":"repo_scaffold/app/server.py","route":"GET /api/owner/active-sessions","transport":"http_polling","poll_interval_seconds":15,"websocket_or_sse_runtime_claimed":false,"version":"0.9.0"}

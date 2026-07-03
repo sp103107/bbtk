@@ -1,0 +1,21 @@
+{
+  "contract_type": "visual_design_tokens",
+  "tokens": {
+    "layout": {
+      "employee_kiosk": "large card with workflow strip",
+      "owner_dashboard": "task-grouped cards",
+      "technical_json": "details disclosure"
+    },
+    "status": {
+      "error": "red rejected/error state",
+      "neutral": "slate waiting/idle",
+      "success": "green accepted receipt",
+      "warning": "amber preflight/pilot gate"
+    },
+    "touch_targets": {
+      "large_kiosk_actions": true,
+      "minimum_button_padding_px": 16
+    }
+  },
+  "version": "0.7.1"
+}

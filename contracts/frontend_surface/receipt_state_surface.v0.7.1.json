@@ -1,0 +1,17 @@
+{
+  "contract_type": "receipt_state_surface",
+  "required_copy": [
+    "Success",
+    "Today",
+    "Status",
+    "Time",
+    "Punch not recorded",
+    "PIN not accepted"
+  ],
+  "states": {
+    "error": "rejected or failed punch with friendly correction",
+    "neutral": "waiting for punch",
+    "success": "accepted punch with today hours"
+  },
+  "version": "0.7.1"
+}

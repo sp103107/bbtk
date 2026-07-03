@@ -1,0 +1,10 @@
+{
+  "current_phase": "rc7_4_owner_console_operator_clarity",
+  "frozen_candidate_status": "not_release_sealed",
+  "next_phase": "rc7_5_frontend_flow_graphics_status_language",
+  "non_claims": [
+    "no production readiness claim",
+    "no release seal"
+  ],
+  "version": "0.8.4"
+}

@@ -1,0 +1,12 @@
+{
+  "key_files": [
+    "docs/OFFLINE_TIMEKEEPER_RELIABILITY_v0.8.1.md",
+    "repo_scaffold/app/static/offline_queue.js",
+    "repo_scaffold/app/server.py",
+    "scripts/validate_offline_timekeeper.py"
+  ],
+  "next_recommended_phase": "rc7_2_huggingface_space_adapter_preview",
+  "operator_prompt": "Continue from v0.8.1. Preserve offline queue reliability boundary and do not include HF Space adapter unless explicitly authorized.",
+  "resume_from": "rc7_1_offline_timekeeper_reliability_patch",
+  "version": "0.8.1"
+}

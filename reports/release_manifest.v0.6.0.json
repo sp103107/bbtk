@@ -1,0 +1,20 @@
+{
+  "deployment_preflight_status": "warn",
+  "frontend_surface_validation_status": "pass",
+  "generated_at": "2026-05-29T00:53:25+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Employee success notification is a UI/runtime receipt, not payroll approval.",
+    "Frozen-candidate package status is not a production deployment seal."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc5_frontend_surface_and_validation_freeze_candidate",
+  "previous_version": "0.5.0",
+  "runtime_smoke_status": "pass",
+  "status": "candidate_validated",
+  "version": "0.6.0"
+}

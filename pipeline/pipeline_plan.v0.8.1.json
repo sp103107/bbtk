@@ -1,0 +1,14 @@
+{
+  "deferred": [
+    "huggingface_space_adapter"
+  ],
+  "lanes": [
+    "frontend offline queue",
+    "backend offline sync",
+    "csv ledger mirror",
+    "validation",
+    "context update"
+  ],
+  "phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "version": "0.8.1"
+}

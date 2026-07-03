@@ -1,0 +1,25 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/csv_ledger_mirror.v0.8.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "canonical_source": {
+      "const": "jsonl_clock_event_ledger"
+    },
+    "mirror_format": {
+      "const": "csv"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "canonical_source",
+    "mirror_format",
+    "non_claims"
+  ],
+  "title": "CSV Ledger Mirror",
+  "type": "object"
+}

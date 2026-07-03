@@ -1,0 +1,8 @@
+{
+  "checkpoint": "v0.6.0 frozen-candidate package with frontend surface and employee receipt UX",
+  "created_at": "2026-05-29T00:53:25+00:00",
+  "episode_seq": 6,
+  "next_recommended_version": "0.7.0 optional live pilot acceptance pack",
+  "previous_version": "0.5.0",
+  "version": "0.6.0"
+}

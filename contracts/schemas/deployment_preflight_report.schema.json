@@ -1,0 +1,46 @@
+{
+  "$id": "https://bestbuds.example/aos/timeclock/v0.5.0/deployment_preflight_report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "checked_at_utc": {
+      "type": "string"
+    },
+    "checks": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "warn",
+        "fail"
+      ]
+    },
+    "version": {
+      "type": "string"
+    },
+    "warnings": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "checked_at_utc",
+    "status",
+    "checks",
+    "errors",
+    "warnings",
+    "non_claims"
+  ],
+  "title": "Deployment Preflight Report",
+  "type": "object"
+}

@@ -1,0 +1,1 @@
+{"surface":"guests","runtime_target":"repo_scaffold/app/server.py","routes":["POST /api/guests/sign-in","POST /api/guests/sign-out","GET /api/owner/guests"],"separate_ledger":true,"version":"0.9.0"}

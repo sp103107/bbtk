@@ -1,0 +1,33 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.3.0/closed_pay_period_package.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "period_id": {
+      "type": "string"
+    },
+    "required_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "source_of_truth": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "period_id",
+    "required_files",
+    "source_of_truth",
+    "non_claims"
+  ],
+  "title": "Best Buds Closed Pay Period Package",
+  "type": "object"
+}

@@ -1,0 +1,16 @@
+{
+  "components_added": [
+    "employee_flow_rail",
+    "owner_flow_rail",
+    "offline_flow_rail"
+  ],
+  "entrypoints_added": [
+    "scripts/onboard_agent.py",
+    "scripts/start_here_user.py"
+  ],
+  "frontend_surface": "flow_status_language",
+  "generated_at": "2026-06-23T23:34:48Z",
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "version": "0.8.5"
+}

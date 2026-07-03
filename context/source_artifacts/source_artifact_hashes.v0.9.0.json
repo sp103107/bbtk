@@ -1,0 +1,14 @@
+{
+  "artifact_hashes": [
+    {"path": "repo_scaffold/app/server.py", "sha256": "2fc8acaea43abecd025c92c915b4ee33fec59b24270b011fa2830c1bc4d989b7", "size_bytes": 123732},
+    {"path": "repo_scaffold/app/static/index.html", "sha256": "8b35e9c6ceb429cb0fd5420a7bc8a6085c298f3d716724bda5ff47df9a5871c9", "size_bytes": 33110},
+    {"path": "repo_scaffold/app/static/employee.html", "sha256": "6d9b91271665ea8dc3bd0f5078c89869ddda9bc3d8a7727c96e462436f1a87e6", "size_bytes": 10489},
+    {"path": "repo_scaffold/app/static/app.js", "sha256": "346009626f7dde98d93c2d30ad805ab73436886b9f5dd42e6a35704e730e20a9", "size_bytes": 50900},
+    {"path": "repo_scaffold/app/static/employee.js", "sha256": "d36726c7c10a9f0e7facca3c19b1d1c3eeb97854c87834825bcd0460def9b444", "size_bytes": 20690},
+    {"path": "repo_scaffold/app/static/style.css", "sha256": "704bc352d5f5de84dbdfb2555e7cb754652957bdb8c94aefdb4cb0063920e479", "size_bytes": 22912},
+    {"path": "scripts/validate_employee_management_kiosk_arc.py", "sha256": "79bf455356e6fba0efa96368b2ba3431f7ce5d141e5878dfb558c5bee535829f", "size_bytes": 8914},
+    {"path": "pipeline/arc_employee_management_kiosk_timeclock.v0.9.0.json", "sha256": "4c56deb50f8fa8fd15ebe7364072bea34af227d90564d91909b958e8e1813df4", "size_bytes": 1206}
+  ],
+  "generated_at": "2026-07-01T13:10:00Z",
+  "version": "0.9.0"
+}

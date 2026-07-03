@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "adjustment_reason_required": true,
+    "backup_manifest_required": true,
+    "deployment_preflight_required": true,
+    "min_pin_length_floor": true,
+    "owner_adjustments_explicitly_configured": true,
+    "owner_token_not_empty": true,
+    "pin_pepper_not_empty": true,
+    "policy_version_present": false,
+    "restore_dry_run_required": true,
+    "runtime_version_present": false,
+    "server_route_cannot_apply_restore": true
+  },
+  "errors": [
+    "policy_check_failed:policy_version_present",
+    "policy_check_failed:runtime_version_present"
+  ],
+  "non_claims": [
+    "policy validation checks config shape only",
+    "no production security seal",
+    "restore apply is not enabled from owner web route"
+  ],
+  "status": "fail",
+  "version": "0.6.0"
+}

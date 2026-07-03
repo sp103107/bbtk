@@ -1,0 +1,44 @@
+{
+  "constraints": {
+    "deterministic_ordering_required": true,
+    "no_speculative_families": true,
+    "schema_first": true,
+    "strict_naming_required": true
+  },
+  "contract_families": [
+    "request",
+    "plan",
+    "schema_manifest",
+    "module_contract",
+    "frontend_surface",
+    "runtime_surface",
+    "validation_report"
+  ],
+  "generation_scope": {
+    "generate_annotated": false,
+    "generate_backend_contracts": false,
+    "generate_db_contracts": false,
+    "generate_deploy_contracts": false,
+    "generate_filled_examples": true,
+    "generate_frontend_contracts": true,
+    "generate_runtime_contracts": true,
+    "generate_unfilled": false
+  },
+  "notes": [
+    "Patch bump only; no scope expansion.",
+    "Online research informs generic UI patterns only."
+  ],
+  "output_modes": {
+    "emit_cursor_blocks": true,
+    "emit_json": true,
+    "emit_markdown": true,
+    "emit_repo_files": true
+  },
+  "request_id": "best_buds_timeclock_capsule_v0_7_1",
+  "request_name": "Best Buds time clock UI UX hardening patch",
+  "target_module": {
+    "module_class": "runtime_module",
+    "module_name": "best_buds_timeclock_capsule",
+    "module_purpose": "Standalone QR/URL/kiosk time clock capsule with hardened existing UI surfaces"
+  }
+}

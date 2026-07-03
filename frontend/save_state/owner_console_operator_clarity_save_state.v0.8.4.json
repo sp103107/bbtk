@@ -1,0 +1,14 @@
+{
+  "components": [
+    "owner_console_status_grid",
+    "owner_action_summary",
+    "owner_task_rail",
+    "owner_card_result_hints",
+    "owner_json_details"
+  ],
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "runtime_claimed": false,
+  "status": "saved",
+  "surface": "owner_console",
+  "version": "0.8.4"
+}

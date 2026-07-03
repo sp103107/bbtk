@@ -1,0 +1,8 @@
+{
+  "checkpoint_id": "episode_checkpoint_0015",
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "runtime_claimed": false,
+  "updated_at": "2026-06-24T00:00:00Z",
+  "version": "0.8.6"
+}

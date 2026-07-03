@@ -1,0 +1,44 @@
+{
+  "added": [
+    "backend_connectivity_guard",
+    "phone_tablet_kiosk_startup_runbook",
+    "local_network_kiosk_launcher",
+    "professional_time_clock_blueprint_contract_pack",
+    "release_readiness_validation"
+  ],
+  "generated_at": "2026-05-29T19:40:51+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production deployment is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No cannabis compliance certification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Release readiness validation is an operator gate, not a production seal."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc7_production_installation_readiness_candidate",
+  "preserved": [
+    "v0.1.0 through v0.7.1 repo state",
+    "JSONL source-of-truth ledger",
+    "SQLite operational mirror",
+    "owner exports",
+    "pay-period close",
+    "backup verify and restore dry-run",
+    "pilot acceptance pack"
+  ],
+  "previous_version": "0.7.1",
+  "validated_at": "2026-05-29T19:41:08+00:00",
+  "validation_status": "pass_with_deployment_preflight_warnings",
+  "validation_summary": {
+    "backend_connectivity_guard": "pass",
+    "deployment_preflight": "warn_default_secrets_and_port_check",
+    "frontend_surface": "pass",
+    "professional_blueprint": "pass",
+    "release_readiness": "pass",
+    "repo_validation": "pass",
+    "runtime_smoke": "pass"
+  },
+  "version": "0.8.0"
+}

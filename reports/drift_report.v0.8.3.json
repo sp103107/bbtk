@@ -1,0 +1,12 @@
+{
+  "drift_fixed": [
+    "APP_VERSION updated to 0.8.3."
+  ],
+  "drift_found": [
+    "repo_scaffold/app/server.py APP_VERSION was 0.8.1 while repo VERSION was 0.8.2."
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "status": "pass_with_fixed_drift",
+  "unresolved_drift": [],
+  "version": "0.8.3"
+}

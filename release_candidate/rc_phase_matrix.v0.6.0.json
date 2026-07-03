@@ -1,0 +1,16 @@
+{
+  "current_internal_phase": "rc5_frontend_surface_and_validation_freeze_candidate",
+  "frozen_candidate": "v0.6.0",
+  "next_internal_phase": "rc6_live_pilot_acceptance_pack",
+  "phases": [
+    "rc0_contract_runtime_blueprint",
+    "rc1_owner_setup_hardening",
+    "rc2_pay_period_close_and_audit_exports",
+    "rc3_policy_adjustments_and_manager_review",
+    "rc4_backup_restore_and_deployment_operator_hardening",
+    "rc5_frontend_surface_and_validation_freeze_candidate",
+    "rc6_live_pilot_acceptance_pack_optional"
+  ],
+  "status": "candidate_not_production_seal",
+  "version": "0.6.0"
+}

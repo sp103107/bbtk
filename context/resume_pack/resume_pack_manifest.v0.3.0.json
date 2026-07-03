@@ -1,0 +1,20 @@
+{
+  "context_records": [
+    "context/working_set/working_set_update_0003.v0.3.0.json",
+    "context/episodes/episode_checkpoint_0003.v0.3.0.json",
+    "context/ledger/context_ledger.v0.3.0.jsonl",
+    "context/source_artifacts/source_artifact_hashes.v0.3.0.json"
+  ],
+  "created_at": "2026-05-29T00:28:30.046816+00:00",
+  "current_internal_phase": "rc2_pay_period_close_and_audit_exports",
+  "important_files": [
+    "repo_release_state.json",
+    "docs/PAY_PERIOD_CLOSE_AND_AUDIT.md",
+    "repo_scaffold/app/server.py",
+    "scripts/runtime_smoke.py",
+    "scripts/validate_repo.py"
+  ],
+  "next_internal_phase": "rc3_policy_adjustments_and_manager_review",
+  "resume_focus": "Continue after v0.3.0 into RC3 policy adjustments and manager review",
+  "version": "0.3.0"
+}

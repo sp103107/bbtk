@@ -1,0 +1,1 @@
+{"surface":"timeclock","runtime_target":"repo_scaffold/app/server.py","routes":["POST /api/clock","POST /api/employee/summary"],"duplicate_open_session_rejected":true,"version":"0.9.0"}

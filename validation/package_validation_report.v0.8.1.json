@@ -1,0 +1,63 @@
+{
+  "checked_at_utc": "2026-05-29T19:51:03.347095+00:00",
+  "forbidden_paths_absent": true,
+  "no_internal_phase_external_bump": true,
+  "required_files_checked": [
+    "README.md",
+    "guide_pack.json",
+    "repo_release_state.json",
+    "CHANGELOG.md",
+    "VERSION",
+    "contracts",
+    "docs",
+    "cursor",
+    "pipeline",
+    "scripts",
+    "validation",
+    "release_candidate",
+    "reports",
+    "context",
+    "repo_scaffold",
+    "manifests"
+  ],
+  "script_results": [
+    {
+      "returncode": 0,
+      "script": "runtime_smoke.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"checked_at_utc\": \"2026-05-29T19:50:56.880679+00:00\",\n  \"checks\": {\n    \"backup_created\": true,\n    \"backup_verify_pass\": true,\n    \"bad_pin_rejected\": true,\n    \"clock_sequence_accepted\": true,\n    \"csv_export_created\": true,\n    \"csv_ledger_mirror_created\": true,\n    \"employee_success_receipt\": true,\n    \"employee_today_hours_visible_payload\": true,\n    \"employee_upsert\": true,\n    \"init_db\": true,\n    \"manager_review_generated\": true,\n    \"offline_sync_pending_review\": true,\n    \"offline_sync_receipt_written\": true,\n    \"owner_adjustment_created\": true,\n    \"pay_period_archive_valid\": true,\n    \"pay_period_close_created\": true,\n    \"pay_period_listed\": true,\n    \"pilot_acceptance_pack_created\": true,\n    \"pilot_issue_logged\": true,\n    \"pilot_readiness_report\": true,\n    \"pilot_signoff_recorded\": true,\n    \"restore_dry_run_pass\": true,\n    \"setup_warnings_present\": true,\n    \"summary_generated\": true\n  },\n  \"errors\": [],\n  \"non_claims\": [\n    \"runtime smoke used temporary app copy only\",\n    \"restore proof is dry-run extraction only\",\n    \"pilot acceptance pack is pre-production operator evidence only\",\n    \"no production deployment was performed\",\n    \"no legal/payroll/cannabis compliance seal is claimed\"\n  ],\n  \"status\": \"pass\",\n  \"version\": \"0.8.1\"\n}\n"
+    },
+    {
+      "returncode": 0,
+      "script": "validate_offline_timekeeper.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"checked_at_utc\": \"2026-05-29T19:50:58.057887+00:00\",\n  \"checks\": {\n    \"csv_mirror_present\": true,\n    \"employee_handler_saves_offline_on_backend_interrupt\": true,\n    \"offline_queue_script_present\": true,\n    \"offline_ui_controls_present\": true,\n    \"pending_owner_review_status_present\": true,\n    \"pin_not_persisted_claim_present\": true,\n    \"sync_endpoint_present\": true\n  },\n  \"non_claims\": [\n    \"Offline queue is recovery evidence only.\",\n    \"Employee PINs must not be persisted in browser storage.\",\n    \"Offline synced events require owner review before payroll counting.\"\n  ],\n  \"status\": \"pass\",\n  \"version\": \"0.8.1\"\n}\n"
+    },
+    {
+      "returncode": 0,
+      "script": "validate_csv_ledger_mirror.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"checked_at_utc\": \"2026-05-29T19:50:59.380543+00:00\",\n  \"checks\": {\n    \"csv_file_created\": true,\n    \"csv_has_event_hash\": true,\n    \"csv_has_header\": true,\n    \"jsonl_remains_canonical\": true\n  },\n  \"errors\": [],\n  \"non_claims\": [\n    \"CSV mirror is not source-of-truth.\",\n    \"JSONL remains canonical.\"\n  ],\n  \"status\": \"pass\",\n  \"version\": \"0.8.1\"\n}\n"
+    },
+    {
+      "returncode": 0,
+      "script": "validate_backend_connectivity_guard.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"checks\": {\n    \"backend_banner_present\": true,\n    \"fetch_errors_are_caught\": true,\n    \"file_protocol_detection\": true,\n    \"health_check_function_present\": true,\n    \"kiosk_launcher_present\": true,\n    \"offline_css_present\": true,\n    \"offline_payload_present\": true,\n    \"operator_copy_present\": true,\n    \"runtime_card_state_present\": true\n  },\n  \"errors\": [],\n  \"status\": \"pass\",\n  \"version\": \"0.8.1\"\n}\n"
+    },
+    {
+      "returncode": 0,
+      "script": "validate_release_readiness.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"checks\": {\n    \"backend_guard_status_pass\": true,\n    \"full_repo_scope\": true,\n    \"non_claims_preserved\": true,\n    \"python_parses:repo_scaffold/app/server.py\": true,\n    \"python_parses:scripts/start_kiosk_server.py\": true,\n    \"release_readiness_status_set\": true,\n    \"required_release_files_present\": true\n  },\n  \"errors\": [],\n  \"non_claims\": [\n    \"Release readiness is not a production deployment claim.\",\n    \"Default secrets must be changed before live use.\"\n  ],\n  \"status\": \"pass\",\n  \"version\": \"0.8.1\",\n  \"warnings\": []\n}\n"
+    },
+    {
+      "returncode": 0,
+      "script": "validate_repo.py",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"checks\": {\n    \"backend_connectivity_guard_surface\": true,\n    \"context_version_alignment\": true,\n    \"current_phase_alignment\": true,\n    \"forbidden_paths_absent\": true,\n    \"full_repo_bump_scope\": true,\n    \"full_repo_shape\": true,\n    \"internal_phase_not_external_zip\": true,\n    \"json_parses\": true,\n    \"jsonl_parses\": true,\n    \"professional_blueprint_surface\": true,\n    \"pycache_absent\": true,\n    \"python_compiles\": true,\n    \"required_files_exist\": true,\n    \"version_consistency\": true\n  },\n  \"errors\": [],\n  \"json_files_checked\": 240,\n  \"jsonl_lines_checked\": 83,\n  \"status\": \"pass\",\n  \"version\": \"0.8.1\"\n}\n"
+    }
+  ],
+  "status": "pass",
+  "version": "0.8.1"
+}

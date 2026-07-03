@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-06-23T15:45:00Z",
+  "episode_seq": 12,
+  "immutable": true,
+  "non_claims": [
+    "No production deployment.",
+    "No legal/payroll/cannabis compliance seal.",
+    "No payroll-provider integration.",
+    "No biometric, geofence, GPS, or camera proof.",
+    "No Hugging Face Space adapter included in v0.8.3.",
+    "No visual regression execution claim.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation.",
+    "Offline browser queue remains recovery evidence only and is not payroll truth."
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "status": "checkpoint_added",
+  "summary": "Completed employee kiosk gold-path polish package bump.",
+  "version": "0.8.3"
+}

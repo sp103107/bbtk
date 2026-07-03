@@ -1,0 +1,20 @@
+{
+  "bump_scope": "full_repo",
+  "generated_at": "2026-06-23T16:24:00Z",
+  "next_phase": "rc7_5_frontend_flow_graphics_status_language",
+  "non_claims": [
+    "No production deployment.",
+    "No legal/payroll/cannabis compliance seal.",
+    "No payroll-provider integration.",
+    "No biometric, geofence, GPS, or camera proof.",
+    "No Hugging Face Space adapter included in v0.8.4.",
+    "No visual regression execution claim.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation.",
+    "Offline browser queue remains recovery evidence only and is not payroll truth."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "validation_status": "pass",
+  "version": "0.8.4",
+  "zip_status": "pending_packaging"
+}

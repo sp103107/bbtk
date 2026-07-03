@@ -1,0 +1,5 @@
+{"artifact_family": "offline_timekeeper", "record_type": "contract_record", "relative_path": "contracts/offline_timekeeper/offline_queue_policy.v0.8.1.json", "version": "0.8.1"}
+{"artifact_family": "offline_punch_event", "record_type": "schema_record", "relative_path": "contracts/offline_timekeeper/offline_punch_event.schema.json", "version": "0.8.1"}
+{"artifact_family": "offline_sync_batch", "record_type": "schema_record", "relative_path": "contracts/offline_timekeeper/offline_sync_batch.schema.json", "version": "0.8.1"}
+{"artifact_family": "offline_sync_receipt", "record_type": "schema_record", "relative_path": "contracts/offline_timekeeper/offline_sync_receipt.schema.json", "version": "0.8.1"}
+{"artifact_family": "csv_ledger_mirror", "record_type": "schema_record", "relative_path": "contracts/offline_timekeeper/csv_ledger_mirror.schema.json", "version": "0.8.1"}

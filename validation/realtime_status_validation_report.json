@@ -1,0 +1,19 @@
+{
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "checks": {
+    "guest_in_live_roster": true,
+    "owner_actionable_onsite_roster": true,
+    "server_authoritative_active_session": true,
+    "summary_contract": true,
+    "websocket_with_polling_fallback": true
+  },
+  "errors": [],
+  "non_claims": [
+    "Temporary runtime fixture only.",
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "WebSocket is local-network only and retains authenticated HTTP polling fallback."
+  ],
+  "status": "pass",
+  "version": "0.9.0"
+}

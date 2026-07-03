@@ -1,0 +1,37 @@
+{
+  "artifacts": [
+    {
+      "path": "/mnt/data/best_buds_timeclock_capsule_v0_8_2_full_repo.zip",
+      "sha256": "844e1595a36e5d36be6608f4c9e450a7a01171ee10b1581317df79d5225490dc",
+      "size_bytes": 452003
+    },
+    {
+      "path": "/mnt/data/aos_ks_frontend_flow_graphics_v0_1_15.zip",
+      "sha256": "4b6c831528360751ab512c7db9560b561a00ae8b49e36f50231e05d7b167ad7a",
+      "size_bytes": 2494183
+    },
+    {
+      "path": "/mnt/data/aos_meta_knowledge_library_blueprint_contract_pack_v1_2_4.zip",
+      "sha256": "2687ba621ee2640f28f12d55470b11537add97fd324460e4f5171f3fdfc362fc",
+      "size_bytes": 23190342
+    },
+    {
+      "path": "/mnt/data/factory_request.schema.json",
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "size_bytes": 3345
+    },
+    {
+      "path": "/mnt/data/pack_jsonl_manifest.json",
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "size_bytes": 3099
+    },
+    {
+      "path": "/mnt/data/app_tool_schema_inventory.v1.jsonl",
+      "sha256": "235129f5376f5610c1fac77f3913a4843d37e1dc4510aa535ec13e59f7c91dd7",
+      "size_bytes": 5465
+    }
+  ],
+  "generated_at": "2026-06-23T15:45:00Z",
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "version": "0.8.3"
+}

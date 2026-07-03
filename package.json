@@ -1,0 +1,23 @@
+{
+  "current_internal_phase": "rc8_validation_and_context_checkpoint",
+  "description": "Best Buds Time Clock Capsule - manager employee lifecycle, kiosk guests, readable exports, and live active-session polling",
+  "name": "best_buds_timeclock_capsule",
+  "next_internal_phase": "arc_role_based_manager_permissions",
+  "non_claims": [
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "No payroll-provider integration.",
+    "WebSocket live status requires the pinned Python dependency and companion local port.",
+    "No persistence claim outside validated temporary runtime fixtures."
+  ],
+  "previous_version": "0.8.6",
+  "scripts": {
+    "onboard": "python scripts/onboard_agent.py",
+    "start": "python scripts/start_kiosk_server.py --host 0.0.0.0 --port 8080",
+    "start-all": "scripts/start_all.bat",
+    "start-here": "python scripts/start_here_user.py",
+    "validate": "python scripts/validate_repo.py",
+    "validate-arc": "python scripts/validate_employee_management_kiosk_arc.py"
+  },
+  "version": "0.9.0"
+}

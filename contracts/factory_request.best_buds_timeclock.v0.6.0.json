@@ -1,0 +1,45 @@
+{
+  "constraints": {
+    "deterministic_ordering_required": true,
+    "no_speculative_families": true,
+    "schema_first": true,
+    "strict_naming_required": true
+  },
+  "contract_families": [
+    "request",
+    "plan",
+    "schema_manifest",
+    "module_contract",
+    "backend_surface",
+    "frontend_surface",
+    "db_surface",
+    "runtime_surface",
+    "validation_report"
+  ],
+  "generation_scope": {
+    "generate_annotated": false,
+    "generate_backend_contracts": true,
+    "generate_db_contracts": true,
+    "generate_deploy_contracts": false,
+    "generate_filled_examples": true,
+    "generate_frontend_contracts": true,
+    "generate_runtime_contracts": true,
+    "generate_unfilled": false
+  },
+  "notes": [
+    "v0.6.0 adds frontend surface contract pack and professional employee receipt UI."
+  ],
+  "output_modes": {
+    "emit_cursor_blocks": true,
+    "emit_json": true,
+    "emit_markdown": true,
+    "emit_repo_files": true
+  },
+  "request_id": "factory_request.best_buds_timeclock.v0.6.0",
+  "request_name": "Best Buds Time Clock Capsule v0.6.0 frontend surface and validation freeze candidate",
+  "target_module": {
+    "module_class": "ui_module",
+    "module_name": "best_buds_timeclock_capsule",
+    "module_purpose": "Standalone QR/URL kiosk time clock capsule with owner outputs and polished frontend receipt UX"
+  }
+}

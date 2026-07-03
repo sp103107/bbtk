@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "large punch buttons",
+    "text-based success/error states",
+    "owner grouped cards",
+    "technical JSON not default employee focus",
+    "all existing IDs preserved for runtime JS",
+    "no new business scope"
+  ],
+  "contract_type": "frontend_acceptance_checklist",
+  "version": "0.7.1"
+}

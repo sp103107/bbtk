@@ -1,0 +1,14 @@
+{
+  "components_added": [
+    "employee_portal_page",
+    "employee_summary_api",
+    "owner_kiosk_link_qr_card",
+    "start_all_scripts"
+  ],
+  "employee_entry_path": "/employee",
+  "frontend_surface": "employee_qr_entry",
+  "generated_at": "2026-06-24T00:00:00Z",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "runtime_claimed": false,
+  "version": "0.8.6"
+}

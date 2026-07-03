@@ -1,0 +1,14 @@
+{
+  "context_records": [
+    "context/working_set/working_set_update_0007.v0.7.0.json",
+    "context/episodes/episode_checkpoint_0007.v0.7.0.json",
+    "context/ledger/context_ledger.v0.7.0.jsonl",
+    "context/source_artifacts/source_artifact_hashes.v0.7.0.json"
+  ],
+  "continuation_prompt": "Continue from best_buds_timeclock_capsule v0.7.0. Preserve full repo state. Next recommended lane is production installation readiness only after live pilot feedback.",
+  "created_at": "2026-05-29T00:57:24+00:00",
+  "current_phase": "rc6_live_pilot_acceptance_pack",
+  "next_phase": "rc7_production_installation_readiness_candidate",
+  "resume_entrypoint": "README.md",
+  "version": "0.7.0"
+}

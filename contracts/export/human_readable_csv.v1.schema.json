@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/export/human_readable_csv.v1",
+  "title": "Human-Readable CSV Policy",
+  "type": "object",
+  "required": ["encoding", "headers_are_human_readable", "raw_ledgers_preserved", "employee_guest_separation"],
+  "properties": {
+    "encoding": {"const": "utf-8-sig"},
+    "headers_are_human_readable": {"const": true},
+    "raw_ledgers_preserved": {"const": true},
+    "employee_guest_separation": {"const": true},
+    "decimal_hours_places": {"const": 2},
+    "currency_format": {"const": "$0.00"}
+  },
+  "additionalProperties": false
+}

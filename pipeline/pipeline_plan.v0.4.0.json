@@ -1,0 +1,26 @@
+{
+  "current_internal_phase": "rc3_policy_adjustments_and_manager_review",
+  "generated_at": "2026-05-29T00:36:12.876816+00:00",
+  "next_internal_phase": "rc4_backup_restore_and_deployment_operator_hardening",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation remains scaffolded until restore proof is added."
+  ],
+  "pipeline_id": "best_buds_timeclock_capsule_pipeline_v0_4_0",
+  "previous_version": "0.3.0",
+  "stages": [
+    "read_previous_package",
+    "preserve_full_repo_state",
+    "add_owner_adjustment_contracts",
+    "add_manager_review_runtime",
+    "update_context_module",
+    "validate_json_jsonl_python",
+    "run_runtime_smoke",
+    "package_full_repo"
+  ],
+  "version": "0.4.0"
+}

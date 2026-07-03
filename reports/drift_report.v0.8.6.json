@@ -1,0 +1,16 @@
+{
+  "checked": [
+    "VERSION",
+    "repo_release_state.json",
+    "repo_scaffold/app/static/employee.html",
+    "scripts/start_all.bat",
+    "scripts/start_all.sh"
+  ],
+  "findings": [],
+  "resolved": [
+    "offline_queue.js static route added in server.py",
+    "employee portal separated from owner console at /employee"
+  ],
+  "status": "pass_no_blocking_drift",
+  "version": "0.8.6"
+}

@@ -1,0 +1,12 @@
+{
+  "acceptance": [
+    "employee_portal_route_present",
+    "employee_summary_api_present",
+    "owner_kiosk_qr_card_present",
+    "start_all_scripts_present",
+    "offline_queue_static_served"
+  ],
+  "next_phase": "rc7_7_owner_employee_admin_clarity",
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "version": "0.8.6"
+}

@@ -1,0 +1,3 @@
+{"module": "best_buds_timeclock_capsule", "phase": "rc7_4_owner_console_operator_clarity", "record_type": "module_contract", "runtime_claimed": false, "version": "0.8.4"}
+{"record_type": "frontend_surface", "status": "candidate_static_surface", "surface": "owner_console_operator_clarity", "version": "0.8.4"}
+{"record_type": "validation_report", "status": "pending_until_run", "validator": "validate_owner_console_operator_clarity.py", "version": "0.8.4"}

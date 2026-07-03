@@ -1,0 +1,13 @@
+{
+  "component_contract": "contracts/ui_ux/employee_kiosk_gold_path_contract.v0.8.3.json",
+  "frontend_sources": [
+    "repo_scaffold/app/static/index.html",
+    "repo_scaffold/app/static/app.js",
+    "repo_scaffold/app/static/style.css"
+  ],
+  "next_phase": "rc7_4_owner_console_operator_clarity",
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "runtime_data_included": false,
+  "status": "saved",
+  "version": "0.8.3"
+}

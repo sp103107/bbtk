@@ -1,0 +1,4 @@
+{"artifact_family": "best_buds_timeclock_capsule", "output_family": "app_tool", "path": "contracts/capsule_contract.v0.2.0.json", "phase": "rc1_owner_setup_hardening", "record_type": "module_contract", "version": "0.2.0"}
+{"artifact_family": "owner_dashboard", "output_family": "app_tool", "path": "repo_scaffold/app/server.py", "record_type": "runtime_surface", "version": "0.2.0"}
+{"artifact_family": "index_html_ui", "output_family": "app_tool", "path": "repo_scaffold/app/static/index.html", "record_type": "frontend_surface", "version": "0.2.0"}
+{"artifact_family": "runtime_smoke", "output_family": "app_tool", "path": "scripts/runtime_smoke.py", "record_type": "validation_surface", "version": "0.2.0"}

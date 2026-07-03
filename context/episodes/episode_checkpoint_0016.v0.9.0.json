@@ -1,0 +1,11 @@
+{
+  "checkpoint_id": "episode_checkpoint_0016",
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "immutable": true,
+  "next_phase": "arc_role_based_manager_permissions",
+  "phase": "rc8_validation_and_context_checkpoint",
+  "runtime_claimed": true,
+  "runtime_claim_scope": "temporary isolated validation fixture",
+  "updated_at": "2026-07-01T13:00:00Z",
+  "version": "0.9.0"
+}

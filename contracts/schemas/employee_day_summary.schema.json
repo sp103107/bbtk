@@ -1,0 +1,43 @@
+{
+  "$id": "https://bestbuds.local/contracts/employee_day_summary.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "break_hours": {
+      "type": "number"
+    },
+    "current_status": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "gross_work_hours": {
+      "type": "number"
+    },
+    "local_day": {
+      "type": "string"
+    },
+    "local_timezone": {
+      "type": "string"
+    },
+    "net_work_hours": {
+      "type": "number"
+    },
+    "source_event_count": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "employee_id",
+    "local_day",
+    "net_work_hours",
+    "current_status",
+    "source_event_count"
+  ],
+  "title": "Employee Day Summary",
+  "type": "object"
+}

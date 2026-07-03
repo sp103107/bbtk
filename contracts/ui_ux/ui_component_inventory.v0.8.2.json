@@ -1,0 +1,284 @@
+{
+  "component_count": 19,
+  "components": [
+    {
+      "component_id": "app_shell",
+      "current_status": "present",
+      "kind": "layout",
+      "next_polish": "lock spacing and mobile breakpoints",
+      "required_states": [
+        "normal"
+      ],
+      "selector": ".app-shell",
+      "surface": "global"
+    },
+    {
+      "component_id": "hero_header",
+      "current_status": "present",
+      "kind": "header",
+      "next_polish": "tighten copy and kiosk status hierarchy",
+      "required_states": [
+        "normal",
+        "backend_checking",
+        "backend_offline"
+      ],
+      "selector": ".hero",
+      "surface": "global"
+    },
+    {
+      "component_id": "backend_connection_banner",
+      "current_status": "present",
+      "kind": "runtime_status",
+      "next_polish": "make offline recovery path visually primary when needed",
+      "required_states": [
+        "checking",
+        "online",
+        "offline",
+        "warning"
+      ],
+      "selector": "#backend_connection_banner",
+      "surface": "global"
+    },
+    {
+      "component_id": "employee_kiosk_panel",
+      "current_status": "present",
+      "kind": "kiosk_surface",
+      "next_polish": "turn into focused one-screen gold path",
+      "required_states": [
+        "ready",
+        "clocked_in",
+        "on_break",
+        "clocked_out",
+        "offline_pending"
+      ],
+      "selector": ".employee-panel",
+      "surface": "employee"
+    },
+    {
+      "component_id": "employee_identity_form",
+      "current_status": "present",
+      "kind": "input_group",
+      "next_polish": "improve input affordance and validation copy",
+      "required_states": [
+        "empty",
+        "entered",
+        "invalid",
+        "accepted"
+      ],
+      "selector": "#employee_id,#pin",
+      "surface": "employee"
+    },
+    {
+      "component_id": "employee_punch_buttons",
+      "current_status": "present",
+      "kind": "action_group",
+      "next_polish": "add consistent button hierarchy and tap targets",
+      "required_states": [
+        "enabled",
+        "pending",
+        "disabled_offline",
+        "rejected"
+      ],
+      "selector": "[data-punch-action] or punch buttons",
+      "surface": "employee"
+    },
+    {
+      "component_id": "employee_status_strip",
+      "current_status": "present",
+      "kind": "status_summary",
+      "next_polish": "map all state labels to explicit UI copy",
+      "required_states": [
+        "ready",
+        "accepted",
+        "rejected",
+        "offline_saved",
+        "pending_sync"
+      ],
+      "selector": "#employee_status_strip",
+      "surface": "employee"
+    },
+    {
+      "component_id": "employee_receipt",
+      "current_status": "present",
+      "kind": "receipt",
+      "next_polish": "increase permanence and readability after punch",
+      "required_states": [
+        "success",
+        "error",
+        "offline_saved",
+        "synced_pending_review"
+      ],
+      "selector": "#employee_receipt",
+      "surface": "employee"
+    },
+    {
+      "component_id": "today_hours_card",
+      "current_status": "present",
+      "kind": "metric",
+      "next_polish": "make today hours a dedicated card",
+      "required_states": [
+        "zero_hours",
+        "active_hours",
+        "clocked_out_total",
+        "pending_review"
+      ],
+      "selector": "#receipt_hours and day summary payload",
+      "surface": "employee"
+    },
+    {
+      "component_id": "offline_queue_card",
+      "current_status": "present",
+      "kind": "offline_recovery",
+      "next_polish": "separate recovery evidence from payroll truth",
+      "required_states": [
+        "empty",
+        "pending",
+        "exported",
+        "synced",
+        "sync_failed"
+      ],
+      "selector": "offline queue controls",
+      "surface": "employee_owner_bridge"
+    },
+    {
+      "component_id": "owner_console",
+      "current_status": "present",
+      "kind": "dashboard",
+      "next_polish": "progressively disclose sections and action results",
+      "required_states": [
+        "locked",
+        "authorized",
+        "action_success",
+        "action_failed"
+      ],
+      "selector": "owner-section-grid",
+      "surface": "owner"
+    },
+    {
+      "component_id": "owner_today_summary",
+      "current_status": "present",
+      "kind": "summary",
+      "next_polish": "add clearer live business-day snapshot",
+      "required_states": [
+        "empty",
+        "loaded",
+        "warning"
+      ],
+      "selector": "owner summary controls",
+      "surface": "owner"
+    },
+    {
+      "component_id": "owner_employee_management",
+      "current_status": "present",
+      "kind": "admin_form",
+      "next_polish": "move toward employee lifecycle states",
+      "required_states": [
+        "new_employee",
+        "updated_employee",
+        "invalid",
+        "saved"
+      ],
+      "selector": "employee admin form",
+      "surface": "owner"
+    },
+    {
+      "component_id": "owner_exports",
+      "current_status": "present",
+      "kind": "export_surface",
+      "next_polish": "persistent result cards with next action",
+      "required_states": [
+        "ready",
+        "generated",
+        "downloadable",
+        "failed"
+      ],
+      "selector": "export controls",
+      "surface": "owner"
+    },
+    {
+      "component_id": "pay_period_close",
+      "current_status": "present",
+      "kind": "close_surface",
+      "next_polish": "make close lifecycle explicit",
+      "required_states": [
+        "draft",
+        "review_ready",
+        "closed",
+        "downloadable",
+        "blocked_by_exceptions"
+      ],
+      "selector": "pay period close controls",
+      "surface": "owner"
+    },
+    {
+      "component_id": "manager_review_adjustments",
+      "current_status": "present",
+      "kind": "review_surface",
+      "next_polish": "surface severity and review status",
+      "required_states": [
+        "no_exceptions",
+        "warnings",
+        "blocking",
+        "adjustment_created"
+      ],
+      "selector": "manager review and adjustment controls",
+      "surface": "owner"
+    },
+    {
+      "component_id": "backup_restore_panel",
+      "current_status": "present",
+      "kind": "recovery_surface",
+      "next_polish": "separate backup from restore dry-run evidence",
+      "required_states": [
+        "ready",
+        "backup_created",
+        "verified",
+        "dry_run_pass",
+        "warning"
+      ],
+      "selector": "backup verify controls",
+      "surface": "owner"
+    },
+    {
+      "component_id": "pilot_release_panel",
+      "current_status": "present",
+      "kind": "pilot_evidence",
+      "next_polish": "demote from employee path; keep owner-only",
+      "required_states": [
+        "not_started",
+        "ready_with_warnings",
+        "issue_logged",
+        "signoff_recorded",
+        "pack_created"
+      ],
+      "selector": "pilot controls",
+      "surface": "owner"
+    },
+    {
+      "component_id": "technical_details_disclosure",
+      "current_status": "present",
+      "kind": "diagnostic_disclosure",
+      "next_polish": "ensure diagnostics never crowd primary tasks",
+      "required_states": [
+        "closed_default",
+        "open_by_operator"
+      ],
+      "selector": "details.technical-details",
+      "surface": "global"
+    }
+  ],
+  "graphics_reference": "aos_ks_frontend_flow_graphics_v0_1_15.zip referenced by hash only; no assets vendored",
+  "non_claims": [
+    "component inventory is static contract evidence, not a visual regression pass",
+    "no browser screenshot engine was executed"
+  ],
+  "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+  "schema_version": "1.0.0",
+  "source_surfaces": [
+    "repo_scaffold/app/static/index.html",
+    "repo_scaffold/app/static/app.js",
+    "repo_scaffold/app/static/style.css"
+  ],
+  "status": "truth_locked_candidate",
+  "version": "0.8.2"
+}

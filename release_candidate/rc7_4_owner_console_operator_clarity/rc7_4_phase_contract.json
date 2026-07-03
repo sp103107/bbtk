@@ -1,0 +1,14 @@
+{
+  "activation_claimed": false,
+  "next_phase": "rc7_5_frontend_flow_graphics_status_language",
+  "non_claims": [
+    "no new backend route family",
+    "no production deployment",
+    "no release seal"
+  ],
+  "phase": "rc7_4_owner_console_operator_clarity",
+  "previous_phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "runtime_claimed": false,
+  "scope": "owner_console_operator_clarity",
+  "version": "0.8.4"
+}

@@ -1,0 +1,39 @@
+{
+  "acceptance_criteria": [
+    "Employee ID and PIN guard blocks empty punch attempts.",
+    "Receipt remains visible after success, rejection, or offline save.",
+    "Today hours card is separate from technical JSON.",
+    "Backend/offline state remains visible.",
+    "Offline language says recovery evidence, pending sync, and owner review.",
+    "No owner console workflow expansion in this bump."
+  ],
+  "gold_path_steps": [
+    "enter_employee_id",
+    "enter_pin",
+    "choose_clock_action",
+    "wait_for_receipt",
+    "confirm_today_hours_or_offline_pending_state"
+  ],
+  "non_claims": [
+    "No production deployment.",
+    "No visual regression execution.",
+    "No payroll approval claim.",
+    "No hosted adapter included.",
+    "Offline queue is not canonical payroll truth."
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "required_components": [
+    "employee_focus_card",
+    "employee_input_guard",
+    "workflow_strip",
+    "punch_buttons_with_data_punch_action",
+    "today_hours_card",
+    "employee_receipt",
+    "offline_recovery_card",
+    "technical_json_disclosure"
+  ],
+  "runtime_execution_authorized": false,
+  "status": "implemented_candidate",
+  "surface": "employee_kiosk",
+  "version": "0.8.3"
+}

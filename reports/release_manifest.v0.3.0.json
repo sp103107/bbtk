@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-05-29T00:29:19.300650+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation is scaffolded only.",
+    "no payroll legal compliance seal",
+    "no external payroll provider integration",
+    "no production deployment performed",
+    "no biometric/geofence identity proof",
+    "no AoS Boot Pod install or QEMU/rootfs/systemd claim"
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc2_pay_period_close_and_audit_exports",
+  "previous_version": "0.2.0",
+  "repo_file_manifest": "manifests/repo_file_manifest.v0.3.0.json",
+  "runtime_smoke_report": "reports/runtime_smoke_report.v0.3.0.json",
+  "source_artifact_hashes": "context/source_artifacts/source_artifact_hashes.v0.3.0.json",
+  "status": "pass",
+  "validation_report": "validation/validation_report.v0.3.0.json",
+  "version": "0.3.0"
+}

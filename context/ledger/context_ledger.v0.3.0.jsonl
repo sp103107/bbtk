@@ -1,0 +1,5 @@
+{"detail": "continued from v0.2.0 full repo package", "event_type": "bump_started", "ts": "2026-05-29T00:28:30.046816+00:00", "version": "0.3.0"}
+{"detail": "owner-token-gated pay-period close endpoints and artifacts", "event_type": "runtime_surface_added", "ts": "2026-05-29T00:28:30.046816+00:00", "version": "0.3.0"}
+{"detail": "working set, episode, ledger, resume pack, and source hashes updated", "event_type": "context_update_added", "ts": "2026-05-29T00:28:30.046816+00:00", "version": "0.3.0"}
+{"detail": "runtime smoke and repo validator scheduled before final package", "event_type": "validation_pending", "ts": "2026-05-29T00:28:30.046816+00:00", "version": "0.3.0"}
+{"detail": "runtime smoke and repo validation passed", "event_type": "validation_passed", "ts": "2026-05-29T00:29:19.300650+00:00", "version": "0.3.0"}

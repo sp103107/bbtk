@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "adjustment_reason_required": true,
+    "min_pin_length_floor": true,
+    "owner_adjustments_explicitly_configured": true,
+    "owner_token_not_empty": true,
+    "pin_pepper_not_empty": true,
+    "policy_version_present": true
+  },
+  "errors": [],
+  "non_claims": [
+    "policy validation checks config shape only",
+    "no production security seal"
+  ],
+  "status": "pass",
+  "version": "0.4.0"
+}

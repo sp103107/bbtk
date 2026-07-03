@@ -1,0 +1,8 @@
+{
+  "checkpoint_type": "ui_ux_hardening_patch",
+  "created_at": "2026-05-29T18:26:50+00:00",
+  "episode_seq": 8,
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "summary": "Patch-level hardening of employee kiosk and owner dashboard UI without business scope expansion.",
+  "version": "0.7.1"
+}

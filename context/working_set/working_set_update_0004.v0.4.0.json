@@ -1,0 +1,51 @@
+{
+  "current_internal_phase": "rc3_policy_adjustments_and_manager_review",
+  "generated_at": "2026-05-29T00:36:12.876816+00:00",
+  "non_claims": [
+    "Context module records were written as package metadata only; no Context Module runtime execution is claimed."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "previous_version": "0.3.0",
+  "record_type": "working_set_update",
+  "source_artifact_hashes": [
+    {
+      "basename": "best_buds_timeclock_capsule_v0_3_0_full_repo.zip",
+      "bytes": 120690,
+      "sha256": "f29f78c159950088a69e332f68633074a12b00cf65f92542bfbaa75deeff5ea9",
+      "vendored": false
+    },
+    {
+      "basename": "factory_request.schema.json",
+      "bytes": 3345,
+      "sha256": "3d76943e2e771a0a81ba546332a755fa11e400999535ab463de68899f0cabcf4",
+      "vendored": false
+    },
+    {
+      "basename": "pack_jsonl_manifest.json",
+      "bytes": 3099,
+      "sha256": "da5377e294be231335bdb94a897d6dcdc42ddc90e03cf5d5b105086c96810a18",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.manifest.json",
+      "bytes": 573,
+      "sha256": "c677eb6e89289c2434500aae6a816cc75275cb9c98e5b6acf0e4a06aa800f64b",
+      "vendored": false
+    },
+    {
+      "basename": "foundation_stack.stats.json",
+      "bytes": 2609,
+      "sha256": "0d9dbfd64a094a5cae13d947fd4631edf65b8d9100b49127df5072b7658c0cdf",
+      "vendored": false
+    },
+    {
+      "basename": "Cursor Bootstrap Capsule_current.txt",
+      "bytes": 4498,
+      "sha256": "464961f9a91e055b7b73f9958a8fc20df3661a5638d958f503ab9ff97cd819da",
+      "vendored": false
+    }
+  ],
+  "summary": "Added owner adjustment lane, manager review, policy validation, and frozen RC map.",
+  "update_seq": 4,
+  "version": "0.4.0"
+}

@@ -1,0 +1,38 @@
+{
+  "api_response_shape": {
+    "event": "clock_event",
+    "ok": "boolean",
+    "punch_receipt": "employee_punch_receipt"
+  },
+  "api_route": "POST /api/clock",
+  "required_receipt_fields": [
+    "accepted",
+    "message",
+    "employee_id",
+    "event_id",
+    "event_type",
+    "captured_local",
+    "today_summary"
+  ],
+  "required_today_summary_fields": [
+    "local_day",
+    "net_work_hours",
+    "break_hours",
+    "gross_work_hours",
+    "current_status",
+    "source_event_count"
+  ],
+  "success_copy_examples": [
+    "Clock in accepted. Today total: 0.00 hours.",
+    "Clock out accepted. Today total: 8.00 hours."
+  ],
+  "surface_id": "employee_punch_receipt.v0.6.0",
+  "ui_targets": [
+    "#employee_receipt",
+    "#receipt_hours",
+    "#receipt_status",
+    "#receipt_time",
+    "#clock_result"
+  ],
+  "version": "0.6.0"
+}

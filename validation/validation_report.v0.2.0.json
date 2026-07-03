@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "internal_phase_not_external_zip": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "owner_surfaces_reference_require_owner": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 41,
+  "jsonl_lines_checked": 16,
+  "status": "pass",
+  "version": "0.2.0"
+}

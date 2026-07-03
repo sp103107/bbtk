@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/export/guest_sign_in_export.v1",
+  "title": "Guest Sign-In Export Row",
+  "type": "object",
+  "required": ["Guest Name", "Organization", "Purpose", "Sign In", "Sign Out", "Visit Duration", "Notes"],
+  "properties": {
+    "Guest Name": {"type": "string"},
+    "Organization": {"type": "string"},
+    "Purpose": {"type": "string"},
+    "Sign In": {"type": "string"},
+    "Sign Out": {"type": "string"},
+    "Visit Duration": {"type": "string"},
+    "Notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "non_claims": [
+    "receipt is not payroll approval",
+    "offline receipt is recovery evidence only"
+  ],
+  "phase": "rc7_2_ui_ux_truth_lock_and_component_inventory",
+  "receipt_states": [
+    "accepted",
+    "rejected",
+    "offline_saved_local",
+    "synced_pending_owner_review"
+  ],
+  "required_fields": [
+    "result",
+    "employee_display_name",
+    "event_type",
+    "captured_local",
+    "today_net_hours",
+    "current_status",
+    "sync_status",
+    "next_action",
+    "non_claim"
+  ],
+  "schema_version": "1.0.0",
+  "status": "receipt_locked_candidate",
+  "version": "0.8.2"
+}

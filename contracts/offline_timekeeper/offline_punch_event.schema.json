@@ -1,0 +1,43 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/offline_punch_event.v0.8.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "captured_at_client_utc": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "clock_in",
+        "clock_out",
+        "break_start",
+        "break_end"
+      ]
+    },
+    "offline_event_id": {
+      "type": "string"
+    },
+    "pin_persisted": {
+      "const": false
+    },
+    "sync_status": {
+      "enum": [
+        "pending",
+        "synced"
+      ]
+    }
+  },
+  "required": [
+    "offline_event_id",
+    "employee_id",
+    "event_type",
+    "captured_at_client_utc",
+    "sync_status",
+    "pin_persisted"
+  ],
+  "title": "Offline Punch Recovery Event",
+  "type": "object"
+}

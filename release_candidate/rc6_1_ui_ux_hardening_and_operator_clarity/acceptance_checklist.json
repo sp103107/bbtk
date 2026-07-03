@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "employee receipt clear",
+    "today hours visible",
+    "owner dashboard grouped",
+    "technical details hidden",
+    "frontend validation pass",
+    "no scope expansion pass"
+  ],
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "version": "0.7.1"
+}

@@ -1,0 +1,24 @@
+{
+  "contract_type": "employee_portal_surface",
+  "screens": {
+    "employee_portal": {
+      "actions": [
+        "view_today_hours",
+        "clock_in",
+        "clock_out",
+        "break_start",
+        "break_end"
+      ],
+      "entry": "/employee",
+      "must_show": [
+        "backend_connection_banner",
+        "employee_flow_rail",
+        "today_hours_card",
+        "employee_receipt",
+        "offline_recovery_panel"
+      ],
+      "primary_user": "employee"
+    }
+  },
+  "version": "0.8.6"
+}

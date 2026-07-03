@@ -1,0 +1,14 @@
+{
+  "lanes": [
+    "frontend_flow_status_language",
+    "agent_onboarding_entrypoint",
+    "product_user_entrypoint",
+    "kickoff_docx_pack",
+    "context_update"
+  ],
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "previous_version": "0.8.4",
+  "runtime_claimed": false,
+  "version": "0.8.5"
+}

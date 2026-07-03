@@ -1,0 +1,25 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/offline_sync_batch.v0.8.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "offline_punch_event.schema.json"
+      },
+      "type": "array"
+    },
+    "offline_batch_id": {
+      "type": "string"
+    },
+    "terminal_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "offline_batch_id",
+    "terminal_id",
+    "items"
+  ],
+  "title": "Offline Sync Batch",
+  "type": "object"
+}

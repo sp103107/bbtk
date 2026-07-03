@@ -1,0 +1,19 @@
+{
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "checks": {
+    "factory_reset_backup_and_clear": true,
+    "factory_reset_rejects_wrong_phrase": true,
+    "manage_employees_button_fixed": true,
+    "screen_and_factory_reset_controls": true,
+    "summary_button_fixed": true
+  },
+  "errors": [],
+  "non_claims": [
+    "Temporary runtime fixture only.",
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "WebSocket is local-network only and retains authenticated HTTP polling fallback."
+  ],
+  "status": "pass",
+  "version": "0.9.0"
+}

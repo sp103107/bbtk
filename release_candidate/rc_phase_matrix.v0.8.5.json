@@ -1,0 +1,8 @@
+{
+  "current_phase": "rc7_5_frontend_flow_graphics_status_language",
+  "full_repo_bump": true,
+  "next_phase": "rc7_6_accessibility_mobile_and_kiosk_fit_finish",
+  "phases_preserved": true,
+  "previous_phase": "rc7_4_owner_console_operator_clarity",
+  "version": "0.8.5"
+}

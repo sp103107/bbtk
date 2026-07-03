@@ -1,0 +1,79 @@
+{
+  "components": [
+    {
+      "id": "employee_kiosk",
+      "release_readiness": "backend_guard_required",
+      "status": "implemented_hardened"
+    },
+    {
+      "id": "owner_dashboard",
+      "release_readiness": "owner_token_required",
+      "status": "implemented_hardened"
+    },
+    {
+      "id": "employee_registry",
+      "release_readiness": "lifecycle_hardening_next",
+      "status": "basic_implemented"
+    },
+    {
+      "id": "time_event_ledger",
+      "release_readiness": "hash_verify_required",
+      "status": "implemented"
+    },
+    {
+      "id": "timecard_calculation_engine",
+      "release_readiness": "calculation_policy_contract_next",
+      "status": "basic_implemented"
+    },
+    {
+      "id": "exceptions_review",
+      "release_readiness": "severity_taxonomy_next",
+      "status": "implemented_basic"
+    },
+    {
+      "id": "adjustments_corrections",
+      "release_readiness": "audit_receipt_required",
+      "status": "implemented"
+    },
+    {
+      "id": "pay_period_close",
+      "release_readiness": "owner_review_required_before_live_use",
+      "status": "implemented"
+    },
+    {
+      "id": "exports_reporting",
+      "release_readiness": "export_profile_hardening_next",
+      "status": "implemented"
+    },
+    {
+      "id": "security_access",
+      "release_readiness": "local_secret_rotation_required",
+      "status": "warning_until_default_secrets_changed"
+    },
+    {
+      "id": "terminal_device",
+      "release_readiness": "terminal_registry_next",
+      "status": "conceptual/basic_terminal_id"
+    },
+    {
+      "id": "backup_restore",
+      "release_readiness": "scheduled_backup_plan_next",
+      "status": "dry_run_proven"
+    },
+    {
+      "id": "frontend_design_system",
+      "release_readiness": "backend_connectivity_guard_added",
+      "status": "implemented_static"
+    }
+  ],
+  "contract_type": "professional_time_clock_component_map",
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "module_class": "runtime_module+ui_module+data_module",
+  "non_claims": [
+    "No production deployment is claimed.",
+    "No legal compliance seal is claimed.",
+    "No payroll provider integration is claimed."
+  ],
+  "source_package_version": "0.7.1",
+  "version": "0.8.0"
+}

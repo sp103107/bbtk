@@ -1,0 +1,19 @@
+{
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "checks": {
+    "duplicate_open_session_rejected": true,
+    "kiosk_manager_lockout": true,
+    "owner_kiosk_surface_separation": true,
+    "owner_live_employee_clock_out": true,
+    "shared_kiosk_next_person_reset": true
+  },
+  "errors": [],
+  "non_claims": [
+    "Temporary runtime fixture only.",
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "WebSocket is local-network only and retains authenticated HTTP polling fallback."
+  ],
+  "status": "pass",
+  "version": "0.9.0"
+}

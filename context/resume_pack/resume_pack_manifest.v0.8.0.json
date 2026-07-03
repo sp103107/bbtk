@@ -1,0 +1,13 @@
+{
+  "current_internal_phase": "rc7_production_installation_readiness_candidate",
+  "current_package": "best_buds_timeclock_capsule_v0_8_0.zip",
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "handoff_prompt": "Continue from v0.8.0 full repo. Resolve operator default-secret warnings before any live pilot/deployment claim.",
+  "key_files": [
+    "docs/RELEASE_READINESS_RUNBOOK_v0.8.0.md",
+    "docs/PHONE_TABLET_KIOSK_STARTUP_v0.8.0.md",
+    "contracts/professional_app_blueprint/release_readiness_contract.v0.8.0.json"
+  ],
+  "next_recommended_phase": "rc8_release_candidate_packaging_and_operator_signoff_freeze",
+  "version": "0.8.0"
+}

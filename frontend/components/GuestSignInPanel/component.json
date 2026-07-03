@@ -1,0 +1,1 @@
+{"component":"GuestSignInPanel","runtime_target":"repo_scaffold/app/static/employee.html#guest-kiosk-title","data":["POST /api/guests/sign-in","POST /api/guests/sign-out"],"status":"implemented","version":"0.9.0"}

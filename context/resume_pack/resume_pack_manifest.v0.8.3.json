@@ -1,0 +1,8 @@
+{
+  "continuation_prompt": "context/resume_pack/CONTINUATION_HANDOFF_PROMPT.v0.8.3.md",
+  "next_recommended_command": "continue rc7_4_owner_console_operator_clarity",
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "preserved_prior_resume_packs": true,
+  "status": "updated",
+  "version": "0.8.3"
+}

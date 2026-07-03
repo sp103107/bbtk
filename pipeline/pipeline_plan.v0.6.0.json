@@ -1,0 +1,18 @@
+{
+  "non_claims": [
+    "no production deployment",
+    "no legal compliance seal"
+  ],
+  "phase": "rc5_frontend_surface_and_validation_freeze_candidate",
+  "steps": [
+    "read_v0.5.0_full_repo",
+    "add_frontend_surface_contract_pack",
+    "scaffold_polished_static_ui",
+    "add_employee_punch_receipt_runtime_payload",
+    "run_runtime_smoke",
+    "run_frontend_surface_validation",
+    "run_repo_validation",
+    "package_full_repo_zip"
+  ],
+  "version": "0.6.0"
+}

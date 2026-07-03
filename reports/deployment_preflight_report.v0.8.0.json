@@ -1,0 +1,32 @@
+{
+  "checked_at_utc": "2026-06-23T23:38:42.242329+00:00",
+  "checks": {
+    "bind_host_loopback_default": true,
+    "init_db": true,
+    "owner_token_changed": false,
+    "pin_pepper_changed": false,
+    "port_available": false,
+    "server_python_parses": true,
+    "writable:data": true,
+    "writable:data/backups": true,
+    "writable:data/exports": true,
+    "writable:data/ledger/clock_events": true,
+    "writable:data/pilot": true,
+    "writable:data/restore_candidates": true
+  },
+  "errors": [],
+  "host": "127.0.0.1",
+  "non_claims": [
+    "preflight does not start a production server",
+    "preflight does not prove legal compliance",
+    "preflight warnings must be resolved before live use"
+  ],
+  "port": 8080,
+  "status": "warn",
+  "version": "0.8.0",
+  "warnings": [
+    "owner_token_default_change_required_before_live_use",
+    "pin_pepper_default_change_required_before_live_use",
+    "port_not_available_or_already_in_use:127.0.0.1:8080"
+  ]
+}

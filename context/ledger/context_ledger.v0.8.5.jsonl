@@ -1,0 +1,4 @@
+{"event": "bump_started", "phase": "rc7_5_frontend_flow_graphics_status_language", "ts": "2026-06-23T23:34:48Z", "version": "0.8.5"}
+{"event": "entrypoints_added", "paths": ["scripts/onboard_agent.py", "scripts/start_here_user.py"], "ts": "2026-06-23T23:34:48Z", "version": "0.8.5"}
+{"event": "validation_pending", "ts": "2026-06-23T23:34:48Z", "version": "0.8.5"}
+{"event": "validation_completed", "status": "pass", "ts": "2026-06-23T23:34:48Z", "validators": ["validate_agent_onboarding_entrypoint", "validate_product_user_entrypoint", "validate_frontend_flow_status_language", "validate_repo", "runtime_smoke"], "version": "0.8.5"}

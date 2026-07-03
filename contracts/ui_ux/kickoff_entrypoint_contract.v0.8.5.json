@@ -1,0 +1,19 @@
+{
+  "entrypoints": [
+    {
+      "audience": "developer_agent",
+      "entrypoint": "scripts/onboard_agent.py",
+      "read_only": true,
+      "runtime_activation": false
+    },
+    {
+      "audience": "product_user_operator",
+      "entrypoint": "scripts/start_here_user.py",
+      "read_only": true,
+      "runtime_activation": false
+    }
+  ],
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "runtime_claimed": false,
+  "version": "0.8.5"
+}

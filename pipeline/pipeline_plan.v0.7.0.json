@@ -1,0 +1,18 @@
+{
+  "non_claims": [
+    "no production deployment",
+    "no legal compliance seal"
+  ],
+  "phase": "rc6_live_pilot_acceptance_pack",
+  "steps": [
+    "read_v0.6.0_full_repo",
+    "add_live_pilot_acceptance_contracts",
+    "add_pilot_routes_and_ui_panel",
+    "add_readiness_issue_signoff_pack_generation",
+    "run_runtime_smoke",
+    "run_pilot_acceptance_validation",
+    "run_repo_validation",
+    "package_full_repo_zip"
+  ],
+  "version": "0.7.0"
+}

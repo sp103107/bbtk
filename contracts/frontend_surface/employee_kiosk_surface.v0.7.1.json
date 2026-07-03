@@ -1,0 +1,11 @@
+{
+  "acceptance": [
+    "employee_receipt visible",
+    "today hours visible after accepted punch",
+    "clear error copy for rejected punch",
+    "workflow strip present",
+    "technical JSON hidden behind details"
+  ],
+  "contract_type": "employee_kiosk_surface",
+  "version": "0.7.1"
+}

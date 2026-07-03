@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-05-29T00:29:04.487685+00:00",
+  "checks": {
+    "bad_pin_rejected": true,
+    "clock_sequence_accepted": true,
+    "csv_export_created": true,
+    "employee_upsert": true,
+    "init_db": true,
+    "pay_period_archive_valid": true,
+    "pay_period_close_created": true,
+    "pay_period_listed": true,
+    "setup_warnings_present": true,
+    "summary_generated": true
+  },
+  "errors": [],
+  "non_claims": [
+    "runtime smoke used temporary app copy only",
+    "no production deployment was performed",
+    "pay-period close smoke is functional proof, not legal/payroll compliance proof"
+  ],
+  "status": "pass",
+  "version": "0.3.0"
+}

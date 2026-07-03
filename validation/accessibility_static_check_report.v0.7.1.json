@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "aria_live_receipt_present": true,
+    "form_inputs_labeled": true,
+    "large_touch_targets_present": true,
+    "responsive_mobile_media_query_present": true,
+    "states_text_not_color_only": true,
+    "technical_details_disclosure_present": true
+  },
+  "errors": [],
+  "status": "pass",
+  "version": "0.7.1"
+}

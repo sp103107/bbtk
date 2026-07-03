@@ -1,0 +1,7 @@
+{"details": "continue from v0.8.0 full repo", "event": "bump_started", "ts": "2026-05-29T19:58:00+00:00", "version": "0.8.1"}
+{"details": "browser recovery queue without PIN persistence", "event": "offline_queue_added", "ts": "2026-05-29T19:58:00+00:00", "version": "0.8.1"}
+{"details": "CSV mirror after JSONL ledger writes", "event": "csv_mirror_added", "ts": "2026-05-29T19:58:00+00:00", "version": "0.8.1"}
+{"details": "HF Space adapter postponed to later adapter phase", "event": "hf_adapter_deferred", "ts": "2026-05-29T19:58:00+00:00", "version": "0.8.1"}
+{"details": "will be updated by validation reports", "event": "validation_pending", "ts": "2026-05-29T19:58:00+00:00", "version": "0.8.1"}
+{"event": "validation_result", "status": "fail", "ts": "2026-05-29T19:50:40.875376+00:00", "version": "0.8.1"}
+{"event": "validation_result_final", "status": "pass", "ts": "2026-05-29T19:51:03.348036+00:00", "version": "0.8.1"}

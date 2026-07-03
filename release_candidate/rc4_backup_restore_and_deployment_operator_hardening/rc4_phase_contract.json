@@ -1,0 +1,20 @@
+{
+  "acceptance": [
+    "runtime_smoke_backup_verify_restore_dry_run_pass",
+    "deployment_preflight_report_created",
+    "no_production_restore_claim"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Backup restore proof is limited to disposable dry-run extraction/verification; no production restore was performed.",
+    "Deployment preflight is an operator readiness check, not a production deployment seal."
+  ],
+  "objective": "backup restore and deployment operator hardening",
+  "phase_id": "rc4_backup_restore_and_deployment_operator_hardening",
+  "previous_version": "0.4.0",
+  "version": "0.5.0"
+}

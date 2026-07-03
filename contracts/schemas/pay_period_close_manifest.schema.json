@@ -1,0 +1,60 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.3.0/pay_period_close_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "closed_at_utc": {
+      "type": "string"
+    },
+    "end": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "file_hashes": {
+      "type": "object"
+    },
+    "non_claims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "period_id": {
+      "type": "string"
+    },
+    "source_ledger_hash": {
+      "pattern": "^sha256:",
+      "type": "string"
+    },
+    "start": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "totals": {
+      "type": "object"
+    },
+    "version": {
+      "const": "0.3.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "period_id",
+    "version",
+    "closed_at_utc",
+    "source_ledger_hash",
+    "totals",
+    "file_hashes",
+    "status",
+    "non_claims"
+  ],
+  "title": "Best Buds Closed Pay Period Manifest",
+  "type": "object"
+}

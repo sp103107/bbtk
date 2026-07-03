@@ -1,0 +1,45 @@
+{
+  "constraints": {
+    "deterministic_ordering_required": true,
+    "no_speculative_families": true,
+    "schema_first": true,
+    "strict_naming_required": true
+  },
+  "contract_families": [
+    "request",
+    "plan",
+    "schema_manifest",
+    "module_contract",
+    "backend_surface",
+    "frontend_surface",
+    "db_surface",
+    "runtime_surface",
+    "validation_report"
+  ],
+  "generation_scope": {
+    "generate_annotated": true,
+    "generate_backend_contracts": true,
+    "generate_db_contracts": true,
+    "generate_deploy_contracts": false,
+    "generate_filled_examples": true,
+    "generate_frontend_contracts": true,
+    "generate_runtime_contracts": true,
+    "generate_unfilled": false
+  },
+  "notes": [
+    "Full repo bump from v0.1.0; rc1_owner_setup_hardening is internal, not a separate external package."
+  ],
+  "output_modes": {
+    "emit_cursor_blocks": true,
+    "emit_json": true,
+    "emit_markdown": true,
+    "emit_repo_files": true
+  },
+  "request_id": "best_buds_timeclock_capsule_v0_2_0",
+  "request_name": "Best Buds Time Clock Capsule v0.2.0 Owner Runtime Hardening",
+  "target_module": {
+    "module_class": "runtime_module",
+    "module_name": "best_buds_timeclock_capsule",
+    "module_purpose": "Standalone QR/URL/kiosk time clock runtime with owner dashboard, employee administration, downloadable exports, ledger verification, and backup receipts."
+  }
+}

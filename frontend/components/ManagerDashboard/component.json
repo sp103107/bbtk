@@ -1,0 +1,1 @@
+{"component":"ManagerDashboard","runtime_target":"repo_scaffold/app/static/index.html#timeclock_summary_panel","data":["GET /api/owner/summary","GET /api/owner/active-sessions"],"status":"implemented","version":"0.9.0"}

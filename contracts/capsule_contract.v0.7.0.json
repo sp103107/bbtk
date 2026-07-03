@@ -1,0 +1,35 @@
+{
+  "capsule_shape": "aos_cell_capsule",
+  "contract_type": "aos_capsule_contract",
+  "non_claims": [
+    "no production deployment",
+    "no legal/payroll/cannabis compliance seal",
+    "no AoS Boot Pod install/QEMU/rootfs/systemd claim"
+  ],
+  "owner_routes": [
+    "/api/owner/pilot/readiness",
+    "/api/owner/pilot/issue",
+    "/api/owner/pilot/signoff",
+    "/api/owner/pilot/package",
+    "/api/owner/pilot/download"
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "phase": "rc6_live_pilot_acceptance_pack",
+  "previous_version": "0.6.0",
+  "runtime_surfaces": [
+    "employee_punch_receipt",
+    "owner_exports",
+    "pay_period_close",
+    "backup_verify",
+    "restore_dry_run",
+    "pilot_readiness",
+    "pilot_issue_log",
+    "pilot_acceptance_pack"
+  ],
+  "source_of_truth": [
+    "JSONL clock event ledger",
+    "closed pay-period snapshots",
+    "pilot acceptance pack manifests"
+  ],
+  "version": "0.7.0"
+}

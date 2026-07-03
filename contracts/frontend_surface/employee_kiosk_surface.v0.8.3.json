@@ -1,0 +1,34 @@
+{
+  "non_claims": [
+    "static frontend surface check only",
+    "no screenshot execution"
+  ],
+  "phase": "rc7_3_employee_kiosk_gold_path_polish",
+  "required_copy": [
+    "Ready for the next employee",
+    "Today\u2019s Hours",
+    "Employee ID and PIN are required",
+    "Offline punch saved locally",
+    "pending owner review"
+  ],
+  "selectors": [
+    ".employee-focus-card",
+    "#employee_input_guard",
+    ".workflow-strip.gold-path",
+    "button[data-punch-action]",
+    ".today-hours-card",
+    "#employee_receipt",
+    ".offline-panel",
+    "details.technical-details"
+  ],
+  "status": "polished_candidate",
+  "surface": "employee_kiosk",
+  "version": "0.8.3",
+  "visible_states": [
+    "ready",
+    "pending",
+    "success",
+    "error",
+    "offline_saved_pending_sync"
+  ]
+}

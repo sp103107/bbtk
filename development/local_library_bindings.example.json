@@ -1,0 +1,12 @@
+{
+  "arc_launcher_planning_pack": "C:\\aos_arc_launcher_v0_3_10",
+  "meta_knowledge_library_blueprint_contract_pack": "E:\\aos_libr_\\aos_meta_knowledge_library_blueprint_contract_pack_v1_2_1",
+  "frontend_flow_graphics_pack": "E:\\aos_libr_\\aos_ks_frontend_flow_graphics_v0_1_15",
+  "mode": "local_development_pointer_only",
+  "non_claims": [
+    "Pointer-only local development bindings.",
+    "No runtime activation of external libraries.",
+    "Not included in release package truth."
+  ],
+  "runtime_claimed": false
+}

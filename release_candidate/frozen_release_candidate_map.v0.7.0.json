@@ -1,0 +1,9 @@
+{
+  "current_track": "live_pilot_acceptance",
+  "frozen_candidate_reached_at": "v0.6.0",
+  "non_claims": [
+    "v0.7.0 is pre-production pilot acceptance, not production deployment"
+  ],
+  "recommended_next": "v0.8.0 production-install-readiness after real pilot feedback",
+  "version": "0.7.0"
+}

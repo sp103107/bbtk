@@ -1,0 +1,39 @@
+{
+  "$id": "https://aos.local/best_buds_timeclock/ui_ux/employee_kiosk_gold_path_contract.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_criteria": {
+      "type": "array"
+    },
+    "gold_path_steps": {
+      "type": "array"
+    },
+    "non_claims": {
+      "type": "array"
+    },
+    "phase": {
+      "type": "string"
+    },
+    "required_components": {
+      "type": "array"
+    },
+    "surface": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "phase",
+    "surface",
+    "gold_path_steps",
+    "required_components",
+    "acceptance_criteria",
+    "non_claims"
+  ],
+  "title": "Employee Kiosk Gold Path Contract",
+  "type": "object"
+}

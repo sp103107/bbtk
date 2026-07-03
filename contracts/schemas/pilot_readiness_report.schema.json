@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "checked_at_utc": {
+      "type": "string"
+    },
+    "checks": {
+      "type": "object"
+    },
+    "hard_blockers": {
+      "type": "array"
+    },
+    "non_claims": {
+      "type": "array"
+    },
+    "operator_warnings": {
+      "type": "array"
+    },
+    "report_type": {
+      "const": "live_pilot_readiness_report"
+    },
+    "setup_warnings": {
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "ready",
+        "ready_with_warnings",
+        "blocked"
+      ],
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "report_type",
+    "version",
+    "status",
+    "checked_at_utc",
+    "checks",
+    "non_claims"
+  ],
+  "title": "Live pilot readiness report",
+  "type": "object"
+}

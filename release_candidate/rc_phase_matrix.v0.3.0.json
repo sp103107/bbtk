@@ -1,0 +1,45 @@
+{
+  "current_phase": "rc2_pay_period_close_and_audit_exports",
+  "matrix_id": "best_buds_timeclock_rc_phase_matrix.v0.3.0",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation is scaffolded only.",
+    "no payroll legal compliance seal",
+    "no external payroll provider integration",
+    "no production deployment performed",
+    "no biometric/geofence identity proof",
+    "no AoS Boot Pod install or QEMU/rootfs/systemd claim"
+  ],
+  "phases": [
+    {
+      "phase": "rc0_contract_runtime_blueprint",
+      "status": "preserved",
+      "version_added": "0.1.0"
+    },
+    {
+      "phase": "rc1_owner_setup_hardening",
+      "status": "preserved",
+      "version_added": "0.2.0"
+    },
+    {
+      "phase": "rc2_pay_period_close_and_audit_exports",
+      "status": "added",
+      "version_added": "0.3.0"
+    },
+    {
+      "phase": "rc3_policy_adjustments_and_manager_review",
+      "status": "planned",
+      "version_added": "future"
+    },
+    {
+      "phase": "rc4_release_candidate_freeze",
+      "status": "planned",
+      "version_added": "future"
+    }
+  ],
+  "version": "0.3.0"
+}

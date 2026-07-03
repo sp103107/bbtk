@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "bat_health_wait": true,
+    "bat_starts_kiosk_server": true,
+    "non_claim_present": true,
+    "present:scripts/start_all.bat": true,
+    "present:scripts/start_all.sh": true,
+    "sh_health_wait": true,
+    "sh_starts_kiosk_server": true,
+    "shell_syntax": true
+  },
+  "errors": [],
+  "non_claims": [
+    "local dev startup validation only",
+    "no deployment claim"
+  ],
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "status": "pass",
+  "version": "0.8.6"
+}

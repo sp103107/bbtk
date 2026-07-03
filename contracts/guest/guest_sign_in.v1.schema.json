@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bbtc://contracts/guest/guest_sign_in.v1",
+  "title": "Guest Session",
+  "type": "object",
+  "required": ["guest_session_id", "guest_name", "sign_in_time_utc", "created_at_utc"],
+  "properties": {
+    "guest_session_id": {"type": "string"},
+    "guest_name": {"type": "string", "minLength": 1},
+    "organization": {"type": ["string", "null"]},
+    "purpose": {"type": ["string", "null"]},
+    "sign_in_time_utc": {"type": "string", "format": "date-time"},
+    "sign_out_time_utc": {"type": ["string", "null"], "format": "date-time"},
+    "notes": {"type": ["string", "null"]},
+    "created_at_utc": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": true
+}

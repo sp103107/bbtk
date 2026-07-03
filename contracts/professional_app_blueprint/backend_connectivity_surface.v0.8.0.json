@@ -1,0 +1,35 @@
+{
+  "acceptance_criteria": [
+    "raw file preview warns user",
+    "backend API health success shows online state",
+    "fetch failure produces actionable message",
+    "employee punch buttons do not silently fail"
+  ],
+  "contract_type": "backend_connectivity_surface",
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "non_claims": [
+    "Connectivity guard does not prove production deployment."
+  ],
+  "problem_addressed": "Users can open static index.html on a phone and see buttons, but punches require the Python backend API.",
+  "required_copy": [
+    "Backend not connected",
+    "Start the Python server",
+    "open the local network URL",
+    "Buttons cannot save punches from a file preview"
+  ],
+  "required_js_behaviors": [
+    "checkBackendHealth",
+    "setBackendConnection",
+    "backendOfflinePayload",
+    "file_protocol_detection",
+    "fetch_error_to_human_message"
+  ],
+  "required_ui_elements": [
+    "backend_connection_banner",
+    "runtime_card",
+    "backend_connection_title",
+    "backend_connection_detail",
+    "backend_connection_hint"
+  ],
+  "version": "0.8.0"
+}

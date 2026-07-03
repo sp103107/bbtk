@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-06-23T16:27:00Z",
+  "status": "pass",
+  "validation_reports": {
+    "accessibility_static_check_report.v0.8.4.json": "pass",
+    "backend_connectivity_guard_report.v0.8.4.json": "pass",
+    "csv_ledger_mirror_validation_report.v0.8.4.json": "pass",
+    "employee_kiosk_gold_path_validation_report.v0.8.4.json": "pass",
+    "frontend_surface_validation_report.v0.8.4.json": "pass",
+    "offline_timekeeper_validation_report.v0.8.4.json": "pass",
+    "owner_console_operator_clarity_validation_report.v0.8.4.json": "pass",
+    "owner_console_surface_report.v0.8.4.json": "pass",
+    "policy_validation_report.v0.8.4.json": "pass",
+    "ui_component_inventory_report.v0.8.4.json": "pass",
+    "ui_copy_gap_report.v0.8.4.json": "pass",
+    "ui_copy_validation_report.v0.8.4.json": "pass",
+    "ui_state_coverage_report.v0.8.4.json": "pass",
+    "ui_ux_truth_lock_validation_report.v0.8.4.json": "pass",
+    "validation_report.v0.8.4.json": "pass"
+  },
+  "version": "0.8.4"
+}

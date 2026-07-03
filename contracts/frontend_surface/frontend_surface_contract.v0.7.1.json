@@ -1,0 +1,34 @@
+{
+  "contract_type": "frontend_surface_contract",
+  "mission": "Harden existing static UI/UX surfaces without expanding business scope.",
+  "non_claims": [
+    "No new payroll-provider integration.",
+    "No geofence/camera/biometric implementation.",
+    "No production deployment claim."
+  ],
+  "non_scope_expansion_guard": true,
+  "phase": "rc6_1_ui_ux_hardening_and_operator_clarity",
+  "required_patterns": [
+    "shared_tablet_kiosk",
+    "pin_entry",
+    "large_touch_actions",
+    "visible_success_receipt",
+    "today_hours_metric",
+    "owner_task_grouping",
+    "technical_json_disclosure"
+  ],
+  "screens": [
+    "employee_kiosk",
+    "owner_dashboard",
+    "manager_adjustments",
+    "live_pilot_acceptance",
+    "owner_setup"
+  ],
+  "source_research": [
+    "Clockify punch-clock kiosk patterns",
+    "Homebase kiosk/PIN workflow patterns",
+    "QuickBooks Time Kiosk wall-clock/tablet patterns",
+    "Connecteam easy-to-navigate kiosk patterns"
+  ],
+  "version": "0.7.1"
+}

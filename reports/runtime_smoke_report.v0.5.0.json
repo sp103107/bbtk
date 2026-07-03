@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-05-29T00:45:43.272544+00:00",
+  "checks": {
+    "backup_created": true,
+    "backup_verify_pass": true,
+    "bad_pin_rejected": true,
+    "clock_sequence_accepted": true,
+    "csv_export_created": true,
+    "employee_upsert": true,
+    "init_db": true,
+    "manager_review_generated": true,
+    "owner_adjustment_created": true,
+    "pay_period_archive_valid": true,
+    "pay_period_close_created": true,
+    "pay_period_listed": true,
+    "restore_dry_run_pass": true,
+    "setup_warnings_present": true,
+    "summary_generated": true
+  },
+  "errors": [],
+  "non_claims": [
+    "runtime smoke used temporary app copy only",
+    "restore proof is dry-run extraction only",
+    "no production deployment was performed",
+    "pay-period close smoke is functional proof, not legal/payroll compliance proof"
+  ],
+  "status": "pass",
+  "version": "0.5.0"
+}

@@ -1,0 +1,34 @@
+{
+  "arc_id": "arc_employee_management_kiosk_timeclock",
+  "version": "0.9.0",
+  "status": "implemented_candidate",
+  "source_truth": "repo_scaffold/app/server.py",
+  "phases": [
+    "rc0_manager_employee_truth_lock",
+    "rc1_employee_crud_and_soft_delete_contracts",
+    "rc2_kiosk_mode_contracts_and_runtime_flow",
+    "rc3_guest_sign_in_and_separate_guest_csv_export",
+    "rc4_polished_csv_report_formatting",
+    "rc5_summary_button_and_manage_button_bugfix",
+    "rc6_live_clocked_in_status_transport",
+    "rc7_timer_and_active_session_runtime_rules",
+    "rc8_validation_and_context_checkpoint"
+  ],
+  "transport_decision": {
+    "selected": "authenticated_websocket_with_http_polling_fallback",
+    "interval_seconds": 15,
+    "websocket_or_sse_required": true,
+    "websocket_or_sse_runtime_claimed": true
+  },
+  "source_of_truth_rules": {
+    "employee_time": "accepted append-only JSONL clock events",
+    "guest_visits": "separate append-only guest JSONL ledger",
+    "operational_queries": "SQLite mirror",
+    "exports": "derived human-readable artifacts; never raw truth"
+  },
+  "non_claims": [
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "WebSocket transport is local-network only and retains polling fallback."
+  ]
+}

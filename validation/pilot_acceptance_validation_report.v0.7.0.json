@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "non_claims_present": true,
+    "pilot_routes_present": true,
+    "pilot_ui_present": true,
+    "required_files_exist": true
+  },
+  "errors": [],
+  "status": "pass",
+  "version": "0.7.0"
+}

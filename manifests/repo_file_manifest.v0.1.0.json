@@ -1,0 +1,243 @@
+{
+  "file_count": 47,
+  "files": [
+    {
+      "bytes": 252,
+      "path": "CHANGELOG.md",
+      "sha256": "938d2b5800bbfee4ddf5beedc4f9a376e205cadf5b9ce1a99e04eabebaa56460"
+    },
+    {
+      "bytes": 1018,
+      "path": "README.md",
+      "sha256": "cac332a901dd0fb94467b60799c80082759377a27d261ab49888a6836e2a9876"
+    },
+    {
+      "bytes": 6,
+      "path": "VERSION",
+      "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
+    },
+    {
+      "bytes": 265,
+      "path": "context/episodes/episode_checkpoint_0001.v0.2.0.json",
+      "sha256": "5e2a899060775c98653e4d660d394e2376396479fa18f5da98e7317a754e553d"
+    },
+    {
+      "bytes": 742,
+      "path": "context/ledger/context_ledger.v0.2.0.jsonl",
+      "sha256": "6e37fbc0daf3d5380202c5fe39b0d3154e10e0b856846ac23983eae462809aaa"
+    },
+    {
+      "bytes": 496,
+      "path": "context/resume_pack/resume_pack_manifest.v0.2.0.json",
+      "sha256": "59a46bf59843cad392933095996b41c55778e2ad2a93f5b01fffaa603f746c7e"
+    },
+    {
+      "bytes": 1319,
+      "path": "context/source_artifacts/source_artifact_hashes.v0.2.0.json",
+      "sha256": "3a419a58e1500a48b0d3c69e125effa7fbb67adee7a42552c2a7ce7b6b884c78"
+    },
+    {
+      "bytes": 730,
+      "path": "context/working_set/working_set_update_0001.v0.2.0.json",
+      "sha256": "1c759b279416ee0a0d5acafc3772d85a630bb800d0dd3d515cae824905b5fb3e"
+    },
+    {
+      "bytes": 1032,
+      "path": "contracts/capsule_contract.v0.2.0.json",
+      "sha256": "04cf00269c8bfd7e938def76a366fb42cf3b3894861e7269715da14e14d24ac1"
+    },
+    {
+      "bytes": 1378,
+      "path": "contracts/factory_request.best_buds_timeclock.v0.2.0.json",
+      "sha256": "1693b56f1b3ebea50f94d6e3887126ad6879cf9a266dcc227dc1574899332e47"
+    },
+    {
+      "bytes": 972,
+      "path": "contracts/jsonl/app_tool_records.best_buds_timeclock.v0.2.0.jsonl",
+      "sha256": "05150588f0c5373ea2389ae0d56b2cee07bf96939a5988052c2a75926f7fe677"
+    },
+    {
+      "bytes": 829,
+      "path": "contracts/schemas/capsule_contract.schema.json",
+      "sha256": "b501987456f825af69aab9308f5a8b6c784730c3a593c550397c4221dcc00eee"
+    },
+    {
+      "bytes": 1983,
+      "path": "contracts/schemas/clock_event.schema.json",
+      "sha256": "1c8f8bf01971b1a67d877131bd845b656871b40918cad6c928395269978f52e1"
+    },
+    {
+      "bytes": 798,
+      "path": "contracts/schemas/employee.schema.json",
+      "sha256": "0ec4be1d3e1a29194b1a567a335162b23c5dbdc962d9ebf4135d459f655755b5"
+    },
+    {
+      "bytes": 895,
+      "path": "contracts/schemas/owner_export.schema.json",
+      "sha256": "4a94db68530844ce2ba5ff23a4ed9786d7978c60f45026288543006a436cae09"
+    },
+    {
+      "bytes": 885,
+      "path": "contracts/schemas/timecard_summary.schema.json",
+      "sha256": "820fb05d794ef398dc4bcb22fad479b4ee4da29eb1fb31aa9fceecac0110eb16"
+    },
+    {
+      "bytes": 169,
+      "path": "cursor/prompts/FOREMAN_IMPLEMENT_NEXT_BUMP.md",
+      "sha256": "7516f92f544a547be87c09c44bf7193072a4c2b3b28bb13270ec3ff2fdb2d50c"
+    },
+    {
+      "bytes": 181,
+      "path": "cursor/prompts/JUDGE_ACCEPTANCE_PROMPT.md",
+      "sha256": "21c709c91e095627be7f29636fbfa6ce7e78742353d8dbdceb4d4b7e669f32d3"
+    },
+    {
+      "bytes": 130,
+      "path": "cursor/prompts/LIBRARIAN_DOC_REFRESH_PROMPT.md",
+      "sha256": "ec4c0270d53eba88df43343997f7189831f45c76e205eb57cf55be64179d0fda"
+    },
+    {
+      "bytes": 203,
+      "path": "docs/DATA_MODEL_AND_LEDGER.md",
+      "sha256": "fb381c55a8903e7e9199bc8aa7f51a243ca2d141f30b0db9542bf55a7f66ad6b"
+    },
+    {
+      "bytes": 324,
+      "path": "docs/NON_CLAIMS.md",
+      "sha256": "cb2395be960010ea4a37d3748e573b73ef42b68fc4688d6b301a7bdddcbf2dd8"
+    },
+    {
+      "bytes": 182,
+      "path": "docs/OWNER_OUTPUT_OPTIONS.md",
+      "sha256": "22c39a94532204f12387f01661b83eba2e812a6c92767d40e012ad5f309b016d"
+    },
+    {
+      "bytes": 144,
+      "path": "docs/QR_URL_CLOCK_FLOW.md",
+      "sha256": "fc05b7a5195a29d474a1564b261e5ef8c9cfa4a8756ca77a2cab1bfc79b5bad2"
+    },
+    {
+      "bytes": 211,
+      "path": "docs/ROADMAP_TO_RELEASE_CANDIDATE.md",
+      "sha256": "8a36436c4c4e81a8fe2e21001f990b11f155038a6874553bf3710dfd0127c139"
+    },
+    {
+      "bytes": 360,
+      "path": "docs/SYSTEM_OVERVIEW.md",
+      "sha256": "7fb0776ef353e72047a7c6197b7da7f57213dd2c444a6b5d7b141165257a5aab"
+    },
+    {
+      "bytes": 539,
+      "path": "guide_pack.json",
+      "sha256": "88b5ef1ef6e7e0734717b97f761c549269410ee295f48fb63ec4c0e592da4327"
+    },
+    {
+      "bytes": 8194,
+      "path": "manifests/repo_file_manifest.v0.2.0.json",
+      "sha256": "51bdc26a053d762e0290d9bb3912cbb32d364cdbc16d7e35c68c3be04720c974"
+    },
+    {
+      "bytes": 344,
+      "path": "package.json",
+      "sha256": "7f13c46844d3033eacfd7cb21641b510d0ecf1dd91e630308d2342a3ab7ca9dc"
+    },
+    {
+      "bytes": 419,
+      "path": "pipeline/pipeline_plan.v0.2.0.json",
+      "sha256": "57d5d362b5ffa8b13d2435489c947590c1dd3ebffab850de46d0127bbf9fda35"
+    },
+    {
+      "bytes": 88,
+      "path": "release_candidate/rc0_contract_runtime_blueprint/README.md",
+      "sha256": "8089c2e2790b8b45c2fa0e100899c82578b644b334cd0ff26c1071e36265f0cc"
+    },
+    {
+      "bytes": 471,
+      "path": "release_candidate/rc_phase_matrix.v0.2.0.json",
+      "sha256": "fee490163a3ab5b9ed5fadb33770ee83f4004ad6376c556dec3b6ca1bb61d371"
+    },
+    {
+      "bytes": 1202,
+      "path": "repo_release_state.json",
+      "sha256": "0a4332975a8c9f3d40090559b2c0b21b8ecfc37fd186f2977d65b2aefe46b6af"
+    },
+    {
+      "bytes": 147,
+      "path": "repo_scaffold/app/config/employees.seed.json",
+      "sha256": "cb13af2a8b335992de40c4dc902d43b3aeb05c0df8e1f7f3c036cb31aa5831d6"
+    },
+    {
+      "bytes": 246,
+      "path": "repo_scaffold/app/config/settings.json",
+      "sha256": "28a3fdcb7c13cda862b1999731c1c18d4d1ce09e1d704b4733c300035b2e1f39"
+    },
+    {
+      "bytes": 11364,
+      "path": "repo_scaffold/app/server.py",
+      "sha256": "b4fbb942d40d59bd59cddd355590d0dc3b8adbd9698910d02d32fe334fafae77"
+    },
+    {
+      "bytes": 1164,
+      "path": "repo_scaffold/app/static/app.js",
+      "sha256": "e1d67c3d12e057eb1a17fbcf7b9cddf9fdd710f9dc25f2d4451e02e4745772c8"
+    },
+    {
+      "bytes": 1555,
+      "path": "repo_scaffold/app/static/index.html",
+      "sha256": "1b31167069914d3f8751e823087042f853c86412b497ca7ed582b57d08f7c140"
+    },
+    {
+      "bytes": 967,
+      "path": "repo_scaffold/app/static/style.css",
+      "sha256": "3e7cd5f5319690ae694dfca47315de144bd6438a85f40a7d7a0334c9201c36ab"
+    },
+    {
+      "bytes": 1056,
+      "path": "repo_scaffold/capsule/capsule.json",
+      "sha256": "d2f21cd2e7d5f7b9962e1b2a6e315225e8deee9a276b13f9613e53edf1266134"
+    },
+    {
+      "bytes": 1309,
+      "path": "repo_scaffold/capsule/capsule.lock.json",
+      "sha256": "5169e57b4efc60b0ec7c3fd84bcf824eab899f6c5bba2766d0fe904df84164ba"
+    },
+    {
+      "bytes": 451,
+      "path": "repo_scaffold/capsule/install/install_plan.json",
+      "sha256": "25f3fd7ca965526bf1804d29452893ac8de8c37dd14206363bae3ff5de7d07d5"
+    },
+    {
+      "bytes": 286,
+      "path": "repo_scaffold/capsule/install/uninstall_plan.json",
+      "sha256": "b0e6cd4cc0323c6a052216a8db150879237cd0580fe0060f6306dadb2c2d077a"
+    },
+    {
+      "bytes": 588,
+      "path": "reports/release_manifest.v0.2.0.json",
+      "sha256": "7ac219a94bc64bab26ee775f69ebd541c04ce1da5147111a4095ce6d2f01bdf3"
+    },
+    {
+      "bytes": 189,
+      "path": "scripts/export_owner_report_example.sh",
+      "sha256": "0002728af56b359c8c0690821af21fbbe5712ac9170756e7b4c32e2293191d99"
+    },
+    {
+      "bytes": 126,
+      "path": "scripts/run_dev_server.sh",
+      "sha256": "6787c95f58f7378dceb565b5f8c3d76106f6c84b547e2fa53204904eb9be831f"
+    },
+    {
+      "bytes": 3305,
+      "path": "scripts/validate_repo.py",
+      "sha256": "2288f73400098871e547e8a5de7921377ba3d9142d8e317e3d9b716bc07b407c"
+    },
+    {
+      "bytes": 347,
+      "path": "validation/validation_report.v0.2.0.json",
+      "sha256": "4dce24ad6303824f03095fd85b05ad58e6d2fa02c250a1b6e320fe11e58cacdc"
+    }
+  ],
+  "generated_at": "2026-05-29T00:16:02.592908+00:00",
+  "package_name": "best_buds_timeclock_capsule",
+  "version": "0.2.0"
+}

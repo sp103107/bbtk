@@ -1,0 +1,23 @@
+{
+  "screens": {
+    "employee_station": [
+      "employee_id",
+      "pin",
+      "punch buttons",
+      "employee_receipt"
+    ],
+    "owner_dashboard": [
+      "summary",
+      "exports",
+      "pay-period close",
+      "backup verify"
+    ],
+    "pilot_acceptance": [
+      "readiness",
+      "issue log",
+      "signoff",
+      "acceptance pack"
+    ]
+  },
+  "version": "0.7.0"
+}

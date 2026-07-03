@@ -1,0 +1,14 @@
+{
+  "current_phase": "rc7_1_offline_timekeeper_reliability_patch",
+  "deferred": [
+    "huggingface_space_adapter_preview"
+  ],
+  "next_recommended_phase": "rc7_2_huggingface_space_adapter_preview",
+  "non_claims": [
+    "not production deployed",
+    "not legally certified",
+    "not HF hosted"
+  ],
+  "posture": "release_ready_candidate_with_offline_reliability_patch",
+  "version": "0.8.1"
+}

@@ -1,0 +1,27 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/ui_ux/ui_arc_series_contract.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "phase": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "version",
+    "phase",
+    "status"
+  ],
+  "title": "UI arc series contract",
+  "type": "object"
+}

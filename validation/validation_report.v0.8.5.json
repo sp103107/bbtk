@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "agent_entrypoint_present": true,
+    "current_phase_alignment": true,
+    "entrypoints_execute": true,
+    "flow_status_language_present": true,
+    "forbidden_claims_absent": true,
+    "forbidden_paths_absent": true,
+    "full_repo_bump_scope": true,
+    "full_repo_shape": true,
+    "json_parses": true,
+    "jsonl_parses": true,
+    "next_phase_alignment": true,
+    "product_entrypoint_present": true,
+    "pycache_absent": true,
+    "python_compiles": true,
+    "required_files_exist": true,
+    "shell_syntax": true,
+    "short_zip_policy_present": true,
+    "version_consistency": true
+  },
+  "errors": [],
+  "json_files_checked": 396,
+  "jsonl_lines_checked": 112,
+  "phase": "rc7_5_frontend_flow_graphics_status_language",
+  "shell_scripts_checked": 2,
+  "status": "pass",
+  "version": "0.8.5"
+}

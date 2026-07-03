@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-05-29T00:16:02.592908+00:00",
+  "episode_id": "episode_0001_best_buds_timeclock_capsule_initial",
+  "source_artifact_hashes_recorded": true,
+  "summary": "Initial full repo package for standalone time clock capsule.",
+  "version": "0.2.0"
+}

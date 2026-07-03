@@ -1,0 +1,22 @@
+{
+  "added": [
+    "backend connectivity guard",
+    "local-network kiosk launcher",
+    "professional blueprint contracts",
+    "release readiness validation"
+  ],
+  "checkpoint": "v0.8.0 release readiness candidate added",
+  "episode_seq": 9,
+  "generated_at": "2026-05-29T19:39:42+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production deployment is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No cannabis compliance certification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "Release readiness validation is an operator gate, not a production seal."
+  ],
+  "version": "0.8.0"
+}

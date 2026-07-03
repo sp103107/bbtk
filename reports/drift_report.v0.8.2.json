@@ -1,0 +1,15 @@
+{
+  "blocking_drift": false,
+  "items": [
+    {
+      "drift": "v0.8.1 repo_release_state.next_internal_phase was rc7_2_huggingface_space_adapter_preview",
+      "resolution": "Operator deferred Hugging Face adapter; v0.8.2 updates next phase to rc7_3_employee_kiosk_gold_path_polish and records adapter deferral."
+    },
+    {
+      "drift": "README current bump section lagged older versions",
+      "resolution": "README rewritten to current v0.8.2 state."
+    }
+  ],
+  "status": "resolved",
+  "version": "0.8.2"
+}

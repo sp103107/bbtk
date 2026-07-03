@@ -1,0 +1,25 @@
+{
+  "phases": [
+    {
+      "phase": "rc0_contract_runtime_blueprint",
+      "status": "present"
+    },
+    {
+      "phase": "rc1_owner_setup_hardening",
+      "status": "future"
+    },
+    {
+      "phase": "rc2_admin_adjustment_workflow",
+      "status": "future"
+    },
+    {
+      "phase": "rc3_security_backup_validation",
+      "status": "future"
+    },
+    {
+      "phase": "rc4_release_candidate_freeze",
+      "status": "future"
+    }
+  ],
+  "version": "0.2.0"
+}

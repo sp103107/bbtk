@@ -1,0 +1,20 @@
+{
+  "$id": "https://aos.dev/best_buds_timeclock/v0.8.0/professional_time_clock_component_map.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "contract_type": {
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "contract_type",
+    "version"
+  ],
+  "title": "professional_time_clock_component_map",
+  "type": "object"
+}

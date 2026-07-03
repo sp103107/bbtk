@@ -1,0 +1,17 @@
+{
+  "arc": "arc_employee_management_kiosk_timeclock",
+  "checks": {
+    "guest_in_live_roster": true,
+    "owner_live_guest_sign_out": true,
+    "separate_guest_csv": true
+  },
+  "errors": [],
+  "non_claims": [
+    "Temporary runtime fixture only.",
+    "No production deployment.",
+    "No payroll or tax compliance.",
+    "WebSocket is local-network only and retains authenticated HTTP polling fallback."
+  ],
+  "status": "pass",
+  "version": "0.9.0"
+}

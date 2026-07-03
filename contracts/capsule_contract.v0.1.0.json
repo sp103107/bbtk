@@ -1,0 +1,30 @@
+{
+  "business_context": "Best Buds Cannabis Cultivation, West Warwick, Rhode Island",
+  "capsule_class": "standalone_app_capsule",
+  "capsule_id": "best_buds_timeclock_capsule",
+  "contracts": [
+    "capsule_contract.schema.json",
+    "clock_event.schema.json",
+    "employee.schema.json",
+    "owner_export.schema.json",
+    "timecard_summary.schema.json"
+  ],
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed."
+  ],
+  "owner_outputs": [
+    "csv",
+    "json",
+    "markdown",
+    "html"
+  ],
+  "runtime_entrypoint": "repo_scaffold/app/server.py",
+  "runtime_mode": "stdlib_web_runtime",
+  "source_of_truth": "append-only JSONL clock event ledger",
+  "ui_entrypoint": "repo_scaffold/app/static/index.html",
+  "version": "0.2.0"
+}

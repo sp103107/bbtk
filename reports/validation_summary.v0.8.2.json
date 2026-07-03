@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "accessibility_static": "pass",
+    "backend_connectivity_guard": "pass",
+    "csv_ledger_mirror_preserved": "pass",
+    "frontend_surface": "pass",
+    "no_scope_expansion": "pass",
+    "offline_timekeeper_preserved": "pass",
+    "policy": "pass",
+    "release_readiness": "pass",
+    "repo_validation": "pass",
+    "runtime_smoke_temporary_copy": "pass",
+    "ui_copy": "pass",
+    "ui_ux_truth_lock": "pass",
+    "yaml_parse": "pass_no_yaml_files"
+  },
+  "generated_at": "2026-06-23T06:26:36Z",
+  "non_claims": [
+    "No visual regression execution",
+    "No production deployment",
+    "No Hugging Face adapter",
+    "No release seal"
+  ],
+  "schema_version": "1.0.0",
+  "status": "pass",
+  "version": "0.8.2"
+}

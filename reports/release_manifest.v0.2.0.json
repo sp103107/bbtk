@@ -1,0 +1,38 @@
+{
+  "artifact_class": "full_repo_zip",
+  "current_internal_phase": "rc1_owner_setup_hardening",
+  "evidence": [
+    "validation/validation_report.v0.2.0.json",
+    "reports/runtime_smoke_report.v0.2.0.json"
+  ],
+  "evidence_hashes": [
+    {
+      "bytes": 479,
+      "path": "validation/validation_report.v0.2.0.json",
+      "sha256": "4c16bf091856e433e85fc4e7408ce089dfac0b321d3e9a2cae341bdde3d86ba9"
+    },
+    {
+      "bytes": 469,
+      "path": "reports/runtime_smoke_report.v0.2.0.json",
+      "sha256": "ad72deda7c10f586fe7032b83ac23010dac15ea993bbcbeb769ed7acfb7b8d10"
+    }
+  ],
+  "generated_at": "2026-05-29T00:22:41+00:00",
+  "non_claims": [
+    "No legal compliance seal is claimed.",
+    "No payroll-provider integration is claimed.",
+    "No production security hardening is claimed.",
+    "No biometric identity proof, geofence proof, or camera verification is claimed.",
+    "No AoS Boot Pod install, QEMU pass, rootfs materialization, or systemd activation is claimed.",
+    "No backup restore pass is claimed; backup creation is scaffolded only."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "preserved_versions": [
+    "0.1.0"
+  ],
+  "previous_version": "0.1.0",
+  "runtime_smoke_status": "pass",
+  "validated_at": "2026-05-29T00:23:09+00:00",
+  "validation_status": "pass",
+  "version": "0.2.0"
+}

@@ -1,0 +1,43 @@
+{
+  "constraints": {
+    "deterministic_ordering_required": true,
+    "no_speculative_families": true,
+    "schema_first": true,
+    "strict_naming_required": true
+  },
+  "contract_families": [
+    "request",
+    "plan",
+    "schema_manifest",
+    "module_contract",
+    "frontend_surface",
+    "validation_report"
+  ],
+  "generation_scope": {
+    "generate_annotated": true,
+    "generate_backend_contracts": false,
+    "generate_db_contracts": false,
+    "generate_deploy_contracts": false,
+    "generate_filled_examples": true,
+    "generate_frontend_contracts": true,
+    "generate_runtime_contracts": false,
+    "generate_unfilled": false
+  },
+  "notes": [
+    "No runtime activation or visual redesign claim in v0.8.2.",
+    "Hugging Face adapter deferred."
+  ],
+  "output_modes": {
+    "emit_cursor_blocks": true,
+    "emit_json": true,
+    "emit_markdown": true,
+    "emit_repo_files": true
+  },
+  "request_id": "best_buds_timeclock_ui_ux_truth_lock_v0_8_2",
+  "request_name": "Best Buds Time Clock UI UX Truth Lock",
+  "target_module": {
+    "module_class": "ui_module",
+    "module_name": "best_buds_timeclock_ui_ux",
+    "module_purpose": "Contract-first UI/UX truth lock and component inventory for the time clock capsule."
+  }
+}

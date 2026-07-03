@@ -1,0 +1,27 @@
+{
+  "agent_entrypoint": "scripts/onboard_agent.py",
+  "current_internal_phase": "rc8_validation_and_context_checkpoint",
+  "employee_entrypoint": "/employee",
+  "next_internal_phase": "arc_role_based_manager_permissions",
+  "non_claims": [
+    "No production deployment.",
+    "No hosted public employee URL.",
+    "No legal/payroll/cannabis compliance seal.",
+    "QR proves URL reachability only."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "previous_version": "0.8.6",
+  "primary_commands": [
+    "python scripts/onboard_agent.py",
+    "python scripts/start_here_user.py",
+    "python scripts/onboard_bbtc.py",
+    "python scripts/onboard_bbtc.py --json",
+    "scripts/start_all.bat",
+    "python scripts/validate_employee_qr_entry.py",
+    "python scripts/validate_repo.py",
+    "python scripts/start_kiosk_server.py --host 0.0.0.0 --port 8080"
+  ],
+  "product_entrypoint": "scripts/start_here_user.py",
+  "short_zip_name": "bbtc_v0_9_0.zip",
+  "version": "0.9.0"
+}

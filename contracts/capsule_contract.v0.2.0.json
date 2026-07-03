@@ -1,0 +1,27 @@
+{
+  "capsule_class": "standalone_app",
+  "capsule_shape": "aos_cell_capsule",
+  "non_claims": [
+    "No legal compliance seal.",
+    "No production security seal.",
+    "No payroll-provider integration.",
+    "No biometric/geofence/camera identity proof.",
+    "No AoS boot/runtime install claim."
+  ],
+  "package_name": "best_buds_timeclock_capsule",
+  "previous_version": "0.1.0",
+  "runtime_surfaces": [
+    "web_server",
+    "static_index_ui",
+    "jsonl_ledger",
+    "sqlite_operational_mirror",
+    "owner_exporter",
+    "owner_employee_admin",
+    "runtime_backup",
+    "ledger_verifier"
+  ],
+  "schema_version": "1.0.0",
+  "security_posture": "owner-token-gated for owner surfaces; PIN-gated for employee punch surfaces; not production sealed",
+  "source_of_truth": "repo_scaffold/app/data/ledger/clock_events/**/*.jsonl",
+  "version": "0.2.0"
+}
