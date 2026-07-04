@@ -31,7 +31,8 @@ checks['pilot_acceptance_panel_preserved'] = all(x in html+js for x in ['pilot_r
 checks['backend_connection_guard_present'] = all(x in html+js for x in ['backend_connection_banner','checkBackendHealth','backendOfflinePayload','Start the Python server'])
 poster_html=(ROOT/'repo_scaffold/app/static/kiosk_poster.html').read_text(encoding='utf-8')
 poster_js=(ROOT/'repo_scaffold/app/static/kiosk_poster.js').read_text(encoding='utf-8')
-checks['printable_kiosk_poster_present'] = all(x in html+poster_html+poster_js+css for x in ['print_kiosk_poster_btn','poster_qr','window.print()','@media print'])
+checks['printable_kiosk_poster_present'] = all(x in html+poster_html+poster_js+css for x in ['print_kiosk_poster_btn','poster_notice_enabled','poster_access_notice','parameters.get("notice")','poster_qr','window.print()','@media print'])
+checks['kiosk_authorized_access_notice_present'] = all(x in employee_html+css for x in ['No unauthorized entry beyond this point','employees and registered visitors','kiosk-access-notice'])
 for k,v in checks.items():
     if not v: errors.append(f'check_failed:{k}')
 report={'version':VERSION,'status':'pass' if not errors else 'fail','checks':checks,'errors':errors}

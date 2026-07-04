@@ -216,10 +216,18 @@ def main() -> int:
         poster_js = (APP / "static" / "kiosk_poster.js").read_text(encoding="utf-8")
         checks["printable_kiosk_qr_poster"] = (
             'id="print_kiosk_poster_btn"' in html
+            and 'id="poster_notice_enabled"' in html
             and "/kiosk-poster" in (APP / "server.py").read_text(encoding="utf-8")
             and 'id="poster_qr"' in poster_html
+            and 'id="poster_access_notice"' in poster_html
+            and "parameters.get(\"notice\")" in poster_js
             and "window.print()" in poster_js
             and "@media print" in (APP / "static" / "style.css").read_text(encoding="utf-8")
+        )
+        checks["authorized_access_notice"] = (
+            "No unauthorized entry beyond this point" in employee_html
+            and "employees and registered visitors" in employee_html
+            and "kiosk-access-notice" in employee_html
         )
         checks["owner_kiosk_surface_separation"] = (
             'class="station-grid owner-only-grid"' in visible_owner_html
@@ -245,7 +253,7 @@ def main() -> int:
     errors.extend(f"check_failed:{key}" for key in failed)
     report_map = {
         "employee_management_validation_report.json": ["employee_optional_fields", "soft_delete_preserves_history", "employee_restore"],
-        "kiosk_mode_validation_report.json": ["duplicate_open_session_rejected", "kiosk_manager_lockout", "owner_kiosk_surface_separation", "shared_kiosk_next_person_reset", "owner_live_employee_clock_out", "printable_kiosk_qr_poster"],
+        "kiosk_mode_validation_report.json": ["duplicate_open_session_rejected", "kiosk_manager_lockout", "owner_kiosk_surface_separation", "shared_kiosk_next_person_reset", "owner_live_employee_clock_out", "printable_kiosk_qr_poster", "authorized_access_notice"],
         "guest_export_validation_report.json": ["separate_guest_csv", "guest_in_live_roster", "owner_live_guest_sign_out"],
         "csv_format_validation_report.json": ["human_employee_csv", "separate_guest_csv"],
         "realtime_status_validation_report.json": ["server_authoritative_active_session", "summary_contract", "guest_in_live_roster", "websocket_with_polling_fallback", "owner_actionable_onsite_roster"],

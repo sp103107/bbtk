@@ -20,9 +20,10 @@ function setBackendConnection(kind, title, detail){
   const runtimeCard = $("runtime_card");
   document.body.dataset.backend = kind;
   if (banner) banner.className = `connection-banner ${kind}`;
-  if (titleEl) titleEl.textContent = title;
+  const compactTitle = kind === "offline" ? "System offline" : kind === "checking" ? "Checking connection" : "System online";
+  if (titleEl) titleEl.textContent = compactTitle;
   if (detailEl) detailEl.textContent = detail;
-  if (health) health.textContent = title;
+  if (health) health.textContent = kind === "offline" ? "Offline" : kind === "checking" ? "Connecting" : "Online";
   if (runtimeCard) runtimeCard.className = `runtime-card operator-live-status ${kind}`;
   if (kind === "offline") setOfflineFlow("backend", "error");
   if (kind === "online" || kind === "warning") setOfflineFlow("backend", kind === "warning" ? "warning" : "done");

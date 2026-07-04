@@ -20,7 +20,10 @@ function renderPoster(url) {
 }
 
 async function initializePoster() {
-  const requestedUrl = new URLSearchParams(window.location.search).get("url");
+  const parameters = new URLSearchParams(window.location.search);
+  const requestedUrl = parameters.get("url");
+  const accessNotice = document.getElementById("poster_access_notice");
+  if (accessNotice) accessNotice.hidden = parameters.get("notice") === "0";
   if (safeKioskUrl(requestedUrl)) {
     renderPoster(requestedUrl);
     return;

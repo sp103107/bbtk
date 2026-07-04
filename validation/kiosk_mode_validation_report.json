@@ -1,6 +1,7 @@
 {
   "arc": "arc_employee_management_kiosk_timeclock",
   "checks": {
+    "authorized_access_notice": true,
     "duplicate_open_session_rejected": true,
     "kiosk_manager_lockout": true,
     "owner_kiosk_surface_separation": true,

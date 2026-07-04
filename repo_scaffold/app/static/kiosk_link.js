@@ -79,9 +79,10 @@ if (kioskEl("print_kiosk_poster_btn")) kioskEl("print_kiosk_poster_btn").addEven
     markKioskHint("Generate the shared kiosk link before printing.", "warning");
     return;
   }
-  const posterUrl = `/kiosk-poster?url=${encodeURIComponent(link.href)}`;
+  const includeNotice = kioskEl("poster_notice_enabled")?.checked !== false;
+  const posterUrl = `/kiosk-poster?url=${encodeURIComponent(link.href)}&notice=${includeNotice ? "1" : "0"}`;
   window.open(posterUrl, "_blank", "noopener");
-  markKioskHint("Print-ready kiosk poster opened in a new tab.", "success");
+  markKioskHint(`Print-ready kiosk poster opened ${includeNotice ? "with" : "without"} the authorized-access notice.`, "success");
 });
 
 loadKioskLinkCard();
