@@ -450,6 +450,51 @@ def set_employee_status(employee_id: str, status: str) -> dict:
     return next(e for e in list_employees(True) if e["employee_id"] == employee_id)
 
 
+def permanently_delete_employee(employee_id: str, confirmation: str) -> dict:
+    employee_id = str(employee_id).strip()
+    rows = db_rows(
+        "SELECT employee_id,display_name,status FROM employees WHERE employee_id=?",
+        (employee_id,),
+    )
+    if not rows:
+        raise ValueError("employee_not_found")
+    employee = rows[0]
+    if employee["status"] != "removed":
+        raise ValueError("employee_must_be_removed_first")
+    if confirmation != f"DELETE {employee_id}":
+        raise ValueError("employee_delete_confirmation_invalid")
+    if any(session["employee_id"] == employee_id for session in active_sessions()):
+        raise ValueError("employee_has_active_session")
+    if db_rows(
+        "SELECT adjustment_id FROM manual_hours_adjustments WHERE employee_id=? LIMIT 1",
+        (employee_id,),
+    ):
+        raise ValueError("employee_has_manual_adjustments")
+    if any(event.get("employee_id") == employee_id for event in read_all_events()):
+        raise ValueError("employee_has_time_history")
+
+    deleted_at = utc_now().isoformat()
+    db_execute("DELETE FROM employees WHERE employee_id=?", (employee_id,))
+    receipt = write_audit_receipt(
+        {
+            "receipt_type": "employee_permanently_deleted",
+            "employee_id": employee_id,
+            "display_name": employee["display_name"],
+            "prior_status": employee["status"],
+            "deleted_at_utc": deleted_at,
+            "deletion_reason": "history_free_employee_record_cleanup",
+        }
+    )
+    return {
+        "ok": True,
+        "deleted": True,
+        "employee_id": employee_id,
+        "display_name": employee["display_name"],
+        "deleted_at_utc": deleted_at,
+        "audit_receipt_id": receipt["receipt_id"],
+    }
+
+
 def add_manual_hours(employee_id: str, work_date: str, hours, reason: str) -> dict:
     if employee_id not in employee_lookup():
         raise ValueError("employee_not_found")
@@ -659,9 +704,63 @@ def parse_dt(value: str | None) -> dt.datetime | None:
     return parsed.astimezone(dt.timezone.utc)
 
 
+def reporting_timezone():
+    try:
+        from zoneinfo import ZoneInfo
+        return ZoneInfo(settings()["timezone"])
+    except Exception:
+        return dt.datetime.now().astimezone().tzinfo or dt.timezone.utc
+
+
+def reporting_date_bound(value: str, end_exclusive: bool = False) -> dt.datetime:
+    local_date = dt.date.fromisoformat(str(value)[:10])
+    if end_exclusive:
+        local_date += dt.timedelta(days=1)
+    local_value = dt.datetime.combine(local_date, dt.time.min, tzinfo=reporting_timezone())
+    return local_value.astimezone(dt.timezone.utc)
+
+
+def reporting_range_contract(start: str | None, end: str | None) -> dict:
+    if bool(start) != bool(end):
+        raise ValueError("reporting_period_requires_start_and_end")
+    if not start and not end:
+        return {
+            "mode": "all_time",
+            "start_date": None,
+            "end_date": None,
+            "inclusive": True,
+            "timezone": settings()["timezone"],
+            "start_utc": None,
+            "end_exclusive_utc": None,
+            "label": "All available records",
+        }
+    start_date = dt.date.fromisoformat(str(start)[:10])
+    end_date = dt.date.fromisoformat(str(end)[:10])
+    if start_date > end_date:
+        raise ValueError("reporting_period_start_after_end")
+    start_utc = reporting_date_bound(start_date.isoformat())
+    end_exclusive_utc = reporting_date_bound(end_date.isoformat(), True)
+    return {
+        "mode": "selected_period",
+        "start_date": start_date.isoformat(),
+        "end_date": end_date.isoformat(),
+        "inclusive": True,
+        "timezone": settings()["timezone"],
+        "start_utc": start_utc.isoformat(),
+        "end_exclusive_utc": end_exclusive_utc.isoformat(),
+        "label": f"{start_date.isoformat()} through {end_date.isoformat()}",
+    }
+
+
 def read_events(start: str | None = None, end: str | None = None) -> list[dict]:
-    start_dt = parse_dt(start)
-    end_dt = parse_dt(end)
+    start_dt = reporting_date_bound(start) if start and len(str(start)) == 10 else parse_dt(start)
+    end_dt = (
+        reporting_date_bound(end, True) - dt.timedelta(microseconds=1)
+        if end and len(str(end)) == 10
+        else parse_dt(end)
+    )
+    if start_dt and end_dt and start_dt > end_dt:
+        raise ValueError("reporting_period_start_after_end")
     out = []
     for _p, _lineno, line in iter_ledger_lines():
         e = json.loads(line)
@@ -979,12 +1078,14 @@ def kiosk_live_snapshot(transport: str = "websocket") -> dict:
 
 
 def manager_summary(start: str | None = None, end: str | None = None) -> dict:
+    period = reporting_range_contract(start, end)
     events = read_events(start, end)
     summaries = calc(events)
     live = live_roster_snapshot("http_polling_fallback")
     return {
         "ok": True,
         "range": {"start": start, "end": end},
+        "reporting_period": period,
         "summaries": summaries,
         **{key: value for key, value in live.items() if key not in {"ok", "message_type"}},
         "completed_session_count": sum(1 for event in events if event.get("event_type") == "clock_out"),
@@ -1297,9 +1398,31 @@ def human_employee_export_row(
     }
 
 
-def export_guest_csv() -> Path:
+def guest_sessions_for_reporting_period(start: str | None = None, end: str | None = None) -> tuple[list[dict], dict]:
+    period = reporting_range_contract(start, end)
     sessions = list_guest_sessions(True)
-    export_id = f"guest_export_{utc_now().strftime('%Y%m%dT%H%M%S')}_{uuid.uuid4().hex[:6]}"
+    if period["mode"] == "all_time":
+        return sessions, period
+    start_utc = parse_dt(period["start_utc"])
+    end_exclusive_utc = parse_dt(period["end_exclusive_utc"])
+    now = utc_now()
+    filtered = []
+    for session in sessions:
+        signed_in = parse_dt(session.get("sign_in_time_utc"))
+        signed_out = parse_dt(session.get("sign_out_time_utc")) or now
+        if signed_in and signed_in < end_exclusive_utc and signed_out >= start_utc:
+            filtered.append(session)
+    return filtered, period
+
+
+def export_guest_csv(start: str | None = None, end: str | None = None) -> Path:
+    sessions, period = guest_sessions_for_reporting_period(start, end)
+    range_tag = (
+        f"{period['start_date']}_to_{period['end_date']}"
+        if period["mode"] == "selected_period"
+        else "all"
+    )
+    export_id = f"guest_export_{range_tag}_{utc_now().strftime('%Y%m%dT%H%M%S')}_{uuid.uuid4().hex[:6]}"
     path = GUEST_EXPORT_DIR / f"{export_id}.csv"
     headers = ["Guest Name", "Organization", "Purpose", "Sign In", "Sign Out", "Visit Duration", "Notes"]
     with path.open("w", newline="", encoding="utf-8-sig") as handle:
@@ -1323,7 +1446,13 @@ def export_guest_csv() -> Path:
                     "Notes": session.get("notes") or "",
                 }
             )
-    write_audit_receipt({"receipt_type": "guest_csv_export", "export_file": path.name, "guest_count": len(sessions)})
+    write_audit_receipt({
+        "receipt_type": "guest_csv_export",
+        "export_file": path.name,
+        "guest_count": len(sessions),
+        "reporting_period": period,
+        "selection_rule": "visit_overlaps_inclusive_local_business_dates",
+    })
     return path
 
 
@@ -1684,8 +1813,14 @@ def list_offline_sync_receipts(limit: int = 50) -> list[dict]:
 
 
 def read_all_events(start: str | None = None, end: str | None = None) -> list[dict]:
-    start_dt = parse_dt(start)
-    end_dt = parse_dt(end)
+    start_dt = reporting_date_bound(start) if start and len(str(start)) == 10 else parse_dt(start)
+    end_dt = (
+        reporting_date_bound(end, True) - dt.timedelta(microseconds=1)
+        if end and len(str(end)) == 10
+        else parse_dt(end)
+    )
+    if start_dt and end_dt and start_dt > end_dt:
+        raise ValueError("reporting_period_start_after_end")
     out = []
     for _p, _lineno, line in iter_ledger_lines():
         e = json.loads(line)
@@ -1701,6 +1836,7 @@ def read_all_events(start: str | None = None, end: str | None = None) -> list[di
 
 
 def owner_review_report(start: str | None = None, end: str | None = None) -> dict:
+    period = reporting_range_contract(start, end)
     events = read_all_events(start, end)
     accepted = [e for e in events if e.get("validation_status") == "accepted"]
     rejected = [e for e in events if e.get("validation_status") != "accepted"]
@@ -1720,6 +1856,7 @@ def owner_review_report(start: str | None = None, end: str | None = None) -> dic
         "generated_at_utc": utc_now().isoformat(),
         "start": start,
         "end": end,
+        "reporting_period": period,
         "site_id": settings()["site_id"],
         "source_ledger_hash": ledger_hash(),
         "event_count": len(events),
@@ -1757,6 +1894,7 @@ def export(fmt: str, start: str | None = None, end: str | None = None) -> Path:
     s = settings()
     if fmt not in s.get("allowed_export_formats", ["csv", "json", "markdown", "html"]):
         raise ValueError("unsupported_export_format")
+    period = reporting_range_contract(start, end)
     events = read_events(start, end)
     rows = calc(events)
     eid = f"export_{utc_now().strftime('%Y%m%dT%H%M%S')}_{uuid.uuid4().hex[:6]}"
@@ -1766,6 +1904,7 @@ def export(fmt: str, start: str | None = None, end: str | None = None) -> Path:
         "format": fmt,
         "start": start,
         "end": end,
+        "reporting_period": period,
         "generated_at_utc": utc_now().isoformat(),
         "source_ledger_hash": ledger_hash(),
         "summary_count": len(rows),
@@ -2219,11 +2358,8 @@ def make_zip_from_dir(src_dir: Path, zip_path: Path) -> str:
 
 
 def close_pay_period(start: str | None, end: str | None, owner_note: str = "") -> dict:
-    # Parse early so invalid date input fails before writing closure artifacts.
-    if start:
-        parse_dt(start)
-    if end:
-        parse_dt(end)
+    # Validate the inclusive local reporting period before writing closure artifacts.
+    period = reporting_range_contract(start, end)
     events = read_events(start, end)
     summaries = calc(events)
     exceptions = collect_exceptions(summaries)
@@ -2238,6 +2374,7 @@ def close_pay_period(start: str | None, end: str | None, owner_note: str = "") -
         "version": APP_VERSION,
         "start": start,
         "end": end,
+        "reporting_period": period,
         "closed_at_utc": closed_at,
         "site_id": settings()["site_id"],
         "terminal_id": settings()["terminal_id"],
@@ -3068,6 +3205,18 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json(200, {"ok": True, "employee": employee})
             except Exception as e:
                 return self.send_json(400, {"ok": False, "error": str(e)})
+        if parsed.path == "/api/owner/employees/delete":
+            try:
+                data = self.payload()
+                if not self.require_owner(payload=data):
+                    return
+                result = permanently_delete_employee(
+                    str(data.get("employee_id", "")).strip(),
+                    str(data.get("confirmation", "")),
+                )
+                return self.send_json(200, result)
+            except Exception as e:
+                return self.send_json(400, {"ok": False, "error": str(e)})
         if parsed.path == "/api/owner/manual-hours":
             try:
                 data = self.payload()
@@ -3101,13 +3250,20 @@ class Handler(BaseHTTPRequestHandler):
                 data = self.payload()
                 if not self.require_owner(payload=data):
                     return
-                path = export_guest_csv()
+                start = data.get("start")
+                end = data.get("end")
+                period = reporting_range_contract(start, end)
+                path = export_guest_csv(start, end)
+                sessions, _period = guest_sessions_for_reporting_period(start, end)
                 return self.send_json(
                     200,
                     {
                         "ok": True,
                         "export_file": path.name,
                         "download_url": f"/api/owner/guests/download?file={path.name}&owner_token=OWNER_TOKEN",
+                        "guest_count": len(sessions),
+                        "reporting_period": period,
+                        "selection_rule": "visit_overlaps_inclusive_local_business_dates",
                     },
                 )
             except Exception as e:

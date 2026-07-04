@@ -20,9 +20,16 @@
           <div class="time-card"><span class="metric-label">Business Day</span><strong id="business_day">----</strong></div>
         </div>
       </div>
-      <div class="runtime-card" id="runtime_card" aria-live="polite">
-        <span class="runtime-dot" id="runtime_dot" aria-hidden="true"></span>
-        <span id="health">Checking runtime…</span>
+      <div class="operator-header-tools">
+        <div class="runtime-card operator-live-status" id="runtime_card" aria-live="polite">
+          <span class="runtime-dot" id="runtime_dot" aria-hidden="true"></span>
+          <span id="health">Checking runtime…</span>
+        </div>
+        <div class="operator-period-context" aria-label="Selected reporting period">
+          <span class="period-calendar" aria-hidden="true"></span>
+          <span><small>Reporting period</small><strong id="header_reporting_period">Today</strong></span>
+        </div>
+        <div id="header_owner_state" class="header-owner-state locked"><i aria-hidden="true"></i><span>Owner locked</span></div>
       </div>
     </header>
 
@@ -255,9 +262,10 @@
           </div>
         </section>
 
-        <div class="form-grid owner-date-range">
-          <div class="field"><label for="start">Start</label><input id="start" type="date"></div>
-          <div class="field"><label for="end">End</label><input id="end" type="date"></div>
+        <div class="form-grid owner-date-range" aria-describedby="reporting_period_hint">
+          <div class="field"><label for="start">Period Start</label><input id="start" type="date"></div>
+          <div class="field"><label for="end">Period End</label><input id="end" type="date"></div>
+          <p id="reporting_period_hint">Inclusive local business dates. This period applies to summaries, payroll exports, visitor exports, and pay-period close.</p>
         </div>
 
         <nav class="owner-task-rail" aria-label="Owner task groups">
@@ -325,7 +333,7 @@
           <section class="owner-action-card" data-owner-group="visitors">
             <div class="owner-card-kicker">Visitors</div>
             <h3>Guest Sign-In Export</h3>
-            <p>Export the separate guest ledger. Guest visits never enter employee payroll CSV files.</p>
+            <p>Export the separate visitor report. Guest visits never enter employee payroll files.</p>
             <button id="guest_export_btn" class="secondary-action" data-owner-action="guest_export">Generate Guest CSV</button>
             <div id="guest_download_slot" class="download-slot">No guest export generated.</div>
           </section>
@@ -424,7 +432,7 @@
           <h2 id="employee-management-title">Employee Management</h2>
         </div>
       </div>
-      <p class="muted">Removed employees are soft-deleted: they cannot punch, but historical time entries remain linked and reportable.</p>
+      <p class="muted">Remove Access prevents future punches while preserving payroll history. A removed record can be deleted permanently only when it has no punches or approved adjustments.</p>
       <div id="employee_management_table" class="manager-table-wrap">Enter the owner token and choose Manage Employees.</div>
     </section>
 
@@ -435,7 +443,7 @@
           <h2 id="adjustment-title">Owner Adjustment / Missed Punch Correction</h2>
         </div>
       </div>
-      <p class="muted">Creates an audit-marked accepted event in the JSONL ledger. Use only for missed or corrected punches after owner review.</p>
+      <p class="muted">Creates a permanent, owner-recorded correction. Use only for missed or corrected punches after owner review.</p>
       <div class="form-grid four">
         <div class="field"><label for="adjust_employee_id">Employee ID</label><input id="adjust_employee_id" placeholder="emp_001"></div>
         <div class="field"><label for="adjust_event_type">Event Type</label><select id="adjust_event_type"><option value="clock_in">clock_in</option><option value="clock_out">clock_out</option><option value="break_start">break_start</option><option value="break_end">break_end</option></select></div>

@@ -3,7 +3,12 @@
   "checks": {
     "employee_optional_fields": true,
     "employee_restore": true,
-    "soft_delete_preserves_history": true
+    "guarded_permanent_employee_delete_ui": true,
+    "history_free_employee_permanent_delete": true,
+    "manual_adjustment_blocks_permanent_delete": true,
+    "permanent_delete_requires_exact_confirmation": true,
+    "soft_delete_preserves_history": true,
+    "time_history_blocks_permanent_delete": true
   },
   "errors": [],
   "non_claims": [

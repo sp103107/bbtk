@@ -4,6 +4,7 @@
     "authorized_access_notice": true,
     "duplicate_open_session_rejected": true,
     "kiosk_manager_lockout": true,
+    "operator_reporting_context": true,
     "owner_kiosk_surface_separation": true,
     "owner_live_employee_clock_out": true,
     "printable_kiosk_qr_poster": true,

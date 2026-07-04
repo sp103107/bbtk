@@ -104,6 +104,12 @@ function renderOwnerSession(active, message){
     ? "Owner access is active for this browser tab. The token field has been cleared."
     : "Enter the owner token once. It clears after validation and remains only in this browser tab's memory.");
   if (lock) lock.textContent = active ? "Owner Access Active" : "Owner Token Required";
+  const headerState = $("header_owner_state");
+  if (headerState) {
+    headerState.className = `header-owner-state ${active ? "active" : "locked"}`;
+    const text = headerState.querySelector("span");
+    if (text) text.textContent = active ? "Owner active" : "Owner locked";
+  }
   if ($("owner_console_state")) $("owner_console_state").textContent = active ? "Live Operations Unlocked" : "Awaiting Owner Token";
 }
 function lockOwnerSession(){
@@ -263,15 +269,54 @@ function saveBackupTokenFile(tokens){
   link.remove();
   URL.revokeObjectURL(url);
 }
-function dateParams(){
+function localDateInputValue(date=new Date()){
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+function readablePeriodDate(value){
+  if (!value) return "";
+  return new Date(`${value}T12:00:00`).toLocaleDateString([], {month:"short", day:"numeric", year:"numeric"});
+}
+function reportingPeriod(showError=true){
+  const start = $("start")?.value || "";
+  const end = $("end")?.value || "";
+  const valid = Boolean(start && end && start <= end);
+  [$("start"), $("end")].forEach(input => {
+    if (input) input.setAttribute("aria-invalid", String(!valid));
+  });
+  if (!valid && showError) {
+    markOwnerCard("summary_result_hint", "Choose a valid period start and end date. Both dates are inclusive.", "error");
+  }
+  return valid ? {start, end} : null;
+}
+function syncReportingPeriod(){
+  const period = reportingPeriod(false);
+  const header = $("header_reporting_period");
+  if (!header) return;
+  if (!period) {
+    header.textContent = "Select dates";
+    return;
+  }
+  header.textContent = period.start === period.end
+    ? readablePeriodDate(period.start)
+    : `${readablePeriodDate(period.start)} – ${readablePeriodDate(period.end)}`;
+}
+function dateParams(period=reportingPeriod(false)){
   const params = new URLSearchParams();
-  const start = $("start").value;
-  const end = $("end").value;
-  if (start) params.set("start", start);
-  if (end) params.set("end", end);
+  if (period) {
+    params.set("start", period.start);
+    params.set("end", period.end);
+  }
   params.set("owner_token", ownerToken());
   return params;
 }
+const defaultReportingDate = localDateInputValue();
+if ($("start") && !$("start").value) $("start").value = defaultReportingDate;
+if ($("end") && !$("end").value) $("end").value = defaultReportingDate;
+[$("start"), $("end")].forEach(input => input?.addEventListener("change", syncReportingPeriod));
+syncReportingPeriod();
 function show(id, obj){
   lastTechnicalReceipt = obj;
   const button = $("download_last_receipt_btn");
@@ -372,6 +417,11 @@ function friendlyError(data){
     factory_reset_confirmation_invalid: "Type RESET BBTC exactly before running Factory Reset.",
     factory_reset_local_computer_only: "Factory Reset must be run from the computer hosting BBTC.",
     factory_reset_backup_verification_failed: "The safety backup could not be verified, so no reset was performed.",
+    employee_must_be_removed_first: "Remove this employee's access before permanently deleting the record.",
+    employee_delete_confirmation_invalid: "The permanent-delete confirmation did not match. No employee was deleted.",
+    employee_has_active_session: "This employee is currently clocked in and cannot be permanently deleted.",
+    employee_has_manual_adjustments: "This employee has approved hour adjustments and must remain in the audit record.",
+    employee_has_time_history: "This employee has time-clock history and must remain in the audit record. Keep the employee removed instead.",
     not_found: "The requested action was not found.",
     unsupported_event_type: "That punch type is not supported.",
     non_json_response: "The runtime returned a non-JSON response. Ask the owner to review."
@@ -904,7 +954,7 @@ function renderEmployeeManagement(employees){
         <button class="tiny-action employee-edit-btn" data-employee-id="${safeHtml(employee.employee_id)}">Edit</button>
         ${employee.status !== "inactive" ? `<button class="tiny-action employee-status-btn" data-employee-id="${safeHtml(employee.employee_id)}" data-status="inactive">Deactivate</button>` : ""}
         ${employee.status !== "active" ? `<button class="tiny-action employee-status-btn" data-employee-id="${safeHtml(employee.employee_id)}" data-status="active">Restore</button>` : ""}
-        ${employee.status !== "removed" ? `<button class="tiny-action danger employee-status-btn" data-employee-id="${safeHtml(employee.employee_id)}" data-status="removed">Remove</button>` : ""}
+        ${employee.status !== "removed" ? `<button class="tiny-action danger employee-status-btn" data-employee-id="${safeHtml(employee.employee_id)}" data-status="removed">Remove Access</button>` : `<button class="tiny-action permanent-delete employee-delete-btn" data-employee-id="${safeHtml(employee.employee_id)}" title="Available only when this record has no punches or approved adjustments.">Delete Permanently</button>`}
       </td></tr>`).join("")}
     </tbody></table>`;
   target.querySelectorAll(".employee-edit-btn").forEach(button => button.addEventListener("click", () => {
@@ -923,10 +973,39 @@ function renderEmployeeManagement(employees){
   target.querySelectorAll(".employee-status-btn").forEach(button => button.addEventListener("click", async () => {
     const status = button.dataset.status;
     const employeeId = button.dataset.employeeId;
-    if (status === "removed" && !window.confirm(`Soft-remove ${employeeId}? Historical records will be preserved.`)) return;
+    if (status === "removed" && !window.confirm(`Remove access for ${employeeId}? The employee will no longer be able to clock in. Historical records will be preserved.`)) return;
     const result = await postJson("/api/owner/employees/status", {owner_token:ownerToken(),employee_id:employeeId,status});
     if (result.data && result.data.ok) await loadEmployeeManagement();
     else renderOwnerResult(result.data, "Employee status updated.");
+  }));
+  target.querySelectorAll(".employee-delete-btn").forEach(button => button.addEventListener("click", async () => {
+    const employeeId = button.dataset.employeeId;
+    const confirmation = window.prompt(
+      `Permanently delete ${employeeId}?\n\nThis works only for a mistaken record with no punches or approved adjustments.\nType DELETE ${employeeId} to continue.`
+    );
+    if (confirmation == null) return;
+    const result = await postJson("/api/owner/employees/delete", {
+      owner_token: ownerToken(),
+      employee_id: employeeId,
+      confirmation
+    });
+    if (result.data && result.data.ok) {
+      await loadEmployeeManagement();
+      renderOwnerActionSummary(
+        "success",
+        "Employee record deleted",
+        `${result.data.display_name} (${result.data.employee_id}) was permanently deleted.`,
+        "No time or adjustment history existed. The deletion was recorded in the owner audit receipts."
+      );
+    } else {
+      renderOwnerActionSummary(
+        "error",
+        "Employee record retained",
+        friendlyError(result.data),
+        "Keep the employee in Removed status when payroll or audit history exists."
+      );
+      renderOwnerResult(result.data, "Employee record retained.");
+    }
   }));
 }
 async function loadEmployeeManagement(){
@@ -953,8 +1032,10 @@ setInterval(connectOwnerLive, 5000);
 
 $("summary_btn").addEventListener("click", async () => {
   if (!validateOwnerTokenPresent()) return;
+  const period = reportingPeriod();
+  if (!period) return;
   setOwnerFlow("review", "pending");
-  const res = await fetch(`/api/owner/summary?${dateParams().toString()}`);
+  const res = await fetch(`/api/owner/summary?${dateParams(period).toString()}`);
   const data = await res.json(); show("owner_result", data); renderOwnerResult(data, "Summary loaded. Review totals and active sessions below."); renderSummaryPanel(data); markOwnerCard("summary_result_hint", data.ok ? "Summary opened below with totals and active sessions." : friendlyError(data), data.ok ? "success" : "error");
   if (data.ok) {
     connectOwnerLive();
@@ -964,8 +1045,10 @@ $("summary_btn").addEventListener("click", async () => {
 
 $("export_btn").addEventListener("click", async () => {
   if (!validateOwnerTokenPresent()) return;
+  const period = reportingPeriod();
+  if (!period) return;
   setOwnerFlow("export", "pending");
-  const payload = { owner_token: ownerToken(), format: $("format").value, start: $("start").value || null, end: $("end").value || null };
+  const payload = { owner_token: ownerToken(), format: $("format").value, ...period };
   const result = await postJson("/api/owner/export", payload);
   show("owner_result", result.data);
   renderOwnerResult(result.data, "Export generated. Use the download link before closing this session.");
@@ -978,8 +1061,10 @@ $("export_btn").addEventListener("click", async () => {
 
 $("close_period_btn").addEventListener("click", async () => {
   if (!validateOwnerTokenPresent()) return;
+  const period = reportingPeriod();
+  if (!period) return;
   setOwnerFlow("close", "pending");
-  const payload = { owner_token: ownerToken(), start: $("start").value || null, end: $("end").value || null, owner_note: $("owner_note").value || "" };
+  const payload = { owner_token: ownerToken(), ...period, owner_note: $("owner_note").value || "" };
   const result = await postJson("/api/owner/pay_period/close", payload);
   show("owner_result", result.data);
   renderOwnerResult(result.data, "Pay period closed. Download and review the package before payroll submission.");
@@ -998,9 +1083,11 @@ $("employees_btn").addEventListener("click", async () => {
 });
 if ($("guest_export_btn")) $("guest_export_btn").addEventListener("click", async () => {
   if (!validateOwnerTokenPresent()) return;
-  const result = await postJson("/api/owner/guests/export", {owner_token:ownerToken()});
+  const period = reportingPeriod();
+  if (!period) return;
+  const result = await postJson("/api/owner/guests/export", {owner_token:ownerToken(), ...period});
   show("owner_result", result.data);
-  renderOwnerResult(result.data, "Separate guest CSV generated.");
+  renderOwnerResult(result.data, `Visitor CSV generated for ${readablePeriodDate(period.start)} through ${readablePeriodDate(period.end)}.`);
   const slot = $("guest_download_slot");
   if (result.data && result.data.ok && result.data.export_file) {
     slot.innerHTML = `<a class="download" href="/api/owner/guests/download?file=${encodeURIComponent(result.data.export_file)}&owner_token=${encodeURIComponent(ownerToken())}">Download ${safeHtml(result.data.export_file)}</a>`;
@@ -1111,7 +1198,7 @@ if ($("manual_hours_btn")) $("manual_hours_btn").addEventListener("click", async
   show("employee_result", result.data);
   renderOwnerResult(result.data, "Manual hours adjustment recorded for export review.");
 });
-$("review_btn").addEventListener("click", async () => { if (!validateOwnerTokenPresent()) return; const res = await fetch(`/api/owner/review?${dateParams().toString()}`); const data=await res.json(); show("owner_result", data); renderOwnerResult(data, "Manager review loaded. Resolve flags before payroll close."); markOwnerCard("people_result_hint", data.ok ? "Manager review loaded; resolve flags before close." : friendlyError(data), data.ok ? "warning" : "error"); });
+$("review_btn").addEventListener("click", async () => { if (!validateOwnerTokenPresent()) return; const period = reportingPeriod(); if (!period) return; const res = await fetch(`/api/owner/review?${dateParams(period).toString()}`); const data=await res.json(); show("owner_result", data); renderOwnerResult(data, "Manager review loaded. Resolve flags before payroll close."); markOwnerCard("people_result_hint", data.ok ? "Manager review loaded; resolve flags before close." : friendlyError(data), data.ok ? "warning" : "error"); });
 $("adjustment_btn").addEventListener("click", async () => {
   const payload = { owner_token: ownerToken(), employee_id: $("adjust_employee_id").value.trim(), event_type: $("adjust_event_type").value, captured_at_utc: $("adjust_captured_at_utc").value.trim(), reason: $("adjust_reason").value.trim(), owner_note: $("adjust_owner_note").value.trim() };
   const result = await postJson("/api/owner/adjustment", payload);
