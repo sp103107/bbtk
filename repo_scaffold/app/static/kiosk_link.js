@@ -17,7 +17,7 @@ function renderQr(target, url){
   if (!target) return;
   target.innerHTML = "";
   const img = document.createElement("img");
-  img.alt = "Employee kiosk QR code";
+  img.alt = "Shared time clock kiosk QR code";
   img.width = 180;
   img.height = 180;
   img.src = `/api/kiosk/qr.svg?url=${encodeURIComponent(url)}`;
@@ -36,8 +36,8 @@ async function loadKioskLinkCard(announce=false){
     linkEl.textContent = url;
     linkEl.href = url;
     renderQr(qrEl, url);
-    if (hintEl) hintEl.textContent = "Post this QR or link near the shared tablet. Employees still enter ID and PIN after opening the page.";
-    if (announce) markKioskHint("Fresh employee kiosk QR generated.", "success");
+    if (hintEl) hintEl.textContent = "Open this QR on the shared tablet for privacy-safe employee and visitor actions.";
+    if (announce) markKioskHint("Fresh shared-kiosk QR generated.", "success");
   } catch (err) {
     const fallback = `${location.origin}/employee`;
     linkEl.textContent = fallback;
@@ -54,7 +54,7 @@ if (kioskEl("generate_kiosk_qr_btn")) kioskEl("generate_kiosk_qr_btn").addEventL
   button.textContent = "Generating…";
   await loadKioskLinkCard(true);
   button.disabled = false;
-  button.textContent = "Generate Employee QR";
+  button.textContent = "Generate Kiosk QR";
 });
 
 if (kioskEl("copy_kiosk_link_btn")) kioskEl("copy_kiosk_link_btn").addEventListener("click", async () => {
@@ -62,7 +62,7 @@ if (kioskEl("copy_kiosk_link_btn")) kioskEl("copy_kiosk_link_btn").addEventListe
   if (!link) return;
   try {
     await navigator.clipboard.writeText(link.textContent || link.href);
-    markKioskHint("Employee kiosk link copied.", "success");
+    markKioskHint("Shared kiosk link copied.", "success");
   } catch (err) {
     markKioskHint("Copy failed. Select the link manually.", "error");
   }
@@ -71,6 +71,17 @@ if (kioskEl("copy_kiosk_link_btn")) kioskEl("copy_kiosk_link_btn").addEventListe
 if (kioskEl("open_kiosk_link_btn")) kioskEl("open_kiosk_link_btn").addEventListener("click", () => {
   const link = kioskEl("kiosk_employee_url");
   if (link && link.href) window.open(link.href, "_blank", "noopener");
+});
+
+if (kioskEl("print_kiosk_poster_btn")) kioskEl("print_kiosk_poster_btn").addEventListener("click", () => {
+  const link = kioskEl("kiosk_employee_url");
+  if (!link || !link.href) {
+    markKioskHint("Generate the shared kiosk link before printing.", "warning");
+    return;
+  }
+  const posterUrl = `/kiosk-poster?url=${encodeURIComponent(link.href)}`;
+  window.open(posterUrl, "_blank", "noopener");
+  markKioskHint("Print-ready kiosk poster opened in a new tab.", "success");
 });
 
 loadKioskLinkCard();

@@ -1,0 +1,39 @@
+{
+  "checks": {
+    "app_version_current": true,
+    "employee_clock_source": true,
+    "employee_portal_markup": true,
+    "employee_route": true,
+    "employee_static": true,
+    "employee_summary_api": true,
+    "employee_summary_client": true,
+    "kiosk_urls_api": true,
+    "mobile_css_present": true,
+    "no_hosted_deployment_claim": true,
+    "offline_queue_static": true,
+    "owner_kiosk_link_card": true,
+    "present:contracts/frontend_surface/employee_portal_surface.v0.8.6.json": true,
+    "present:contracts/ui_ux/employee_qr_entry_contract.v0.8.6.json": true,
+    "present:docs/EMPLOYEE_QR_ENTRY_PORTAL_v0.8.6.md": true,
+    "present:docs/QR_URL_CLOCK_FLOW.md": true,
+    "present:frontend/save_state/employee_qr_entry_save_state.v0.8.6.json": true,
+    "present:release_candidate/rc7_6_employee_qr_entry_and_kiosk_fit/README.md": true,
+    "present:repo_scaffold/app/static/employee.html": true,
+    "present:repo_scaffold/app/static/employee.js": true,
+    "present:repo_scaffold/app/static/kiosk_link.js": true,
+    "present:scripts/start_all.bat": true,
+    "present:scripts/start_all.sh": true,
+    "qr_render_client": true,
+    "qr_svg_api": true
+  },
+  "errors": [],
+  "non_claims": [
+    "static and route validation only",
+    "no visual regression execution",
+    "QR proves URL reachability only",
+    "no production deployment claim"
+  ],
+  "phase": "rc7_6_employee_qr_entry_and_kiosk_fit",
+  "status": "pass",
+  "version": "0.9.0"
+}

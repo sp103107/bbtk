@@ -24,8 +24,8 @@
     "version_consistency": true
   },
   "errors": [],
-  "json_files_checked": 462,
-  "jsonl_lines_checked": 132,
+  "json_files_checked": 465,
+  "jsonl_lines_checked": 133,
   "phase": "rc8_validation_and_context_checkpoint",
   "shell_scripts_checked": 3,
   "status": "pass",

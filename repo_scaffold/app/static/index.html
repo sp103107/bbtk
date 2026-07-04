@@ -7,9 +7,10 @@
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="operator-console">
   <main class="app-shell">
-    <header class="hero" aria-label="Application header">
+    <header class="hero operator-topbar" aria-label="Operator console header">
+      <img class="operator-brand-mark" src="/static/hemp-bud-mark.svg" alt="">
       <div class="hero-copy">
         <div class="eyebrow">Best Buds · Owner Operations</div>
         <h1>Owner Console</h1>
@@ -53,15 +54,15 @@
     <section class="panel wide quickstart-panel kiosk-launch-card" aria-labelledby="quickstart-title">
       <div class="panel-header">
         <div>
-          <div class="eyebrow">Separate Employee Surface</div>
-          <h2 id="quickstart-title">Employee Kiosk</h2>
+          <div class="eyebrow">Shared Front Desk Surface</div>
+          <h2 id="quickstart-title">Employee + Visitor Time Clock</h2>
         </div>
-        <div class="kiosk-badge">Employee Page</div>
+        <div class="kiosk-badge">Privacy-Safe Kiosk</div>
       </div>
-      <p class="muted">Clock-in/out and guest sign-in are kept off this owner page. Open the dedicated employee kiosk on the shared phone or tablet.</p>
+      <p class="muted">Employee punches and visitor sign-in/out stay on a dedicated shared-device kiosk with automatic field clearing and anonymous live counts.</p>
       <div class="kiosk-launch-actions">
-        <a class="punch-btn primary kiosk-launch-link" href="/employee">Open Employee Kiosk</a>
-        <span>Employee PIN is still required for every employee timeclock action.</span>
+        <a class="punch-btn primary kiosk-launch-link" href="/employee">Open Time Clock Kiosk</a>
+        <span>Employee PIN remains required; visitor names are never displayed as a public roster.</span>
       </div>
     </section>
 
@@ -172,10 +173,6 @@
           </div>
         </section>
 
-        <details class="technical-details">
-          <summary>Technical receipt JSON</summary>
-          <pre id="clock_result" class="result">Waiting for punch…</pre>
-        </details>
       </section>
       </template>
 
@@ -187,7 +184,7 @@
           </div>
           <div class="owner-lock">Owner Token Required</div>
         </div>
-        <p class="muted">Owner actions are grouped by operating task. Each action produces a plain-language result card first; technical JSON remains available below for audit review.</p>
+        <p class="muted">Owner actions are grouped by operating task. Every result is presented in plain language; technical receipts are download-only.</p>
 
         <div class="owner-console-status-grid" aria-label="Owner console status summary">
           <div><span class="metric-label">Console State</span><strong id="owner_console_state">Awaiting Owner Token</strong></div>
@@ -200,7 +197,8 @@
           <div class="receipt-kicker">Owner Action Result</div>
           <div class="owner-summary-title">Waiting for owner action</div>
           <p class="owner-summary-message">Use the grouped cards below. Download links and warnings will appear next to the relevant action.</p>
-          <div class="owner-summary-next">Technical JSON is hidden under the details panel after each action.</div>
+          <div class="owner-summary-next">Use the guidance below. Download a technical receipt only when validation or support needs it.</div>
+          <button id="download_last_receipt_btn" type="button" class="secondary-action" disabled>Download Technical Receipt (.json)</button>
         </section>
 
         <section class="owner-security-card" data-owner-group="security" aria-labelledby="owner-security-title" hidden>
@@ -360,20 +358,21 @@
             <div class="owner-card-result warning-text" id="offline_review_hint">Pending offline records are recovery evidence only and remain pending-owner-review evidence.</div>
           </section>
           <section class="owner-action-card priority" data-owner-group="today readiness">
-            <div class="owner-card-kicker">Employee Entry</div>
-            <h3>Employee Kiosk Link / QR</h3>
-            <p>Share this local-network employee page with staff. QR opens the employee-only clock screen; PIN is still required.</p>
+            <div class="owner-card-kicker">Shared Kiosk</div>
+            <h3>Employee + Visitor Kiosk Link / QR</h3>
+            <p>Open this local-network kiosk on the shared device. Employee PIN is required and public status is limited to anonymous counts.</p>
             <div class="kiosk-link-panel">
               <a id="kiosk_employee_url" class="download" href="/employee">Loading employee URL…</a>
-              <div id="kiosk_qr_target" class="kiosk-qr-target" aria-label="Employee kiosk QR code"></div>
-              <p id="kiosk_link_hint" class="muted kiosk-link-hint">LAN-only employee entry helper. Not a hosted deployment.</p>
+              <div id="kiosk_qr_target" class="kiosk-qr-target" aria-label="Shared time clock kiosk QR code"></div>
+              <p id="kiosk_link_hint" class="muted kiosk-link-hint">LAN-only employee and visitor time clock. Not a hosted deployment.</p>
             </div>
             <div class="command-grid compact-actions">
-              <button id="generate_kiosk_qr_btn" type="button">Generate Employee QR</button>
-              <button id="copy_kiosk_link_btn" class="secondary-action" type="button">Copy Employee Link</button>
-              <button id="open_kiosk_link_btn" class="secondary-action" type="button">Open Employee Page</button>
+              <button id="generate_kiosk_qr_btn" type="button">Generate Kiosk QR</button>
+              <button id="copy_kiosk_link_btn" class="secondary-action" type="button">Copy Kiosk Link</button>
+              <button id="open_kiosk_link_btn" class="secondary-action" type="button">Open Kiosk</button>
+              <button id="print_kiosk_poster_btn" class="secondary-action" type="button">Print Kiosk Poster</button>
             </div>
-            <div class="owner-card-result" id="kiosk_link_result_hint">Generate a poster from this card after starting the backend on the local network.</div>
+            <div class="owner-card-result" id="kiosk_link_result_hint">Generate, copy, open, or print the shared kiosk QR after starting the backend on the local network.</div>
           </section>
           <section class="owner-action-card" data-owner-group="readiness">
             <div class="owner-card-kicker">Readiness</div>
@@ -383,10 +382,6 @@
             <div class="owner-card-result" id="release_result_hint">Operator checklist only; no deployment claim.</div>
           </section>
         </div>
-        <details class="technical-details owner-json-details">
-          <summary>Owner action result technical JSON</summary>
-          <pre id="owner_result" class="result">Owner result appears here…</pre>
-        </details>
       </section>
     </section>
 
@@ -394,11 +389,11 @@
       <div class="panel-header">
         <div>
           <div class="eyebrow">Manager Dashboard</div>
-          <h2 id="timeclock-summary-title">Timeclock Summary</h2>
+          <h2 id="timeclock-summary-title">Currently onsite</h2>
         </div>
         <div id="live_transport_badge" class="live-badge fallback">Polling fallback</div>
       </div>
-      <p class="muted">Employees and guests appear together as they arrive or leave. WebSocket push updates this roster immediately; authenticated polling remains the fallback.</p>
+      <p class="muted">Owner-only employee and visitor details update over the secured live connection as people arrive or leave.</p>
       <div class="manager-metrics">
         <div><span class="metric-label">Employees Active</span><strong id="manager_active_count">0</strong></div>
         <div><span class="metric-label">Guests Active</span><strong id="manager_guest_count">0</strong></div>
@@ -412,6 +407,7 @@
         <button type="button" class="onsite-tab" role="tab" aria-selected="false" data-roster-filter="guest">Guests</button>
       </div>
       <div id="roster_action_result" class="owner-card-result" aria-live="polite">Choose a person to view information or clock them out.</div>
+      <div class="roster-table-head" aria-hidden="true"><span>Name</span><span>Type</span><span>Time onsite</span><span>Actions</span></div>
       <div id="active_session_list" class="active-session-list" aria-live="polite">Enter the owner token and open the summary.</div>
       <h3>Employee Totals</h3>
       <div id="summary_table" class="manager-table-wrap">No summary loaded.</div>
@@ -444,7 +440,7 @@
       </div>
       <div class="field"><label for="adjust_owner_note">Owner Note</label><textarea id="adjust_owner_note" placeholder="Optional note for payroll review"></textarea></div>
       <button id="adjustment_btn" class="full-action">Create Owner Adjustment</button>
-      <pre id="adjustment_result" class="result">Adjustment result appears here…</pre>
+      <div id="adjustment_result" class="owner-card-result" aria-live="polite">No adjustment recorded yet.</div>
     </section>
 
     <section class="panel wide pilot-panel" data-owner-group="readiness" aria-labelledby="pilot-title">
@@ -474,7 +470,7 @@
       </div>
       <button id="pilot_issue_btn" class="full-action">Log Pilot Issue</button>
       <div id="pilot_download_slot" class="download-slot"></div>
-      <pre id="pilot_result" class="result">Pilot readiness result appears here…</pre>
+      <div id="pilot_result" class="owner-card-result" aria-live="polite">No readiness action completed yet.</div>
     </section>
 
     <section class="panel wide" data-owner-group="employees" aria-labelledby="setup-title">
@@ -504,7 +500,7 @@
         <div class="field"><label for="manual_reason">Reason</label><input id="manual_reason" placeholder="Approved correction"></div>
       </div>
       <button id="manual_hours_btn" class="secondary-action">Record Manual Hours Adjustment</button>
-      <pre id="employee_result" class="result">Employee admin result appears here…</pre>
+      <div id="employee_result" class="owner-card-result" aria-live="polite">No employee administration action completed yet.</div>
     </section>
   </main>
   <script src="/static/offline_queue.js"></script>

@@ -56,6 +56,7 @@ OWNER_TOKEN_UPDATE_LOCK = threading.Lock()
 FACTORY_RESET_LOCK = threading.Lock()
 OWNER_BACKUP_TOKEN_COUNT = 10
 LIVE_CONNECTIONS: set = set()
+KIOSK_CONNECTIONS: set = set()
 LIVE_CONNECTIONS_LOCK = threading.Lock()
 LIVE_WEBSOCKET_STATE = {
     "available": False,
@@ -963,6 +964,20 @@ def live_roster_snapshot(transport: str = "websocket") -> dict:
     }
 
 
+def kiosk_live_snapshot(transport: str = "websocket") -> dict:
+    """Public kiosk state deliberately excludes names, IDs, hours, and session records."""
+    return {
+        "ok": True,
+        "message_type": "kiosk_status",
+        "active_employee_count": len(active_sessions()),
+        "active_guest_count": len(active_guest_sessions()),
+        "server_calculated_at_utc": utc_now().isoformat(),
+        "transport": transport,
+        "privacy": "anonymous_counts_only",
+        "poll_interval_seconds": 15,
+    }
+
+
 def manager_summary(start: str | None = None, end: str | None = None) -> dict:
     events = read_events(start, end)
     summaries = calc(events)
@@ -1050,6 +1065,26 @@ def guest_sign_out(guest_session_id: str) -> dict:
     return session
 
 
+def guest_sign_out_by_name(guest_name: str, organization: str = "") -> dict:
+    normalized_name = guest_name.strip().casefold()
+    normalized_org = organization.strip().casefold()
+    if not normalized_name:
+        raise ValueError("guest_name_required")
+    matches = [
+        guest for guest in list_guest_sessions(False)
+        if str(guest.get("guest_name", "")).strip().casefold() == normalized_name
+        and (
+            not normalized_org
+            or str(guest.get("organization", "")).strip().casefold() == normalized_org
+        )
+    ]
+    if not matches:
+        raise ValueError("active_guest_not_found")
+    if len(matches) > 1:
+        raise ValueError("guest_name_ambiguous_add_organization")
+    return guest_sign_out(str(matches[0]["guest_session_id"]))
+
+
 def list_guest_sessions(include_closed: bool = True) -> list[dict]:
     if include_closed:
         return db_rows("SELECT * FROM guest_sessions ORDER BY sign_in_time_utc DESC")
@@ -1058,7 +1093,18 @@ def list_guest_sessions(include_closed: bool = True) -> list[dict]:
 
 def live_websocket_handler(connection) -> None:
     authenticated = False
+    kiosk_connection = False
     try:
+        request_path = str(getattr(getattr(connection, "request", None), "path", ""))
+        if request_path.split("?", 1)[0] == "/kiosk/live":
+            kiosk_connection = True
+            with LIVE_CONNECTIONS_LOCK:
+                KIOSK_CONNECTIONS.add(connection)
+            connection.send(json.dumps(kiosk_live_snapshot("websocket")))
+            for message in connection:
+                if message == "ping":
+                    connection.send("pong")
+            return
         raw = connection.recv(timeout=10)
         message = json.loads(raw)
         authenticated = (
@@ -1078,6 +1124,9 @@ def live_websocket_handler(connection) -> None:
     except (ConnectionClosed, TimeoutError, json.JSONDecodeError, TypeError):
         pass
     finally:
+        if kiosk_connection:
+            with LIVE_CONNECTIONS_LOCK:
+                KIOSK_CONNECTIONS.discard(connection)
         if authenticated:
             with LIVE_CONNECTIONS_LOCK:
                 LIVE_CONNECTIONS.discard(connection)
@@ -1085,8 +1134,10 @@ def live_websocket_handler(connection) -> None:
 
 def broadcast_live_snapshot() -> None:
     payload = json.dumps(live_roster_snapshot("websocket"))
+    kiosk_payload = json.dumps(kiosk_live_snapshot("websocket"))
     with LIVE_CONNECTIONS_LOCK:
         connections = list(LIVE_CONNECTIONS)
+        kiosk_connections = list(KIOSK_CONNECTIONS)
     stale = []
     for connection in connections:
         try:
@@ -1097,6 +1148,16 @@ def broadcast_live_snapshot() -> None:
         with LIVE_CONNECTIONS_LOCK:
             for connection in stale:
                 LIVE_CONNECTIONS.discard(connection)
+    kiosk_stale = []
+    for connection in kiosk_connections:
+        try:
+            connection.send(kiosk_payload)
+        except Exception:
+            kiosk_stale.append(connection)
+    if kiosk_stale:
+        with LIVE_CONNECTIONS_LOCK:
+            for connection in kiosk_stale:
+                KIOSK_CONNECTIONS.discard(connection)
 
 
 def start_live_websocket_server(host: str, port: int) -> dict:
@@ -2697,6 +2758,8 @@ STATIC_ASSETS = {
     "/static/offline_queue.js": ("offline_queue.js", "application/javascript"),
     "/static/employee.js": ("employee.js", "application/javascript"),
     "/static/kiosk_link.js": ("kiosk_link.js", "application/javascript"),
+    "/static/kiosk_poster.js": ("kiosk_poster.js", "application/javascript"),
+    "/static/hemp-bud-mark.svg": ("hemp-bud-mark.svg", "image/svg+xml"),
 }
 
 
@@ -2733,6 +2796,8 @@ class Handler(BaseHTTPRequestHandler):
             return json_response(self, 200, (STATIC_DIR / "index.html").read_text(encoding="utf-8"), "text/html")
         if parsed.path == "/employee":
             return json_response(self, 200, (STATIC_DIR / "employee.html").read_text(encoding="utf-8"), "text/html")
+        if parsed.path == "/kiosk-poster":
+            return json_response(self, 200, (STATIC_DIR / "kiosk_poster.html").read_text(encoding="utf-8"), "text/html")
         if parsed.path in STATIC_ASSETS:
             name, ctype = STATIC_ASSETS[parsed.path]
             return json_response(self, 200, (STATIC_DIR / name).read_text(encoding="utf-8"), ctype)
@@ -2762,6 +2827,8 @@ class Handler(BaseHTTPRequestHandler):
                 "site_id": settings()["site_id"],
                 "websocket": dict(LIVE_WEBSOCKET_STATE),
             })
+        if parsed.path == "/api/kiosk/status":
+            return self.send_json(200, kiosk_live_snapshot("http_polling_fallback"))
         if parsed.path == "/api/config/public":
             s = settings()
             return self.send_json(200, {"version": APP_VERSION, "site_id": s["site_id"], "site_display_name": s["site_display_name"], "terminal_id": s["terminal_id"], "clock_events": sorted(EVENT_TYPES), "setup_warnings": setup_warnings()})
@@ -2778,8 +2845,9 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/api/guests/active":
             return self.send_json(200, {
                 "ok": True,
-                "active_guest_sessions": active_guest_sessions(),
+                "active_guest_count": len(active_guest_sessions()),
                 "server_calculated_at_utc": utc_now().isoformat(),
+                "privacy": "anonymous_count_only",
             })
         if parsed.path == "/api/owner/employees":
             if not self.require_owner(q):
@@ -2941,7 +3009,15 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/api/guests/sign-out":
             try:
                 data = self.payload()
-                session = guest_sign_out(str(data.get("guest_session_id", "")).strip())
+                guest_session_id = str(data.get("guest_session_id", "")).strip()
+                session = (
+                    guest_sign_out(guest_session_id)
+                    if guest_session_id
+                    else guest_sign_out_by_name(
+                        str(data.get("guest_name", "")),
+                        str(data.get("organization", "")),
+                    )
+                )
                 broadcast_live_snapshot()
                 return self.send_json(200, {"ok": True, "guest_session": session})
             except Exception as e:

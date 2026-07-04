@@ -39,12 +39,12 @@ route_checks = {
     "offline_queue_static": '"/static/offline_queue.js"' in server,
     "employee_static": '"/static/employee.js"' in server,
     "app_version_current": f'APP_VERSION = "{VERSION}"' in server,
-    "employee_portal_markup": "employee-portal" in html and "view_hours_btn" in html,
-    "employee_summary_client": "/api/employee/summary" in emp_js,
-    "employee_clock_source": 'source: "employee_portal"' in emp_js,
+    "employee_portal_markup": "timeclock-kiosk" in html and "employee_mode_panel" in html and "visitor_mode_panel" in html,
+    "employee_summary_client": "/api/employee/summary" not in emp_js and "individual hours" in html,
+    "employee_clock_source": 'source:"shared_timeclock_kiosk"' in emp_js,
     "owner_kiosk_link_card": "kiosk_employee_url" in index and "kiosk_qr_target" in index,
     "qr_render_client": "/api/kiosk/qr.svg" in kiosk_js,
-    "mobile_css_present": ".employee-shell" in css and "reduce-motion" in css,
+    "mobile_css_present": ".kiosk-shell" in css and "reduce-motion" in css,
     "no_hosted_deployment_claim": "hosted deployment completed" not in index.lower(),
 }
 for k, v in route_checks.items():

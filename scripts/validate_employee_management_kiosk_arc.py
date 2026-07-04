@@ -165,6 +165,7 @@ def main() -> int:
         visible_owner_html = re.sub(r"<template\b[^>]*>.*?</template>", "", html, flags=re.DOTALL)
         js = (APP / "static" / "app.js").read_text(encoding="utf-8")
         employee_html = (APP / "static" / "employee.html").read_text(encoding="utf-8")
+        employee_js = (APP / "static" / "employee.js").read_text(encoding="utf-8")
         checks["summary_button_fixed"] = (
             'id="summary_btn"' in html
             and 'id="timeclock_summary_panel"' in html
@@ -178,14 +179,17 @@ def main() -> int:
         )
         checks["kiosk_manager_lockout"] = (
             'id="guest_sign_in_btn"' in employee_html
-            and 'id="active_guest_list"' in employee_html
+            and 'id="guest_sign_out_btn"' in employee_html
+            and 'id="active_guest_list"' not in employee_html
             and "owner_token" not in employee_html
             and "employee_management_panel" not in employee_html
+            and "sessionStorage" not in employee_js
         )
         checks["shared_kiosk_next_person_reset"] = (
-            "resetEmployeeForNextPerson" in (APP / "static" / "employee.js").read_text(encoding="utf-8")
-            and "loadActiveGuests" in (APP / "static" / "employee.js").read_text(encoding="utf-8")
-            and 'class="secondary-action guest-row-sign-out"' in (APP / "static" / "employee.js").read_text(encoding="utf-8")
+            "clearPrivateFields" in employee_js
+            and "scheduleReadyReset" in employee_js
+            and "/kiosk/live" in employee_js
+            and "active_guest_sessions" not in employee_js
         )
         checks["websocket_with_polling_fallback"] = (
             "start_live_websocket_server" in (APP / "server.py").read_text(encoding="utf-8")
@@ -208,9 +212,18 @@ def main() -> int:
             and "resetOwnerScreen" in js
             and "/api/owner/factory-reset" in (APP / "server.py").read_text(encoding="utf-8")
         )
+        poster_html = (APP / "static" / "kiosk_poster.html").read_text(encoding="utf-8")
+        poster_js = (APP / "static" / "kiosk_poster.js").read_text(encoding="utf-8")
+        checks["printable_kiosk_qr_poster"] = (
+            'id="print_kiosk_poster_btn"' in html
+            and "/kiosk-poster" in (APP / "server.py").read_text(encoding="utf-8")
+            and 'id="poster_qr"' in poster_html
+            and "window.print()" in poster_js
+            and "@media print" in (APP / "static" / "style.css").read_text(encoding="utf-8")
+        )
         checks["owner_kiosk_surface_separation"] = (
             'class="station-grid owner-only-grid"' in visible_owner_html
-            and '<a class="punch-btn primary kiosk-launch-link" href="/employee">Open Employee Kiosk</a>' in visible_owner_html
+            and '<a class="punch-btn primary kiosk-launch-link" href="/employee">Open Time Clock Kiosk</a>' in visible_owner_html
             and 'id="guest_sign_in_btn"' not in visible_owner_html
             and 'data-punch-action=' not in visible_owner_html
         )
@@ -232,7 +245,7 @@ def main() -> int:
     errors.extend(f"check_failed:{key}" for key in failed)
     report_map = {
         "employee_management_validation_report.json": ["employee_optional_fields", "soft_delete_preserves_history", "employee_restore"],
-        "kiosk_mode_validation_report.json": ["duplicate_open_session_rejected", "kiosk_manager_lockout", "owner_kiosk_surface_separation", "shared_kiosk_next_person_reset", "owner_live_employee_clock_out"],
+        "kiosk_mode_validation_report.json": ["duplicate_open_session_rejected", "kiosk_manager_lockout", "owner_kiosk_surface_separation", "shared_kiosk_next_person_reset", "owner_live_employee_clock_out", "printable_kiosk_qr_poster"],
         "guest_export_validation_report.json": ["separate_guest_csv", "guest_in_live_roster", "owner_live_guest_sign_out"],
         "csv_format_validation_report.json": ["human_employee_csv", "separate_guest_csv"],
         "realtime_status_validation_report.json": ["server_authoritative_active_session", "summary_contract", "guest_in_live_roster", "websocket_with_polling_fallback", "owner_actionable_onsite_roster"],

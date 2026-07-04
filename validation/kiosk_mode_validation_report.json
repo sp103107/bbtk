@@ -5,6 +5,7 @@
     "kiosk_manager_lockout": true,
     "owner_kiosk_surface_separation": true,
     "owner_live_employee_clock_out": true,
+    "printable_kiosk_qr_poster": true,
     "shared_kiosk_next_person_reset": true
   },
   "errors": [],

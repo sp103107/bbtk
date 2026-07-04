@@ -2,6 +2,7 @@ let lastBackupFile = null;
 let backendOnline = false;
 let ownerTokenSecurityState = null;
 let ownerSessionToken = "";
+let lastTechnicalReceipt = null;
 let ownerLiveSocket = null;
 let ownerLiveSocketPort = null;
 let ownerLiveSocketToken = null;
@@ -22,7 +23,7 @@ function setBackendConnection(kind, title, detail){
   if (titleEl) titleEl.textContent = title;
   if (detailEl) detailEl.textContent = detail;
   if (health) health.textContent = title;
-  if (runtimeCard) runtimeCard.className = `runtime-card ${kind}`;
+  if (runtimeCard) runtimeCard.className = `runtime-card operator-live-status ${kind}`;
   if (kind === "offline") setOfflineFlow("backend", "error");
   if (kind === "online" || kind === "warning") setOfflineFlow("backend", kind === "warning" ? "warning" : "done");
 }
@@ -270,7 +271,29 @@ function dateParams(){
   params.set("owner_token", ownerToken());
   return params;
 }
-function show(id, obj){ $(id).textContent = JSON.stringify(obj, null, 2); }
+function show(id, obj){
+  lastTechnicalReceipt = obj;
+  const button = $("download_last_receipt_btn");
+  if (button) button.disabled = !obj;
+  const target = $(id);
+  if (target) {
+    const failed = obj && obj.ok === false;
+    target.className = `owner-card-result ${failed ? "error" : "success"}`;
+    target.textContent = failed ? friendlyError(obj) : "Action completed successfully.";
+  }
+}
+function downloadLastTechnicalReceipt(){
+  if (!lastTechnicalReceipt) return;
+  const blob = new Blob([JSON.stringify(lastTechnicalReceipt, null, 2) + "\n"], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `bbtc-technical-receipt-${new Date().toISOString().replaceAll(":","-")}.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
 function ownerDownloadLink(kind, file, periodId){
   if (kind === "pay_period") return `/api/owner/pay_period/download?period_id=${encodeURIComponent(periodId)}&file=${encodeURIComponent(file)}&owner_token=${encodeURIComponent(ownerToken())}`;
   return `/api/owner/download?file=${encodeURIComponent(file)}&owner_token=${encodeURIComponent(ownerToken())}`;
@@ -373,7 +396,7 @@ function inferOwnerNextStep(data, fallback){
   if (data.backup_file) return "Run Verify Backup + Restore Dry Run before relying on this backup.";
   if (data.restore_dry_run && data.restore_dry_run.status) return "Keep the verification receipt with the backup record.";
   if (data.receipts || data.sync_receipts) return "Review pending-owner-review offline recovery receipts before any payroll use.";
-  return fallback || "Review the technical JSON if needed, then continue the next owner task.";
+  return fallback || "Review the plain-language result and continue with the next owner task.";
 }
 function renderOwnerActionSummary(kind, title, message, nextStep){
   const card = $("owner_action_summary");
@@ -550,6 +573,7 @@ if ($("owner_token")) $("owner_token").addEventListener("keydown", event => {
   }
 });
 if ($("lock_owner_btn")) $("lock_owner_btn").addEventListener("click", lockOwnerSession);
+if ($("download_last_receipt_btn")) $("download_last_receipt_btn").addEventListener("click", downloadLastTechnicalReceipt);
 
 if ($("generate_owner_token_btn")) $("generate_owner_token_btn").addEventListener("click", async () => {
   const button = $("generate_owner_token_btn");
@@ -739,13 +763,13 @@ function renderActiveSessions(sessions){
     const detailsOpen = personType === "employee" && expandedRosterEmployeeId === session.employee_id;
     return `
     <article class="active-session-card person-${safeHtml(session.person_type || "employee")} ${session.requires_manager_review ? "warning" : ""}">
-      <div><strong><span class="person-type-pill">${safeHtml(session.person_type || "employee")}</span>${safeHtml(session.display_name)}</strong><small>${safeHtml(session.person_type === "guest" ? (session.organization || session.purpose || "Visitor") : session.employee_id)} · ${safeHtml(fmtStatus(session.current_status))}</small></div>
+      <div class="roster-person"><strong>${safeHtml(session.display_name)}</strong><small>${safeHtml(session.person_type === "guest" ? (session.organization || session.purpose || "Visitor") : session.employee_id)} · ${safeHtml(fmtStatus(session.current_status))}</small>${session.requires_manager_review ? '<span class="review-pill">Needs manager review</span>' : ""}</div>
+      <span class="person-type-pill">${safeHtml(session.person_type || "employee")}</span>
+      <div class="active-timer" data-elapsed-seconds="${Number(session.elapsed_seconds || 0)}" data-observed-at="${observedAt}">00:00:00</div>
       <div class="roster-card-actions">
-        <div class="active-timer" data-elapsed-seconds="${Number(session.elapsed_seconds || 0)}" data-observed-at="${observedAt}">00:00:00</div>
         ${personType === "employee" ? `<button type="button" class="tiny-action roster-details-btn" data-employee-id="${safeHtml(session.employee_id)}">${detailsOpen ? "Hide Information" : "View Information"}</button>` : ""}
         <button type="button" class="tiny-action roster-clockout-btn" data-person-type="${safeHtml(personType)}" data-session-id="${safeHtml(sessionId)}">${personType === "guest" ? "Sign Guest Out" : "Clock Out Employee"}</button>
       </div>
-      ${session.requires_manager_review ? '<span class="review-pill">Needs manager review</span>' : ""}
       ${detailsOpen ? `<div class="roster-details">
         <div><span>Employee ID</span><strong>${safeHtml(session.employee_id)}</strong></div>
         <div><span>Role</span><strong>${safeHtml(fmtStatus(session.employee_role || "employee"))}</strong></div>
@@ -995,6 +1019,7 @@ $("backup_verify_btn").addEventListener("click", async () => {
 });
 function resetOwnerScreen(){
   ownerSessionToken = "";
+  lastTechnicalReceipt = null;
   if (ownerLiveSocket) ownerLiveSocket.close();
   ownerLiveSocket = null;
   ownerLiveSocketToken = null;
@@ -1015,6 +1040,7 @@ function resetOwnerScreen(){
   if ($("summary_table")) $("summary_table").innerHTML = "No summary loaded.";
   if ($("employee_management_table")) $("employee_management_table").textContent = "Enter the owner token and choose Manage Employees.";
   if ($("owner_token")) $("owner_token").value = "";
+  if ($("download_last_receipt_btn")) $("download_last_receipt_btn").disabled = true;
   if ($("owner_result")) $("owner_result").textContent = "Owner result appears hereâ€¦";
   markOwnerCard("factory_reset_result", "Screen reset complete. No employee, guest, or timeclock data was changed.", "success");
   renderOwnerActionSummary("neutral", "Owner screen reset", "Browser-only fields and results were cleared.", "Enter the owner token when you are ready to continue.");
