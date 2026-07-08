@@ -51,6 +51,24 @@ Outputs:
 - `output/company_zips/<company>.zip`
 - `output/company_zips/<company>.manifest.json`
 
+## 4. Validate portability
+
+Before copying a branded package to another computer, run:
+
+```powershell
+python scripts/validate_portability.py --zip output/company_zips/<company>.zip
+```
+
+For the source repo runtime/tooling scope, run:
+
+```powershell
+python scripts/validate_portability.py
+```
+
+The validator rejects user-specific home-folder paths, version-pinned local workspace
+paths, and absolute temp/output paths inside company ZIPs. Loopback URLs such as
+`127.0.0.1` are allowed because they are local defaults that work on any device.
+
 ## Safety rules
 
 The clone packager does not copy:

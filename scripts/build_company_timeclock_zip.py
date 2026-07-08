@@ -23,7 +23,12 @@ APP_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / 
 EXCLUDE_DIR_NAMES = {
     ".git",
     "__pycache__",
+    "context",
     "data",
+    "frontend",
+    "manifests",
+    "release_candidate",
+    "reports",
     "backups",
     "restore_candidates",
     "exports",
@@ -31,10 +36,24 @@ EXCLUDE_DIR_NAMES = {
     "outputs",
     "tmp",
     "_arc_blueprints_tmp",
+    "validation",
 }
 
 EXCLUDE_FILE_NAMES = {
     "settings.json",
+}
+
+ALLOWED_TOP_LEVEL = {
+    ".gitignore",
+    "CHANGELOG.md",
+    "README.md",
+    "VERSION",
+    "contracts",
+    "docs",
+    "package.json",
+    "repo_scaffold",
+    "requirements.txt",
+    "scripts",
 }
 
 TEXT_EXTENSIONS = {
@@ -83,6 +102,10 @@ def load_profile(path: Path) -> dict:
 
 def should_ignore(path: Path, root: Path) -> bool:
     rel = path.relative_to(root)
+    if len(rel.parts) == 1 and rel.parts[0] not in ALLOWED_TOP_LEVEL:
+        return True
+    if rel.parts and rel.parts[0] not in ALLOWED_TOP_LEVEL:
+        return True
     if any(part in EXCLUDE_DIR_NAMES for part in rel.parts):
         return True
     if path.name in EXCLUDE_FILE_NAMES and "repo_scaffold" in rel.parts and "config" in rel.parts:
