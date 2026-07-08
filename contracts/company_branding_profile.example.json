@@ -1,0 +1,25 @@
+{
+  "branding": {
+    "accent_color": "#3730a3",
+    "app_label": "Time Clock",
+    "app_short_name": "Acme Time Clock",
+    "logo_path": "",
+    "operator_title": "Operator Console",
+    "primary_color": "#0f172a"
+  },
+  "company": {
+    "display_name": "Acme Company",
+    "legal_name": "Acme Company LLC",
+    "site_id": "acme_main_office",
+    "terminal_id": "front_kiosk_01",
+    "timezone": "America/New_York"
+  },
+  "package": {
+    "folder_name": "acme_time_clock",
+    "zip_name": "acme_time_clock.zip"
+  },
+  "security": {
+    "first_admin_username": "admin",
+    "min_pin_length": 4
+  }
+}

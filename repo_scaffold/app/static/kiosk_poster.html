@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Best Buds Time Clock Poster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="kiosk-poster-screen">
+  <nav class="poster-toolbar" aria-label="Poster controls">
+    <a href="/">Back to Operator Console</a>
+    <span>US Letter · Portrait</span>
+    <button id="print_poster_btn" type="button">Print Poster</button>
+  </nav>
+
+  <main class="kiosk-poster-page" aria-labelledby="poster-title">
+    <header class="poster-brand">
+      <img src="/static/hemp-bud-mark.svg" alt="">
+      <span><strong>Best Buds</strong><small>Shared Time Clock</small></span>
+    </header>
+
+    <section class="poster-intro">
+      <div class="poster-kicker">Employees + Visitors</div>
+      <h1 id="poster-title">Clock in here</h1>
+      <p>Scan the code with your phone camera to open the secure shared time clock.</p>
+    </section>
+
+    <section class="poster-qr-card" aria-label="Time clock QR code">
+      <div class="poster-qr-frame">
+        <img id="poster_qr" alt="QR code for the Best Buds shared time clock">
+      </div>
+      <div class="poster-scan-label"><span aria-hidden="true">⌁</span> Scan to open the time clock</div>
+      <a id="poster_url" href="/employee">Loading kiosk address…</a>
+    </section>
+
+    <section class="poster-steps" aria-label="How to use this time clock">
+      <div><span>1</span><strong>Scan</strong><small>Open your camera and scan the code.</small></div>
+      <div><span>2</span><strong>Choose</strong><small>Select Employee or Visitor.</small></div>
+      <div><span>3</span><strong>Complete</strong><small>Follow the private on-screen prompts.</small></div>
+    </section>
+
+    <aside id="poster_access_notice" class="poster-access-notice">
+      <span class="access-stop-icon" aria-hidden="true">!</span>
+      <div><strong>Stop — No unauthorized entry beyond this point</strong><small>Access is limited to employees and registered visitors.</small></div>
+    </aside>
+
+    <aside class="poster-privacy">
+      <span class="poster-shield" aria-hidden="true">✓</span>
+      <div><strong>Privacy protected</strong><small>This screen never displays employee names, schedules, hours, or the visitor roster.</small></div>
+    </aside>
+
+    <footer>
+      <strong>Need help?</strong> Ask the onsite operator.
+      <span>Local network access is required.</span>
+    </footer>
+  </main>
+
+  <script src="/static/kiosk_poster.js"></script>
+</body>
+</html>

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import datetime as dt
 import importlib.util
 import json
 import re
@@ -123,6 +124,66 @@ def main() -> int:
                 and bool(guest_rows)
                 and guest_csv.parent != employee_csv.parent
             )
+            local_day = module.local_iso_for(module.utc_now())[:10]
+            period = module.reporting_range_contract(local_day, local_day)
+            selected_guest_csv = module.export_guest_csv(local_day, local_day)
+            with selected_guest_csv.open("r", encoding="utf-8-sig", newline="") as handle:
+                selected_guest_rows = list(csv.DictReader(handle))
+            future_day = (dt.date.fromisoformat(local_day) + dt.timedelta(days=2)).isoformat()
+            future_guest_csv = module.export_guest_csv(future_day, future_day)
+            with future_guest_csv.open("r", encoding="utf-8-sig", newline="") as handle:
+                future_guest_rows = list(csv.DictReader(handle))
+            checks["inclusive_reporting_period_contract"] = (
+                period["mode"] == "selected_period"
+                and period["inclusive"] is True
+                and period["timezone"] == module.settings()["timezone"]
+                and period["start_date"] == local_day
+                and period["end_date"] == local_day
+            )
+            checks["guest_export_honors_selected_period"] = (
+                len(selected_guest_rows) == 1
+                and selected_guest_rows[0]["Guest Name"] == "Guest Example"
+                and future_guest_rows == []
+            )
+
+            module.upsert_employee("emp_delete", "Mistaken Record", "9910", "active", "employee")
+            module.set_employee_status("emp_delete", "removed")
+            try:
+                module.permanently_delete_employee("emp_delete", "DELETE WRONG")
+                checks["permanent_delete_requires_exact_confirmation"] = False
+            except ValueError as error:
+                checks["permanent_delete_requires_exact_confirmation"] = (
+                    str(error) == "employee_delete_confirmation_invalid"
+                    and any(row["employee_id"] == "emp_delete" for row in module.list_employees(True))
+                )
+            deleted = module.permanently_delete_employee("emp_delete", "DELETE emp_delete")
+            checks["history_free_employee_permanent_delete"] = (
+                deleted["ok"] is True
+                and deleted["deleted"] is True
+                and not any(row["employee_id"] == "emp_delete" for row in module.list_employees(True))
+            )
+
+            module.set_employee_status("emp_901", "removed")
+            try:
+                module.permanently_delete_employee("emp_901", "DELETE emp_901")
+                checks["time_history_blocks_permanent_delete"] = False
+            except ValueError as error:
+                checks["time_history_blocks_permanent_delete"] = (
+                    str(error) == "employee_has_time_history"
+                    and any(row["employee_id"] == "emp_901" for row in module.list_employees(True))
+                )
+
+            module.upsert_employee("emp_adjust", "Adjustment Record", "9911", "active", "employee")
+            module.add_manual_hours("emp_adjust", local_day, 0.5, "approved test adjustment")
+            module.set_employee_status("emp_adjust", "removed")
+            try:
+                module.permanently_delete_employee("emp_adjust", "DELETE emp_adjust")
+                checks["manual_adjustment_blocks_permanent_delete"] = False
+            except ValueError as error:
+                checks["manual_adjustment_blocks_permanent_delete"] = (
+                    str(error) == "employee_has_manual_adjustments"
+                    and any(row["employee_id"] == "emp_adjust" for row in module.list_employees(True))
+                )
 
             removed = module.set_employee_status("emp_900", "removed")
             checks["soft_delete_preserves_history"] = (
@@ -137,6 +198,7 @@ def main() -> int:
             summary = module.manager_summary(None, None)
             checks["summary_contract"] = (
                 summary["ok"] is True
+                and summary["reporting_period"]["mode"] == "all_time"
                 and "active_sessions" in summary
                 and "active_guest_sessions" in summary
                 and "active_roster" in summary
@@ -165,27 +227,45 @@ def main() -> int:
         visible_owner_html = re.sub(r"<template\b[^>]*>.*?</template>", "", html, flags=re.DOTALL)
         js = (APP / "static" / "app.js").read_text(encoding="utf-8")
         employee_html = (APP / "static" / "employee.html").read_text(encoding="utf-8")
+        employee_js = (APP / "static" / "employee.js").read_text(encoding="utf-8")
         checks["summary_button_fixed"] = (
             'id="summary_btn"' in html
             and 'id="timeclock_summary_panel"' in html
             and 'renderSummaryPanel(data)' in js
             and 'employee_management_panel").scrollIntoView' not in js[js.find('$("summary_btn")'):js.find('$("export_btn")')]
         )
+        checks["operator_reporting_context"] = (
+            'id="header_reporting_period"' in html
+            and 'id="header_owner_state"' in html
+            and 'id="reporting_period_hint"' in html
+            and "syncReportingPeriod" in js
+            and "reportingPeriod()" in js
+        )
         checks["manage_employees_button_fixed"] = (
             ">Manage Employees<" in html
             and 'id="employee_management_panel"' in html
             and "loadEmployeeManagement" in js
         )
+        checks["guarded_permanent_employee_delete_ui"] = (
+            "Remove Access" in js
+            and "Delete Permanently" in js
+            and "DELETE ${employeeId}" in js
+            and "/api/owner/employees/delete" in js
+            and "/api/owner/employees/delete" in (APP / "server.py").read_text(encoding="utf-8")
+        )
         checks["kiosk_manager_lockout"] = (
             'id="guest_sign_in_btn"' in employee_html
-            and 'id="active_guest_list"' in employee_html
+            and 'id="guest_sign_out_btn"' in employee_html
+            and 'id="active_guest_list"' not in employee_html
             and "owner_token" not in employee_html
             and "employee_management_panel" not in employee_html
+            and "sessionStorage" not in employee_js
         )
         checks["shared_kiosk_next_person_reset"] = (
-            "resetEmployeeForNextPerson" in (APP / "static" / "employee.js").read_text(encoding="utf-8")
-            and "loadActiveGuests" in (APP / "static" / "employee.js").read_text(encoding="utf-8")
-            and 'class="secondary-action guest-row-sign-out"' in (APP / "static" / "employee.js").read_text(encoding="utf-8")
+            "clearPrivateFields" in employee_js
+            and "scheduleReadyReset" in employee_js
+            and "/kiosk/live" in employee_js
+            and "active_guest_sessions" not in employee_js
         )
         checks["websocket_with_polling_fallback"] = (
             "start_live_websocket_server" in (APP / "server.py").read_text(encoding="utf-8")
@@ -208,9 +288,26 @@ def main() -> int:
             and "resetOwnerScreen" in js
             and "/api/owner/factory-reset" in (APP / "server.py").read_text(encoding="utf-8")
         )
+        poster_html = (APP / "static" / "kiosk_poster.html").read_text(encoding="utf-8")
+        poster_js = (APP / "static" / "kiosk_poster.js").read_text(encoding="utf-8")
+        checks["printable_kiosk_qr_poster"] = (
+            'id="print_kiosk_poster_btn"' in html
+            and 'id="poster_notice_enabled"' in html
+            and "/kiosk-poster" in (APP / "server.py").read_text(encoding="utf-8")
+            and 'id="poster_qr"' in poster_html
+            and 'id="poster_access_notice"' in poster_html
+            and "parameters.get(\"notice\")" in poster_js
+            and "window.print()" in poster_js
+            and "@media print" in (APP / "static" / "style.css").read_text(encoding="utf-8")
+        )
+        checks["authorized_access_notice"] = (
+            "No unauthorized entry beyond this point" in employee_html
+            and "employees and registered visitors" in employee_html
+            and "kiosk-access-notice" in employee_html
+        )
         checks["owner_kiosk_surface_separation"] = (
             'class="station-grid owner-only-grid"' in visible_owner_html
-            and '<a class="punch-btn primary kiosk-launch-link" href="/employee">Open Employee Kiosk</a>' in visible_owner_html
+            and '<a class="punch-btn primary kiosk-launch-link" href="/employee">Open Time Clock Kiosk</a>' in visible_owner_html
             and 'id="guest_sign_in_btn"' not in visible_owner_html
             and 'data-punch-action=' not in visible_owner_html
         )
@@ -231,9 +328,18 @@ def main() -> int:
     failed = [key for key, value in checks.items() if not value]
     errors.extend(f"check_failed:{key}" for key in failed)
     report_map = {
-        "employee_management_validation_report.json": ["employee_optional_fields", "soft_delete_preserves_history", "employee_restore"],
-        "kiosk_mode_validation_report.json": ["duplicate_open_session_rejected", "kiosk_manager_lockout", "owner_kiosk_surface_separation", "shared_kiosk_next_person_reset", "owner_live_employee_clock_out"],
-        "guest_export_validation_report.json": ["separate_guest_csv", "guest_in_live_roster", "owner_live_guest_sign_out"],
+        "employee_management_validation_report.json": [
+            "employee_optional_fields",
+            "soft_delete_preserves_history",
+            "employee_restore",
+            "permanent_delete_requires_exact_confirmation",
+            "history_free_employee_permanent_delete",
+            "time_history_blocks_permanent_delete",
+            "manual_adjustment_blocks_permanent_delete",
+            "guarded_permanent_employee_delete_ui",
+        ],
+        "kiosk_mode_validation_report.json": ["duplicate_open_session_rejected", "kiosk_manager_lockout", "owner_kiosk_surface_separation", "shared_kiosk_next_person_reset", "owner_live_employee_clock_out", "printable_kiosk_qr_poster", "authorized_access_notice", "operator_reporting_context"],
+        "guest_export_validation_report.json": ["separate_guest_csv", "guest_in_live_roster", "owner_live_guest_sign_out", "inclusive_reporting_period_contract", "guest_export_honors_selected_period"],
         "csv_format_validation_report.json": ["human_employee_csv", "separate_guest_csv"],
         "realtime_status_validation_report.json": ["server_authoritative_active_session", "summary_contract", "guest_in_live_roster", "websocket_with_polling_fallback", "owner_actionable_onsite_roster"],
         "summary_button_bugfix_validation_report.json": ["summary_button_fixed", "manage_employees_button_fixed", "screen_and_factory_reset_controls", "factory_reset_rejects_wrong_phrase", "factory_reset_backup_and_clear"],

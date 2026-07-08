@@ -22,7 +22,7 @@ requirements={
  'owner_task_rail_present':'owner-task-rail' in html and all(x in html for x in ['Today','Employees','Payroll','Review','Recovery','Readiness']),
  'owner_cards_have_groups':html.count('data-owner-group=') >= 6,
  'card_result_hints_present':html.count('owner-card-result') >= 5 and 'markOwnerCard' in js,
- 'technical_json_hidden_by_default':'<details class="technical-details owner-json-details">' in html,
+ 'technical_json_hidden_by_default':'details.technical-details,pre.result{display:none!important}' in css and 'download_last_receipt_btn' in html,
  'owner_token_guard_present':'validateOwnerTokenPresent' in js and js.count('validateOwnerTokenPresent()') >= 8,
  'offline_review_non_claim':'pending-owner-review evidence' in html.lower() and 'recovery evidence only' in html.lower(),
  'css_operator_console_present':'owner-console-status-grid' in css and 'owner-action-summary' in css,

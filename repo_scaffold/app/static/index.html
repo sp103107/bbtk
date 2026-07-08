@@ -7,21 +7,29 @@
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="operator-console">
   <main class="app-shell">
-    <header class="hero" aria-label="Application header">
+    <header class="hero operator-topbar" aria-label="Operator console header">
+      <img class="operator-brand-mark" src="/static/hemp-bud-mark.svg" alt="">
       <div class="hero-copy">
         <div class="eyebrow">Best Buds · Owner Operations</div>
         <h1>Owner Console</h1>
         <p class="muted hero-subtitle">Manage employees, review live timeclock status, export records, and handle owner security from this private operator page.</p>
         <div class="hero-meta" aria-label="Current owner console status">
-          <div class="time-card"><span class="metric-label">Local Time</span><strong id="current_time">--:--</strong></div>
+          <div class="time-card clock-card"><span class="metric-label">Local Time</span><time id="current_time" class="clock-face" datetime=""><span id="clock_hm">--:--</span><span id="clock_seconds">:--</span><span id="clock_period">--</span></time></div>
           <div class="time-card"><span class="metric-label">Business Day</span><strong id="business_day">----</strong></div>
         </div>
       </div>
-      <div class="runtime-card" id="runtime_card" aria-live="polite">
-        <span class="runtime-dot" id="runtime_dot" aria-hidden="true"></span>
-        <span id="health">Checking runtime…</span>
+      <div class="operator-header-tools">
+        <div class="runtime-card operator-live-status" id="runtime_card" aria-live="polite">
+          <span class="runtime-dot" id="runtime_dot" aria-hidden="true"></span>
+          <span id="health">Checking runtime…</span>
+        </div>
+        <div class="operator-period-context" aria-label="Selected reporting period">
+          <span class="period-calendar" aria-hidden="true"></span>
+          <span><small>Reporting period</small><strong id="header_reporting_period">Today</strong></span>
+        </div>
+        <div id="header_owner_state" class="header-owner-state locked"><i aria-hidden="true"></i><span>Owner locked</span></div>
       </div>
     </header>
 
@@ -37,15 +45,23 @@
       <div class="operator-access-copy">
         <div class="eyebrow">Private operator access</div>
         <h2 id="operator-access-title">Unlock live operations</h2>
-        <p id="operator_access_hint">Enter the owner token once. It clears after validation and remains only in this browser tab's memory.</p>
+        <p id="operator_access_hint">Enter an administrator username and PIN. Access stays only in this browser tab's memory.</p>
       </div>
       <div id="operator_access_form" class="operator-access-form">
-        <label class="sr-only" for="owner_token">Current Owner Token</label>
-        <input id="owner_token" type="password" placeholder="Enter owner token" autocomplete="current-password">
+        <label class="sr-only" for="operator_username">Administrator Username</label>
+        <input id="operator_username" placeholder="Username" autocomplete="username">
+        <label class="sr-only" for="operator_pin">Administrator PIN</label>
+        <input id="operator_pin" type="password" inputmode="numeric" placeholder="PIN" autocomplete="current-password">
         <button id="unlock_owner_btn" type="button">Unlock</button>
       </div>
+      <div id="admin_first_run_form" class="operator-access-form first-run-admin" hidden>
+        <input id="first_admin_username" placeholder="First admin username" autocomplete="username">
+        <input id="first_admin_display_name" placeholder="Display name">
+        <input id="first_admin_pin" type="password" inputmode="numeric" placeholder="Create admin PIN" autocomplete="new-password">
+        <button id="create_first_admin_btn" type="button">Create First Admin</button>
+      </div>
       <div id="operator_session_status" class="operator-session-status" hidden>
-        <span><i aria-hidden="true"></i><strong>Owner access active</strong></span>
+        <span><i aria-hidden="true"></i><strong id="operator_session_label">Administrator active</strong></span>
         <button id="lock_owner_btn" class="secondary-action" type="button">Lock session</button>
       </div>
     </section>
@@ -53,15 +69,15 @@
     <section class="panel wide quickstart-panel kiosk-launch-card" aria-labelledby="quickstart-title">
       <div class="panel-header">
         <div>
-          <div class="eyebrow">Separate Employee Surface</div>
-          <h2 id="quickstart-title">Employee Kiosk</h2>
+          <div class="eyebrow">Shared Front Desk Surface</div>
+          <h2 id="quickstart-title">Employee + Visitor Time Clock</h2>
         </div>
-        <div class="kiosk-badge">Employee Page</div>
+        <div class="kiosk-badge">Privacy-Safe Kiosk</div>
       </div>
-      <p class="muted">Clock-in/out and guest sign-in are kept off this owner page. Open the dedicated employee kiosk on the shared phone or tablet.</p>
+      <p class="muted">Employee punches and visitor sign-in/out stay on a dedicated shared-device kiosk with automatic field clearing and anonymous live counts.</p>
       <div class="kiosk-launch-actions">
-        <a class="punch-btn primary kiosk-launch-link" href="/employee">Open Employee Kiosk</a>
-        <span>Employee PIN is still required for every employee timeclock action.</span>
+        <a class="punch-btn primary kiosk-launch-link" href="/employee">Open Time Clock Kiosk</a>
+        <span>Employee PIN remains required; visitor names are never displayed as a public roster.</span>
       </div>
     </section>
 
@@ -172,10 +188,6 @@
           </div>
         </section>
 
-        <details class="technical-details">
-          <summary>Technical receipt JSON</summary>
-          <pre id="clock_result" class="result">Waiting for punch…</pre>
-        </details>
       </section>
       </template>
 
@@ -185,22 +197,23 @@
             <div class="eyebrow">Owner Console</div>
             <h2 id="owner-title">Operator Control Panel</h2>
           </div>
-          <div class="owner-lock">Owner Token Required</div>
+          <div class="owner-lock">Administrator Login Required</div>
         </div>
-        <p class="muted">Owner actions are grouped by operating task. Each action produces a plain-language result card first; technical JSON remains available below for audit review.</p>
+        <p class="muted">Owner actions are grouped by operating task. Every result is presented in plain language; technical receipts are download-only.</p>
 
         <div class="owner-console-status-grid" aria-label="Owner console status summary">
-          <div><span class="metric-label">Console State</span><strong id="owner_console_state">Awaiting Owner Token</strong></div>
+          <div><span class="metric-label">Console State</span><strong id="owner_console_state">Awaiting Administrator Login</strong></div>
           <div><span class="metric-label">Last Owner Action</span><strong id="owner_last_action">None</strong></div>
           <div><span class="metric-label">Next Step</span><strong id="owner_next_step">Choose a task group</strong></div>
         </div>
 
-        <div class="owner-banner" id="owner_notice">Enter owner token, choose a date range, then run the needed owner action.</div>
+        <div class="owner-banner" id="owner_notice">Log in as an administrator, choose a date range, then run the needed operator action.</div>
         <section id="owner_action_summary" class="owner-action-summary neutral" aria-live="polite">
           <div class="receipt-kicker">Owner Action Result</div>
           <div class="owner-summary-title">Waiting for owner action</div>
           <p class="owner-summary-message">Use the grouped cards below. Download links and warnings will appear next to the relevant action.</p>
-          <div class="owner-summary-next">Technical JSON is hidden under the details panel after each action.</div>
+          <div class="owner-summary-next">Use the guidance below. Download a technical receipt only when validation or support needs it.</div>
+          <button id="download_last_receipt_btn" type="button" class="secondary-action" disabled>Download Technical Receipt (.json)</button>
         </section>
 
         <section class="owner-security-card" data-owner-group="security" aria-labelledby="owner-security-title" hidden>
@@ -212,6 +225,10 @@
             <span id="owner_token_status_badge" class="security-status checking">Checking setup…</span>
           </div>
           <p id="owner_token_guidance">Checking whether this time clock needs first-time owner security setup.</p>
+          <div class="field compact">
+            <label for="security_owner_token">Current Owner Token</label>
+            <input id="security_owner_token" type="password" placeholder="Required only for token rotation or backup-token replacement" autocomplete="current-password">
+          </div>
           <div class="owner-security-actions">
             <button id="generate_owner_token_btn" type="button">Generate &amp; Save Secure Token</button>
             <button id="toggle_owner_token_btn" type="button" class="secondary-action" aria-pressed="false">Show Entered Token</button>
@@ -228,6 +245,25 @@
             <div id="owner_token_copy_status" class="owner-card-result" aria-live="polite">Token saved. Copy it or save the private recovery note before leaving this page.</div>
           </div>
           <div class="owner-backup-grid">
+            <section class="owner-backup-section" aria-labelledby="admin-operator-title">
+              <div class="owner-card-kicker">Administrator Tab</div>
+              <h4 id="admin-operator-title">Add Operator Login</h4>
+              <p>Create a username and PIN for a manager or administrator allowed to edit the time clock.</p>
+              <label for="new_operator_username">Username</label>
+              <input id="new_operator_username" autocomplete="off" placeholder="manager1">
+              <label for="new_operator_display_name">Display Name</label>
+              <input id="new_operator_display_name" autocomplete="off" placeholder="Manager Name">
+              <label for="new_operator_pin">PIN</label>
+              <input id="new_operator_pin" type="password" inputmode="numeric" autocomplete="new-password" placeholder="Create PIN">
+              <label for="new_operator_role">Role</label>
+              <select id="new_operator_role">
+                <option value="manager">Manager</option>
+                <option value="admin">Administrator</option>
+                <option value="viewer">Viewer</option>
+              </select>
+              <button id="add_operator_btn" type="button" class="secondary-action">Add Operator</button>
+              <div id="operator_admin_status" class="owner-card-result">No operator change completed yet.</div>
+            </section>
             <section class="owner-backup-section" aria-labelledby="backup-token-title">
               <div class="owner-card-kicker">Forgotten-token protection</div>
               <h4 id="backup-token-title">10 Single-Use Backup Tokens</h4>
@@ -257,9 +293,10 @@
           </div>
         </section>
 
-        <div class="form-grid owner-date-range">
-          <div class="field"><label for="start">Start</label><input id="start" type="date"></div>
-          <div class="field"><label for="end">End</label><input id="end" type="date"></div>
+        <div class="form-grid owner-date-range" aria-describedby="reporting_period_hint">
+          <div class="field"><label for="start">Period Start</label><input id="start" type="date"></div>
+          <div class="field"><label for="end">Period End</label><input id="end" type="date"></div>
+          <p id="reporting_period_hint">Inclusive local business dates. This period applies to summaries, payroll exports, visitor exports, and pay-period close.</p>
         </div>
 
         <nav class="owner-task-rail" aria-label="Owner task groups">
@@ -295,7 +332,8 @@
             <div class="field compact">
               <label for="format">Export Format</label>
               <select id="format">
-                <option value="csv">CSV / Excel-openable</option>
+                <option value="xlsx">Excel Workbook (.xlsx)</option>
+                <option value="csv">CSV</option>
                 <option value="json">JSON</option>
                 <option value="markdown">Markdown</option>
                 <option value="html">HTML</option>
@@ -327,8 +365,8 @@
           <section class="owner-action-card" data-owner-group="visitors">
             <div class="owner-card-kicker">Visitors</div>
             <h3>Guest Sign-In Export</h3>
-            <p>Export the separate guest ledger. Guest visits never enter employee payroll CSV files.</p>
-            <button id="guest_export_btn" class="secondary-action" data-owner-action="guest_export">Generate Guest CSV</button>
+            <p>Export the separate visitor report. Guest visits never enter employee payroll files.</p>
+            <button id="guest_export_btn" class="secondary-action" data-owner-action="guest_export">Generate Guest Excel</button>
             <div id="guest_download_slot" class="download-slot">No guest export generated.</div>
           </section>
           <section class="owner-action-card" data-owner-group="recovery">
@@ -360,20 +398,25 @@
             <div class="owner-card-result warning-text" id="offline_review_hint">Pending offline records are recovery evidence only and remain pending-owner-review evidence.</div>
           </section>
           <section class="owner-action-card priority" data-owner-group="today readiness">
-            <div class="owner-card-kicker">Employee Entry</div>
-            <h3>Employee Kiosk Link / QR</h3>
-            <p>Share this local-network employee page with staff. QR opens the employee-only clock screen; PIN is still required.</p>
+            <div class="owner-card-kicker">Shared Kiosk</div>
+            <h3>Employee + Visitor Kiosk Link / QR</h3>
+            <p>Open this local-network kiosk on the shared device. Employee PIN is required and public status is limited to anonymous counts.</p>
             <div class="kiosk-link-panel">
               <a id="kiosk_employee_url" class="download" href="/employee">Loading employee URL…</a>
-              <div id="kiosk_qr_target" class="kiosk-qr-target" aria-label="Employee kiosk QR code"></div>
-              <p id="kiosk_link_hint" class="muted kiosk-link-hint">LAN-only employee entry helper. Not a hosted deployment.</p>
+              <div id="kiosk_qr_target" class="kiosk-qr-target" aria-label="Shared time clock kiosk QR code"></div>
+              <p id="kiosk_link_hint" class="muted kiosk-link-hint">LAN-only employee and visitor time clock. Not a hosted deployment.</p>
             </div>
             <div class="command-grid compact-actions">
-              <button id="generate_kiosk_qr_btn" type="button">Generate Employee QR</button>
-              <button id="copy_kiosk_link_btn" class="secondary-action" type="button">Copy Employee Link</button>
-              <button id="open_kiosk_link_btn" class="secondary-action" type="button">Open Employee Page</button>
+              <button id="generate_kiosk_qr_btn" type="button">Generate Kiosk QR</button>
+              <button id="copy_kiosk_link_btn" class="secondary-action" type="button">Copy Kiosk Link</button>
+              <button id="open_kiosk_link_btn" class="secondary-action" type="button">Open Kiosk</button>
+              <button id="print_kiosk_poster_btn" class="secondary-action" type="button">Print Kiosk Poster</button>
             </div>
-            <div class="owner-card-result" id="kiosk_link_result_hint">Generate a poster from this card after starting the backend on the local network.</div>
+            <label class="poster-notice-toggle" for="poster_notice_enabled">
+              <input id="poster_notice_enabled" type="checkbox" checked>
+              <span><strong>Include restricted-access notice</strong><small>Recommended for posters displayed in public or shared areas.</small></span>
+            </label>
+            <div class="owner-card-result" id="kiosk_link_result_hint">Generate, copy, open, or print the shared kiosk QR after starting the backend on the local network.</div>
           </section>
           <section class="owner-action-card" data-owner-group="readiness">
             <div class="owner-card-kicker">Readiness</div>
@@ -383,10 +426,6 @@
             <div class="owner-card-result" id="release_result_hint">Operator checklist only; no deployment claim.</div>
           </section>
         </div>
-        <details class="technical-details owner-json-details">
-          <summary>Owner action result technical JSON</summary>
-          <pre id="owner_result" class="result">Owner result appears here…</pre>
-        </details>
       </section>
     </section>
 
@@ -394,11 +433,11 @@
       <div class="panel-header">
         <div>
           <div class="eyebrow">Manager Dashboard</div>
-          <h2 id="timeclock-summary-title">Timeclock Summary</h2>
+          <h2 id="timeclock-summary-title">Currently onsite</h2>
         </div>
         <div id="live_transport_badge" class="live-badge fallback">Polling fallback</div>
       </div>
-      <p class="muted">Employees and guests appear together as they arrive or leave. WebSocket push updates this roster immediately; authenticated polling remains the fallback.</p>
+      <p class="muted">Owner-only employee and visitor details update over the secured live connection as people arrive or leave.</p>
       <div class="manager-metrics">
         <div><span class="metric-label">Employees Active</span><strong id="manager_active_count">0</strong></div>
         <div><span class="metric-label">Guests Active</span><strong id="manager_guest_count">0</strong></div>
@@ -412,7 +451,8 @@
         <button type="button" class="onsite-tab" role="tab" aria-selected="false" data-roster-filter="guest">Guests</button>
       </div>
       <div id="roster_action_result" class="owner-card-result" aria-live="polite">Choose a person to view information or clock them out.</div>
-      <div id="active_session_list" class="active-session-list" aria-live="polite">Enter the owner token and open the summary.</div>
+      <div class="roster-table-head" aria-hidden="true"><span>Name</span><span>Type</span><span>Time onsite</span><span>Actions</span></div>
+      <div id="active_session_list" class="active-session-list" aria-live="polite">Log in as an administrator and open the summary.</div>
       <h3>Employee Totals</h3>
       <div id="summary_table" class="manager-table-wrap">No summary loaded.</div>
     </section>
@@ -424,8 +464,8 @@
           <h2 id="employee-management-title">Employee Management</h2>
         </div>
       </div>
-      <p class="muted">Removed employees are soft-deleted: they cannot punch, but historical time entries remain linked and reportable.</p>
-      <div id="employee_management_table" class="manager-table-wrap">Enter the owner token and choose Manage Employees.</div>
+      <p class="muted">Remove Access prevents future punches while preserving payroll history. A removed record can be deleted permanently only when it has no punches or approved adjustments.</p>
+      <div id="employee_management_table" class="manager-table-wrap">Log in as an administrator and choose Manage Employees.</div>
     </section>
 
     <section class="panel wide" data-owner-group="employees" aria-labelledby="adjustment-title">
@@ -435,7 +475,7 @@
           <h2 id="adjustment-title">Owner Adjustment / Missed Punch Correction</h2>
         </div>
       </div>
-      <p class="muted">Creates an audit-marked accepted event in the JSONL ledger. Use only for missed or corrected punches after owner review.</p>
+      <p class="muted">Creates a permanent, owner-recorded correction. Use only for missed or corrected punches after owner review.</p>
       <div class="form-grid four">
         <div class="field"><label for="adjust_employee_id">Employee ID</label><input id="adjust_employee_id" placeholder="emp_001"></div>
         <div class="field"><label for="adjust_event_type">Event Type</label><select id="adjust_event_type"><option value="clock_in">clock_in</option><option value="clock_out">clock_out</option><option value="break_start">break_start</option><option value="break_end">break_end</option></select></div>
@@ -444,7 +484,7 @@
       </div>
       <div class="field"><label for="adjust_owner_note">Owner Note</label><textarea id="adjust_owner_note" placeholder="Optional note for payroll review"></textarea></div>
       <button id="adjustment_btn" class="full-action">Create Owner Adjustment</button>
-      <pre id="adjustment_result" class="result">Adjustment result appears here…</pre>
+      <div id="adjustment_result" class="owner-card-result" aria-live="polite">No adjustment recorded yet.</div>
     </section>
 
     <section class="panel wide pilot-panel" data-owner-group="readiness" aria-labelledby="pilot-title">
@@ -474,7 +514,7 @@
       </div>
       <button id="pilot_issue_btn" class="full-action">Log Pilot Issue</button>
       <div id="pilot_download_slot" class="download-slot"></div>
-      <pre id="pilot_result" class="result">Pilot readiness result appears here…</pre>
+      <div id="pilot_result" class="owner-card-result" aria-live="polite">No readiness action completed yet.</div>
     </section>
 
     <section class="panel wide" data-owner-group="employees" aria-labelledby="setup-title">
@@ -504,7 +544,7 @@
         <div class="field"><label for="manual_reason">Reason</label><input id="manual_reason" placeholder="Approved correction"></div>
       </div>
       <button id="manual_hours_btn" class="secondary-action">Record Manual Hours Adjustment</button>
-      <pre id="employee_result" class="result">Employee admin result appears here…</pre>
+      <div id="employee_result" class="owner-card-result" aria-live="polite">No employee administration action completed yet.</div>
     </section>
   </main>
   <script src="/static/offline_queue.js"></script>

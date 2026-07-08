@@ -1,7 +1,9 @@
 {
   "arc": "arc_employee_management_kiosk_timeclock",
   "checks": {
+    "guest_export_honors_selected_period": true,
     "guest_in_live_roster": true,
+    "inclusive_reporting_period_contract": true,
     "owner_live_guest_sign_out": true,
     "separate_guest_csv": true
   },
