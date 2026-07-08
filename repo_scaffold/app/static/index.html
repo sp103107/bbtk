@@ -16,7 +16,7 @@
         <h1>Owner Console</h1>
         <p class="muted hero-subtitle">Manage employees, review live timeclock status, export records, and handle owner security from this private operator page.</p>
         <div class="hero-meta" aria-label="Current owner console status">
-          <div class="time-card"><span class="metric-label">Local Time</span><strong id="current_time">--:--</strong></div>
+          <div class="time-card clock-card"><span class="metric-label">Local Time</span><time id="current_time" class="clock-face" datetime=""><span id="clock_hm">--:--</span><span id="clock_seconds">:--</span><span id="clock_period">--</span></time></div>
           <div class="time-card"><span class="metric-label">Business Day</span><strong id="business_day">----</strong></div>
         </div>
       </div>
@@ -45,15 +45,23 @@
       <div class="operator-access-copy">
         <div class="eyebrow">Private operator access</div>
         <h2 id="operator-access-title">Unlock live operations</h2>
-        <p id="operator_access_hint">Enter the owner token once. It clears after validation and remains only in this browser tab's memory.</p>
+        <p id="operator_access_hint">Enter an administrator username and PIN. Access stays only in this browser tab's memory.</p>
       </div>
       <div id="operator_access_form" class="operator-access-form">
-        <label class="sr-only" for="owner_token">Current Owner Token</label>
-        <input id="owner_token" type="password" placeholder="Enter owner token" autocomplete="current-password">
+        <label class="sr-only" for="operator_username">Administrator Username</label>
+        <input id="operator_username" placeholder="Username" autocomplete="username">
+        <label class="sr-only" for="operator_pin">Administrator PIN</label>
+        <input id="operator_pin" type="password" inputmode="numeric" placeholder="PIN" autocomplete="current-password">
         <button id="unlock_owner_btn" type="button">Unlock</button>
       </div>
+      <div id="admin_first_run_form" class="operator-access-form first-run-admin" hidden>
+        <input id="first_admin_username" placeholder="First admin username" autocomplete="username">
+        <input id="first_admin_display_name" placeholder="Display name">
+        <input id="first_admin_pin" type="password" inputmode="numeric" placeholder="Create admin PIN" autocomplete="new-password">
+        <button id="create_first_admin_btn" type="button">Create First Admin</button>
+      </div>
       <div id="operator_session_status" class="operator-session-status" hidden>
-        <span><i aria-hidden="true"></i><strong>Owner access active</strong></span>
+        <span><i aria-hidden="true"></i><strong id="operator_session_label">Administrator active</strong></span>
         <button id="lock_owner_btn" class="secondary-action" type="button">Lock session</button>
       </div>
     </section>
@@ -189,17 +197,17 @@
             <div class="eyebrow">Owner Console</div>
             <h2 id="owner-title">Operator Control Panel</h2>
           </div>
-          <div class="owner-lock">Owner Token Required</div>
+          <div class="owner-lock">Administrator Login Required</div>
         </div>
         <p class="muted">Owner actions are grouped by operating task. Every result is presented in plain language; technical receipts are download-only.</p>
 
         <div class="owner-console-status-grid" aria-label="Owner console status summary">
-          <div><span class="metric-label">Console State</span><strong id="owner_console_state">Awaiting Owner Token</strong></div>
+          <div><span class="metric-label">Console State</span><strong id="owner_console_state">Awaiting Administrator Login</strong></div>
           <div><span class="metric-label">Last Owner Action</span><strong id="owner_last_action">None</strong></div>
           <div><span class="metric-label">Next Step</span><strong id="owner_next_step">Choose a task group</strong></div>
         </div>
 
-        <div class="owner-banner" id="owner_notice">Enter owner token, choose a date range, then run the needed owner action.</div>
+        <div class="owner-banner" id="owner_notice">Log in as an administrator, choose a date range, then run the needed operator action.</div>
         <section id="owner_action_summary" class="owner-action-summary neutral" aria-live="polite">
           <div class="receipt-kicker">Owner Action Result</div>
           <div class="owner-summary-title">Waiting for owner action</div>
@@ -217,6 +225,10 @@
             <span id="owner_token_status_badge" class="security-status checking">Checking setup…</span>
           </div>
           <p id="owner_token_guidance">Checking whether this time clock needs first-time owner security setup.</p>
+          <div class="field compact">
+            <label for="security_owner_token">Current Owner Token</label>
+            <input id="security_owner_token" type="password" placeholder="Required only for token rotation or backup-token replacement" autocomplete="current-password">
+          </div>
           <div class="owner-security-actions">
             <button id="generate_owner_token_btn" type="button">Generate &amp; Save Secure Token</button>
             <button id="toggle_owner_token_btn" type="button" class="secondary-action" aria-pressed="false">Show Entered Token</button>
@@ -233,6 +245,25 @@
             <div id="owner_token_copy_status" class="owner-card-result" aria-live="polite">Token saved. Copy it or save the private recovery note before leaving this page.</div>
           </div>
           <div class="owner-backup-grid">
+            <section class="owner-backup-section" aria-labelledby="admin-operator-title">
+              <div class="owner-card-kicker">Administrator Tab</div>
+              <h4 id="admin-operator-title">Add Operator Login</h4>
+              <p>Create a username and PIN for a manager or administrator allowed to edit the time clock.</p>
+              <label for="new_operator_username">Username</label>
+              <input id="new_operator_username" autocomplete="off" placeholder="manager1">
+              <label for="new_operator_display_name">Display Name</label>
+              <input id="new_operator_display_name" autocomplete="off" placeholder="Manager Name">
+              <label for="new_operator_pin">PIN</label>
+              <input id="new_operator_pin" type="password" inputmode="numeric" autocomplete="new-password" placeholder="Create PIN">
+              <label for="new_operator_role">Role</label>
+              <select id="new_operator_role">
+                <option value="manager">Manager</option>
+                <option value="admin">Administrator</option>
+                <option value="viewer">Viewer</option>
+              </select>
+              <button id="add_operator_btn" type="button" class="secondary-action">Add Operator</button>
+              <div id="operator_admin_status" class="owner-card-result">No operator change completed yet.</div>
+            </section>
             <section class="owner-backup-section" aria-labelledby="backup-token-title">
               <div class="owner-card-kicker">Forgotten-token protection</div>
               <h4 id="backup-token-title">10 Single-Use Backup Tokens</h4>
@@ -301,7 +332,8 @@
             <div class="field compact">
               <label for="format">Export Format</label>
               <select id="format">
-                <option value="csv">CSV / Excel-openable</option>
+                <option value="xlsx">Excel Workbook (.xlsx)</option>
+                <option value="csv">CSV</option>
                 <option value="json">JSON</option>
                 <option value="markdown">Markdown</option>
                 <option value="html">HTML</option>
@@ -334,7 +366,7 @@
             <div class="owner-card-kicker">Visitors</div>
             <h3>Guest Sign-In Export</h3>
             <p>Export the separate visitor report. Guest visits never enter employee payroll files.</p>
-            <button id="guest_export_btn" class="secondary-action" data-owner-action="guest_export">Generate Guest CSV</button>
+            <button id="guest_export_btn" class="secondary-action" data-owner-action="guest_export">Generate Guest Excel</button>
             <div id="guest_download_slot" class="download-slot">No guest export generated.</div>
           </section>
           <section class="owner-action-card" data-owner-group="recovery">
@@ -420,7 +452,7 @@
       </div>
       <div id="roster_action_result" class="owner-card-result" aria-live="polite">Choose a person to view information or clock them out.</div>
       <div class="roster-table-head" aria-hidden="true"><span>Name</span><span>Type</span><span>Time onsite</span><span>Actions</span></div>
-      <div id="active_session_list" class="active-session-list" aria-live="polite">Enter the owner token and open the summary.</div>
+      <div id="active_session_list" class="active-session-list" aria-live="polite">Log in as an administrator and open the summary.</div>
       <h3>Employee Totals</h3>
       <div id="summary_table" class="manager-table-wrap">No summary loaded.</div>
     </section>
@@ -433,7 +465,7 @@
         </div>
       </div>
       <p class="muted">Remove Access prevents future punches while preserving payroll history. A removed record can be deleted permanently only when it has no punches or approved adjustments.</p>
-      <div id="employee_management_table" class="manager-table-wrap">Enter the owner token and choose Manage Employees.</div>
+      <div id="employee_management_table" class="manager-table-wrap">Log in as an administrator and choose Manage Employees.</div>
     </section>
 
     <section class="panel wide" data-owner-group="employees" aria-labelledby="adjustment-title">

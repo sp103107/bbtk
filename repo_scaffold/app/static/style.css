@@ -91,10 +91,10 @@ body{background:#f4f6fa}.app-shell{width:min(1380px,100%);gap:16px;padding:20px}
 /* v0.9.1 privacy-first employee and visitor time clock kiosk */
 body.timeclock-kiosk{min-height:100vh;background:#f7f9fc;color:#0b132b;overflow-x:hidden}
 .kiosk-shell{min-height:100vh;display:grid;grid-template-rows:auto auto 1fr auto}
-.kiosk-topbar{min-height:122px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding:18px 42px;background:#fff;border-bottom:1px solid #dbe3ef}
+.kiosk-topbar{min-height:122px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding:18px 42px;background:linear-gradient(180deg,#ffffff,#fbfdff);border-bottom:1px solid #dbe3ef}
 .kiosk-brand{display:flex;align-items:center;gap:14px;color:#0b132b;text-decoration:none;width:max-content}.kiosk-brand>span:last-child{display:grid}.kiosk-brand strong{font-size:1.45rem;line-height:1}.kiosk-brand small{text-transform:uppercase;letter-spacing:.26em;font-size:.68rem;font-weight:850;color:#64748b;margin-top:6px}
 .kiosk-brand-mark{width:58px;height:54px;display:block;object-fit:contain}
-.kiosk-clock{text-align:center;display:grid;justify-items:center}.kiosk-clock strong{font-size:clamp(3.25rem,6vw,5.7rem);line-height:.9;letter-spacing:.01em;font-variant-numeric:tabular-nums}.kiosk-clock span{margin-top:10px;color:#475569;font-size:1.12rem;font-weight:760}
+.kiosk-clock{text-align:center;display:grid;justify-items:center}.kiosk-clock strong{font-size:clamp(2.65rem,4.2vw,4.25rem);line-height:.9;letter-spacing:.01em;font-variant-numeric:tabular-nums}.kiosk-clock>span:not(.clock-label){margin-top:10px;color:#475569;font-size:1.12rem;font-weight:760}
 .kiosk-live-status{justify-self:end;display:flex;align-items:center;gap:12px;min-width:185px}.kiosk-live-status>span:last-child{display:grid}.kiosk-live-status strong{font-size:.98rem}.kiosk-live-status small{margin-top:2px;color:#64748b}.kiosk-live-coil{position:relative;width:38px;height:38px;border:2px solid #86efac;border-radius:50%;display:grid;place-items:center}.kiosk-live-coil:before{content:"";position:absolute;inset:5px;border:2px solid #22c55e;border-radius:50%}.kiosk-live-coil i{width:11px;height:11px;border-radius:50%;background:#16a34a}.kiosk-live-status.connecting .kiosk-live-coil,.kiosk-live-status.fallback .kiosk-live-coil{border-color:#fde68a}.kiosk-live-status.connecting .kiosk-live-coil:before,.kiosk-live-status.fallback .kiosk-live-coil:before{border-color:#f59e0b}.kiosk-live-status.connecting .kiosk-live-coil i,.kiosk-live-status.fallback .kiosk-live-coil i{background:#f59e0b}.kiosk-live-status.offline .kiosk-live-coil{border-color:#fecaca}.kiosk-live-status.offline .kiosk-live-coil:before{border-color:#dc2626}.kiosk-live-status.offline .kiosk-live-coil i{background:#dc2626}
 @media(prefers-reduced-motion:no-preference){.kiosk-live-status.connecting .kiosk-live-coil{animation:kiosk-coil-pulse 1.4s ease-in-out infinite}}@keyframes kiosk-coil-pulse{50%{transform:scale(1.08);opacity:.72}}
 .kiosk-connection-message{display:flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:8px 24px;font-size:.84rem;border-bottom:1px solid #dbe3ef}.kiosk-connection-message span{color:#64748b}.kiosk-connection-message.online{background:#f0fdf4;color:#166534;border-color:#bbf7d0}.kiosk-connection-message.warning,.kiosk-connection-message.checking{background:#fffbeb;color:#92400e;border-color:#fde68a}.kiosk-connection-message.offline{background:#fef2f2;color:#991b1b;border-color:#fecaca}
@@ -114,16 +114,15 @@ body.timeclock-kiosk{min-height:100vh;background:#f7f9fc;color:#0b132b;overflow-
 /* v0.9.2 operator console — shared visual system with the public kiosk */
 body.operator-console{background:#f7f9fc;color:#0b132b}
 .operator-console .app-shell{width:min(1500px,100%);padding:0 28px 40px;gap:12px}
-.operator-console .operator-topbar{display:grid;grid-template-columns:64px minmax(180px,1fr) auto minmax(180px,1fr);align-items:center;gap:14px;min-height:108px;margin:0 -28px;padding:15px 40px;border:0;border-bottom:1px solid #dbe3ef;border-radius:0;box-shadow:none;background:#fff}
+.operator-console .operator-topbar{display:grid;grid-template-columns:64px minmax(180px,1fr) auto minmax(180px,1fr);align-items:center;gap:16px;min-height:112px;margin:0 -28px;padding:16px 40px;border:0;border-bottom:1px solid #dbe3ef;border-radius:0;box-shadow:none;background:linear-gradient(180deg,#ffffff,#fbfdff)}
 .operator-console .operator-brand-mark{grid-column:1;width:56px;height:52px;object-fit:contain}
 .operator-console .operator-topbar .hero-copy{display:contents}
 .operator-console .operator-topbar .eyebrow,.operator-console .operator-topbar .hero-subtitle{display:none}
 .operator-console .operator-topbar h1{grid-column:2;margin:0;font-size:1.5rem;line-height:1;letter-spacing:-.025em}
 .operator-console .operator-topbar h1:after{content:"Operator Console";display:block;margin-top:7px;color:#64748b;font-size:.67rem;font-weight:850;letter-spacing:.25em;text-transform:uppercase}
-.operator-console .operator-topbar .hero-meta{grid-column:3;display:grid;justify-items:center;gap:0;margin:0}
+.operator-console .operator-topbar .hero-meta{grid-column:3;display:grid;justify-items:center;gap:0;margin:0;padding:12px 22px;border:1px solid #dbe3ef;border-radius:24px;background:linear-gradient(180deg,#ffffff,#f8fafc);box-shadow:0 10px 26px rgba(15,23,42,.06)}
 .operator-console .operator-topbar .time-card{min-width:0;padding:0;border:0;background:transparent;box-shadow:none;text-align:center}
 .operator-console .operator-topbar .time-card .metric-label{display:none}
-.operator-console .operator-topbar .time-card:first-child strong{font-size:clamp(2.8rem,5vw,4.75rem);line-height:.9;letter-spacing:.015em;font-variant-numeric:tabular-nums}
 .operator-console .operator-topbar .time-card:last-child strong{display:block;margin-top:9px;color:#475569;font-size:1rem}
 .operator-console .operator-header-tools{grid-column:4;justify-self:end;display:flex;align-items:center;justify-content:flex-end;gap:14px;min-width:0}
 .operator-console .operator-live-status{position:relative;min-width:150px;padding:0 0 0 52px;border-radius:0;background:transparent;color:#0b132b;box-shadow:none}
@@ -132,7 +131,7 @@ body.operator-console{background:#f7f9fc;color:#0b132b}
 .operator-console .operator-live-status:after{left:7px;top:50%;width:24px;height:24px;border:2px solid #22c55e;transform:translateY(-50%)}
 .operator-console .operator-live-status .runtime-dot{position:absolute;left:15px;top:50%;z-index:1;width:10px;height:10px;transform:translateY(-50%);box-shadow:none}
 .operator-console .operator-live-status #health{display:grid;max-width:210px;font-size:.9rem;line-height:1.25}
-.operator-console .operator-live-status #health:after{content:"Secured owner roster";margin-top:3px;color:#64748b;font-size:.76rem;font-weight:650}
+.operator-console .operator-live-status #health:after{content:"Administrator panel";margin-top:3px;color:#64748b;font-size:.76rem;font-weight:650}
 .operator-console .operator-live-status.warning:before,.operator-console .operator-live-status.checking:before{border-color:#fde68a}.operator-console .operator-live-status.warning:after,.operator-console .operator-live-status.checking:after{border-color:#f59e0b}
 .operator-console .operator-live-status.offline:before{border-color:#fecaca}.operator-console .operator-live-status.offline:after{border-color:#dc2626}
 .operator-period-context{display:flex;align-items:center;gap:9px;padding-left:14px;border-left:1px solid #dbe3ef;min-width:170px}.operator-period-context>span:last-child{display:grid}.operator-period-context small{color:#64748b;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.operator-period-context strong{margin-top:3px;color:#0b132b;font-size:.82rem}.period-calendar{position:relative;width:27px;height:27px;border:2px solid #4338ca;border-radius:7px}.period-calendar:before{content:"";position:absolute;left:-2px;right:-2px;top:6px;border-top:2px solid #4338ca}.period-calendar:after{content:"";position:absolute;left:6px;top:-5px;width:3px;height:7px;border-radius:2px;background:#4338ca;box-shadow:10px 0 #4338ca}.header-owner-state{display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:9px;background:#f1f5f9;color:#475569;font-size:.72rem;font-weight:900;white-space:nowrap}.header-owner-state i{width:7px;height:7px;border-radius:50%;background:#94a3b8}.header-owner-state.active{background:#ecfdf5;color:#166534}.header-owner-state.active i{background:#16a34a}
@@ -200,3 +199,22 @@ body.kiosk-poster-screen{min-height:100vh;margin:0;padding:28px;background:#e9ee
 @page{size:letter portrait;margin:0}
 @media print{body.kiosk-poster-screen{padding:0;background:#fff}.poster-toolbar{display:none!important}.kiosk-poster-page{width:8.5in;height:11in;min-height:0;margin:0;padding:.34in .48in .27in;border:0;box-shadow:none;break-after:avoid;break-inside:avoid}.poster-brand img{width:46px;height:43px}.poster-intro{margin-top:.16in}.poster-intro h1{margin:5px 0;font-size:2.05rem}.poster-intro p{font-size:.9rem;line-height:1.3}.poster-qr-card{margin-top:.15in;padding:.14in .2in .12in}.poster-qr-frame{padding:11px}.poster-qr-frame img{width:2.72in;height:2.72in}.poster-scan-label{margin-top:9px;font-size:.9rem}.poster-steps{margin-top:.13in;gap:10px}.poster-steps>div{min-height:72px;padding:10px 12px}.poster-steps span{width:21px;height:21px;margin-bottom:5px}.poster-access-notice,.poster-privacy{margin-top:.11in;padding:10px 14px}.poster-access-notice .access-stop-icon{width:28px;height:28px}.poster-shield{width:31px;height:34px}.kiosk-poster-page footer{padding-top:.1in}}
 @media screen and (max-width:900px){body.kiosk-poster-screen{padding:12px}.poster-toolbar{width:100%}.kiosk-poster-page{width:100%;min-height:auto;padding:28px}.poster-qr-card{width:min(100%,5.45in)}.poster-qr-frame img{width:min(70vw,3.15in);height:auto;aspect-ratio:1}.poster-steps{grid-template-columns:1fr}.kiosk-poster-page footer span{float:none;display:block;margin-top:4px}}
+
+/* precision clock shared by kiosk and operator surfaces */
+.clock-face{display:inline-flex;align-items:baseline;justify-content:center;color:#0b132b;font-variant-numeric:tabular-nums;text-decoration:none;white-space:nowrap}
+.clock-face #clock_hm{font-size:1em;font-weight:900;letter-spacing:-.035em}
+.clock-face #clock_seconds{margin-left:.06em;color:#4338ca;font-size:.42em;font-weight:850;letter-spacing:0}
+.clock-face #clock_period{margin-left:.38em;color:#64748b;font-size:.25em;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.kiosk-clock{min-width:290px;padding:12px 22px;border:1px solid #dbe3ef;border-radius:24px;background:linear-gradient(180deg,#ffffff,#f8fafc);box-shadow:0 10px 26px rgba(15,23,42,.06)}
+.kiosk-clock .clock-label{margin:0 0 6px;color:#64748b;font-size:.64rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
+.kiosk-clock .clock-face{font-size:clamp(2.55rem,4.35vw,4.15rem);line-height:.88}
+.kiosk-clock .clock-face span{margin-top:0}
+.kiosk-clock #business_day{margin-top:8px;color:#475569;font-size:.92rem;font-weight:850}
+.operator-console .operator-topbar .clock-card .clock-face{font-size:clamp(2.35rem,3.75vw,3.85rem);line-height:.88}
+.operator-console .operator-topbar .clock-card .clock-face span{margin-top:0}
+.operator-console .operator-topbar .clock-card #clock_seconds{font-size:.42em}
+.operator-console .operator-topbar .clock-card #clock_period{font-size:.25em}
+.operator-console .operator-topbar .clock-card{display:grid;justify-items:center}
+@media(max-height:800px) and (min-width:700px){.kiosk-clock{padding:8px 18px;border-radius:18px}.kiosk-clock .clock-face{font-size:2.85rem}.kiosk-clock .clock-label{display:none}.kiosk-clock #business_day{margin-top:5px;font-size:.8rem}}
+@media(max-width:900px){.kiosk-clock{width:min(100%,520px);justify-self:center}.kiosk-clock .clock-face{font-size:3.2rem}.operator-console .operator-topbar .hero-meta{grid-column:1/-1;grid-row:2;width:min(100%,520px);justify-self:center}.operator-console .operator-topbar .clock-card .clock-face{font-size:3.05rem}}
+@media(max-width:620px){.kiosk-clock{min-width:0;width:100%;box-sizing:border-box;padding:10px 14px;border-radius:18px}.kiosk-clock .clock-face{font-size:clamp(2.25rem,12vw,2.85rem)}.operator-console .operator-topbar .hero-meta{padding:10px 14px;border-radius:18px}.operator-console .operator-topbar .clock-card .clock-face{font-size:clamp(2.2rem,11vw,2.8rem)}.clock-face #clock_period{font-size:.28em}.kiosk-clock #business_day{font-size:.8rem}}

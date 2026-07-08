@@ -23,6 +23,7 @@ import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
+from xml.sax.saxutils import escape as xml_escape
 
 try:
     from websockets.exceptions import ConnectionClosed
@@ -55,6 +56,9 @@ DEFAULT_PIN_PEPPER = "CHANGE_ME_PIN_PEPPER"
 OWNER_TOKEN_UPDATE_LOCK = threading.Lock()
 FACTORY_RESET_LOCK = threading.Lock()
 OWNER_BACKUP_TOKEN_COUNT = 10
+ADMIN_SESSION_LOCK = threading.Lock()
+ADMIN_SESSIONS: dict[str, dict] = {}
+ADMIN_SESSION_TTL_SECONDS = 12 * 60 * 60
 LIVE_CONNECTIONS: set = set()
 KIOSK_CONNECTIONS: set = set()
 LIVE_CONNECTIONS_LOCK = threading.Lock()
@@ -106,7 +110,8 @@ def settings() -> dict:
         "allow_owner_adjustments": True,
         "owner_adjustment_reason_required": True,
         "manager_review_required_before_pay_period_close": False,
-        "allowed_export_formats": ["csv", "json", "markdown", "html"],
+        "allowed_export_formats": ["xlsx", "csv", "json", "markdown", "html"],
+        "admin_users": [],
         "setup_required_when_default_secret": True,
         "clock_events": sorted(EVENT_TYPES),
         "pilot_policy": {
@@ -141,6 +146,14 @@ def ensure_dirs() -> None:
 
 def pin_hash(employee_id: str, pin: str) -> str:
     return sha_text(f"{employee_id}:{pin}:{settings()['pin_pepper']}")
+
+
+def normalize_username(username: str | None) -> str:
+    return re.sub(r"\s+", "", str(username or "").strip().lower())
+
+
+def admin_pin_hash(username: str, pin: str, salt: str) -> str:
+    return sha_text(f"operator:{normalize_username(username)}:{salt}:{pin}:{settings()['pin_pepper']}")
 
 
 def init_db() -> None:
@@ -1305,6 +1318,155 @@ def readable_local_datetime(value: str | None) -> str:
     return parsed and dt.datetime.fromisoformat(local_iso_for(parsed)).strftime("%Y-%m-%d %I:%M %p") or ""
 
 
+def local_excel_datetime(value: str | None) -> dt.datetime | None:
+    parsed = parse_dt(value)
+    if not parsed:
+        return None
+    return dt.datetime.fromisoformat(local_iso_for(parsed)).replace(tzinfo=None)
+
+
+def excel_column_name(index: int) -> str:
+    name = ""
+    while index:
+        index, remainder = divmod(index - 1, 26)
+        name = chr(65 + remainder) + name
+    return name
+
+
+def excel_serial(value: dt.date | dt.datetime) -> float:
+    if isinstance(value, dt.datetime):
+        normalized = value.replace(tzinfo=None)
+    else:
+        normalized = dt.datetime.combine(value, dt.time())
+    return (normalized - dt.datetime(1899, 12, 30)).total_seconds() / 86400
+
+
+def write_excel_workbook(
+    path: Path,
+    sheet_name: str,
+    headers: list[str],
+    rows: list[list],
+    column_widths: list[float],
+    column_formats: list[str],
+) -> Path:
+    """Write a compact, dependency-free OOXML workbook with readable column sizing."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    safe_sheet_name = re.sub(r"[\[\]:*?/\\]", " ", sheet_name).strip()[:31] or "Export"
+    style_ids = {"text": 0, "header": 1, "date": 2, "datetime": 3, "decimal": 4, "integer": 5, "currency": 6}
+
+    def cell_xml(reference: str, value, style_name: str = "text") -> str:
+        style_id = style_ids.get(style_name, 0)
+        style_attr = f' s="{style_id}"' if style_id else ""
+        if value is None or value == "":
+            return f'<c r="{reference}"{style_attr}/>'
+        if isinstance(value, (dt.datetime, dt.date)):
+            return f'<c r="{reference}" s="{style_id}"><v>{excel_serial(value):.10f}</v></c>'
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            return f'<c r="{reference}"{style_attr}><v>{value}</v></c>'
+        text = xml_escape(str(value))
+        preserve = ' xml:space="preserve"' if str(value) != str(value).strip() else ""
+        return f'<c r="{reference}" t="inlineStr"{style_attr}><is><t{preserve}>{text}</t></is></c>'
+
+    sheet_rows = []
+    header_cells = [
+        cell_xml(f"{excel_column_name(col)}1", header, "header")
+        for col, header in enumerate(headers, start=1)
+    ]
+    sheet_rows.append(f'<row r="1" ht="24" customHeight="1">{"".join(header_cells)}</row>')
+    for row_number, values in enumerate(rows, start=2):
+        cells = []
+        for col_number, value in enumerate(values, start=1):
+            style_name = column_formats[col_number - 1] if col_number <= len(column_formats) else "text"
+            cells.append(cell_xml(f"{excel_column_name(col_number)}{row_number}", value, style_name))
+        sheet_rows.append(f'<row r="{row_number}">{"".join(cells)}</row>')
+
+    last_column = excel_column_name(len(headers))
+    last_row = max(len(rows) + 1, 1)
+    columns_xml = "".join(
+        f'<col min="{index}" max="{index}" width="{width}" customWidth="1"/>'
+        for index, width in enumerate(column_widths, start=1)
+    )
+    worksheet_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        f'<dimension ref="A1:{last_column}{last_row}"/>'
+        '<sheetViews><sheetView workbookViewId="0" showGridLines="0">'
+        '<pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/>'
+        '</sheetView></sheetViews>'
+        f'<cols>{columns_xml}</cols>'
+        f'<sheetData>{"".join(sheet_rows)}</sheetData>'
+        f'<autoFilter ref="A1:{last_column}{last_row}"/>'
+        '<pageMargins left="0.3" right="0.3" top="0.5" bottom="0.5" header="0.2" footer="0.2"/>'
+        '<pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0"/>'
+        '</worksheet>'
+    )
+    styles_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <numFmts count="4">
+    <numFmt numFmtId="164" formatCode="yyyy-mm-dd"/>
+    <numFmt numFmtId="165" formatCode="yyyy-mm-dd h:mm AM/PM"/>
+    <numFmt numFmtId="166" formatCode="0.00"/>
+    <numFmt numFmtId="167" formatCode="$#,##0.00"/>
+  </numFmts>
+  <fonts count="2">
+    <font><sz val="11"/><name val="Aptos"/></font>
+    <font><b/><color rgb="FFFFFFFF"/><sz val="11"/><name val="Aptos"/></font>
+  </fonts>
+  <fills count="3">
+    <fill><patternFill patternType="none"/></fill>
+    <fill><patternFill patternType="gray125"/></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF312E81"/><bgColor indexed="64"/></patternFill></fill>
+  </fills>
+  <borders count="2">
+    <border><left/><right/><top/><bottom/><diagonal/></border>
+    <border><left/><right/><top/><bottom style="thin"><color rgb="FFD7DEE8"/></bottom><diagonal/></border>
+  </borders>
+  <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+  <cellXfs count="7">
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1"/>
+    <xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"><alignment vertical="center"/></xf>
+    <xf numFmtId="164" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1"/>
+    <xf numFmtId="165" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1"/>
+    <xf numFmtId="166" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1"/>
+    <xf numFmtId="1" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1"/>
+    <xf numFmtId="167" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1"/>
+  </cellXfs>
+  <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>"""
+    workbook_xml = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+        f'<sheets><sheet name="{xml_escape(safe_sheet_name)}" sheetId="1" r:id="rId1"/></sheets>'
+        '<calcPr calcId="191029"/></workbook>'
+    )
+    content_types_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
+  <Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+  <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
+</Types>"""
+    package_relationships_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>
+</Relationships>"""
+    workbook_relationships_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+</Relationships>"""
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as workbook:
+        workbook.writestr("[Content_Types].xml", content_types_xml)
+        workbook.writestr("_rels/.rels", package_relationships_xml)
+        workbook.writestr("xl/workbook.xml", workbook_xml)
+        workbook.writestr("xl/_rels/workbook.xml.rels", workbook_relationships_xml)
+        workbook.writestr("xl/styles.xml", styles_xml)
+        workbook.writestr("xl/worksheets/sheet1.xml", worksheet_xml)
+    return path
+
+
 def employee_session_export_rows(events: list[dict]) -> list[dict]:
     employees = employee_lookup()
     grouped: dict[str, list[dict]] = {}
@@ -1448,6 +1610,51 @@ def export_guest_csv(start: str | None = None, end: str | None = None) -> Path:
             )
     write_audit_receipt({
         "receipt_type": "guest_csv_export",
+        "export_file": path.name,
+        "guest_count": len(sessions),
+        "reporting_period": period,
+        "selection_rule": "visit_overlaps_inclusive_local_business_dates",
+    })
+    return path
+
+
+def export_guest_xlsx(start: str | None = None, end: str | None = None) -> Path:
+    sessions, period = guest_sessions_for_reporting_period(start, end)
+    range_tag = (
+        f"{period['start_date']}_to_{period['end_date']}"
+        if period["mode"] == "selected_period"
+        else "all"
+    )
+    export_id = f"guest_export_{range_tag}_{utc_now().strftime('%Y%m%dT%H%M%S')}_{uuid.uuid4().hex[:6]}"
+    path = GUEST_EXPORT_DIR / f"{export_id}.xlsx"
+    headers = ["Guest Name", "Organization", "Purpose", "Sign In", "Sign Out", "Visit Duration", "Notes"]
+    rows = []
+    for session in sessions:
+        started = parse_dt(session["sign_in_time_utc"])
+        ended = parse_dt(session.get("sign_out_time_utc"))
+        duration = "OPEN"
+        if started and ended:
+            minutes = max(int((ended - started).total_seconds() // 60), 0)
+            duration = f"{minutes // 60}h {minutes % 60}m"
+        rows.append([
+            session["guest_name"],
+            session.get("organization") or "",
+            session.get("purpose") or "",
+            local_excel_datetime(session.get("sign_in_time_utc")),
+            local_excel_datetime(session.get("sign_out_time_utc")),
+            duration,
+            session.get("notes") or "",
+        ])
+    write_excel_workbook(
+        path,
+        "Guest Visits",
+        headers,
+        rows,
+        [24, 24, 28, 22, 22, 16, 36],
+        ["text", "text", "text", "datetime", "datetime", "text", "text"],
+    )
+    write_audit_receipt({
+        "receipt_type": "guest_xlsx_export",
         "export_file": path.name,
         "guest_count": len(sessions),
         "reporting_period": period,
@@ -1892,7 +2099,9 @@ def write_owner_review_report(start: str | None = None, end: str | None = None) 
 
 def export(fmt: str, start: str | None = None, end: str | None = None) -> Path:
     s = settings()
-    if fmt not in s.get("allowed_export_formats", ["csv", "json", "markdown", "html"]):
+    allowed_formats = set(s.get("allowed_export_formats", ["csv", "json", "markdown", "html"]))
+    allowed_formats.add("xlsx")
+    if fmt not in allowed_formats:
         raise ValueError("unsupported_export_format")
     period = reporting_range_contract(start, end)
     events = read_events(start, end)
@@ -1911,7 +2120,51 @@ def export(fmt: str, start: str | None = None, end: str | None = None) -> Path:
         "event_count": len(events),
         "non_claims": ["overtime is an estimate until owner/payroll review", "export is not a legal compliance seal"],
     }
-    if fmt == "json":
+    if fmt == "xlsx":
+        p = EXPORT_DIR / f"{eid}.xlsx"
+        human_rows = employee_session_export_rows(events)
+        headers = [
+            "Employee Name", "Employee ID", "Date", "Clock In", "Clock Out",
+            "Break Minutes", "Total Hours", "Hourly Rate", "Gross Pay Estimate",
+            "Tax Withheld Estimate", "Net Pay Estimate", "Notes",
+        ]
+
+        def workbook_datetime(value: str):
+            if not value or value == "OPEN":
+                return value
+            return dt.datetime.strptime(value, "%Y-%m-%d %I:%M %p")
+
+        def workbook_money(value: str):
+            return float(value.replace("$", "").replace(",", "")) if value else None
+
+        workbook_rows = [
+            [
+                row["Employee Name"],
+                row["Employee ID"],
+                dt.date.fromisoformat(row["Date"]),
+                workbook_datetime(row["Clock In"]),
+                workbook_datetime(row["Clock Out"]),
+                int(row["Break Minutes"]),
+                float(row["Total Hours"]),
+                workbook_money(row["Hourly Rate"]),
+                workbook_money(row["Gross Pay Estimate"]),
+                workbook_money(row["Tax Withheld Estimate"]),
+                workbook_money(row["Net Pay Estimate"]),
+                row["Notes"],
+            ]
+            for row in human_rows
+        ]
+        write_excel_workbook(
+            p,
+            "Employee Time",
+            headers,
+            workbook_rows,
+            [24, 16, 13, 22, 22, 15, 14, 16, 20, 22, 19, 42],
+            ["text", "text", "date", "datetime", "datetime", "integer", "decimal", "currency", "currency", "currency", "currency", "text"],
+        )
+        manifest["human_readable_row_count"] = len(human_rows)
+        manifest["xlsx_headers"] = headers
+    elif fmt == "json":
         p = EXPORT_DIR / f"{eid}.json"
         p.write_text(json.dumps({"manifest": manifest, "summaries": rows, "events": events}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     elif fmt == "csv":
@@ -1968,9 +2221,186 @@ def export(fmt: str, start: str | None = None, end: str | None = None) -> Path:
     return p
 
 
+def admin_users() -> list[dict]:
+    users = settings().get("admin_users") or []
+    return users if isinstance(users, list) else []
+
+
+def admin_security_status(local_request: bool) -> dict:
+    users = [u for u in admin_users() if u.get("status", "active") == "active"]
+    return {
+        "ok": True,
+        "configured": bool(users),
+        "setup_required": not bool(users),
+        "local_request": bool(local_request),
+        "can_bootstrap": not bool(users) and bool(local_request),
+        "active_operator_count": len(users),
+    }
+
+
+def public_admin_user(user: dict) -> dict:
+    return {
+        "operator_id": user.get("operator_id"),
+        "username": user.get("username"),
+        "display_name": user.get("display_name") or user.get("username"),
+        "role": user.get("role", "manager"),
+        "status": user.get("status", "active"),
+        "capabilities": user.get("capabilities") or [],
+        "created_at_utc": user.get("created_at_utc"),
+        "updated_at_utc": user.get("updated_at_utc"),
+        "last_login_at_utc": user.get("last_login_at_utc"),
+    }
+
+
+def default_admin_capabilities(role: str = "admin") -> list[str]:
+    if role == "admin":
+        return [
+            "view_dashboard",
+            "edit_employees",
+            "adjust_time",
+            "export_records",
+            "backup_restore",
+            "security_admin",
+        ]
+    if role == "viewer":
+        return ["view_dashboard", "export_records"]
+    return ["view_dashboard", "edit_employees", "adjust_time", "export_records"]
+
+
+def create_admin_user(username: str, pin: str, display_name: str = "", role: str = "admin") -> dict:
+    username_norm = normalize_username(username)
+    pin_value = str(pin or "").strip()
+    min_len = int(settings().get("min_pin_length", 4))
+    if not username_norm:
+        raise ValueError("admin_username_required")
+    if len(pin_value) < min_len:
+        raise ValueError("admin_pin_too_short")
+    with OWNER_TOKEN_UPDATE_LOCK:
+        current_settings = load_json(SETTINGS_PATH, {})
+        users = current_settings.get("admin_users") or []
+        if any(normalize_username(u.get("username")) == username_norm for u in users):
+            raise ValueError("admin_username_already_exists")
+        salt = secrets.token_urlsafe(16)
+        now = utc_now().isoformat()
+        user = {
+            "operator_id": f"op_{uuid.uuid4().hex[:12]}",
+            "username": username_norm,
+            "display_name": str(display_name or username_norm).strip(),
+            "pin_hash": admin_pin_hash(username_norm, pin_value, salt),
+            "pin_salt": salt,
+            "role": role if role in {"admin", "manager", "viewer"} else "manager",
+            "status": "active",
+            "capabilities": default_admin_capabilities(role),
+            "created_at_utc": now,
+            "updated_at_utc": now,
+            "last_login_at_utc": None,
+        }
+        users.append(user)
+        current_settings["admin_users"] = users
+        current_settings["admin_auth_version"] = "1"
+        write_settings_atomic(current_settings)
+        write_audit_receipt(
+            {
+                "receipt_type": "admin_user_created",
+                "operator_id": user["operator_id"],
+                "username_hash": sha_text(username_norm),
+                "role": user["role"],
+            }
+        )
+        return public_admin_user(user)
+
+
+def authenticate_admin(username: str, pin: str) -> dict:
+    username_norm = normalize_username(username)
+    pin_value = str(pin or "").strip()
+    for user in admin_users():
+        if user.get("status", "active") != "active":
+            continue
+        if normalize_username(user.get("username")) != username_norm:
+            continue
+        salt = str(user.get("pin_salt") or "")
+        stored = str(user.get("pin_hash") or "")
+        if stored and hmac.compare_digest(admin_pin_hash(username_norm, pin_value, salt), stored):
+            session_token = "bbtc_admin_session_" + secrets.token_urlsafe(32)
+            now = utc_now()
+            session = {
+                "operator_id": user.get("operator_id"),
+                "username": username_norm,
+                "display_name": user.get("display_name") or username_norm,
+                "role": user.get("role", "manager"),
+                "capabilities": user.get("capabilities") or default_admin_capabilities(user.get("role", "manager")),
+                "created_at_utc": now.isoformat(),
+                "expires_at_utc": (now + dt.timedelta(seconds=ADMIN_SESSION_TTL_SECONDS)).isoformat(),
+            }
+            with ADMIN_SESSION_LOCK:
+                ADMIN_SESSIONS[session_token] = session
+            update_admin_last_login(user.get("operator_id"))
+            write_audit_receipt(
+                {
+                    "receipt_type": "admin_login",
+                    "operator_id": user.get("operator_id"),
+                    "username_hash": sha_text(username_norm),
+                }
+            )
+            return {"ok": True, "session_token": session_token, "session": session}
+    raise PermissionError("admin_login_invalid")
+
+
+def update_admin_last_login(operator_id: str | None) -> None:
+    if not operator_id:
+        return
+    with OWNER_TOKEN_UPDATE_LOCK:
+        current_settings = load_json(SETTINGS_PATH, {})
+        users = current_settings.get("admin_users") or []
+        changed = False
+        for user in users:
+            if user.get("operator_id") == operator_id:
+                user["last_login_at_utc"] = utc_now().isoformat()
+                changed = True
+        if changed:
+            current_settings["admin_users"] = users
+            write_settings_atomic(current_settings)
+
+
+def admin_session_from_token(token: str | None) -> dict | None:
+    if not token:
+        return None
+    with ADMIN_SESSION_LOCK:
+        session = ADMIN_SESSIONS.get(str(token))
+        if not session:
+            return None
+        try:
+            expires = dt.datetime.fromisoformat(str(session.get("expires_at_utc")))
+        except ValueError:
+            ADMIN_SESSIONS.pop(str(token), None)
+            return None
+        if expires <= utc_now():
+            ADMIN_SESSIONS.pop(str(token), None)
+            return None
+        return dict(session)
+
+
+def verify_admin_session_token(token: str | None, capability: str | None = None) -> bool:
+    session = admin_session_from_token(token)
+    if not session:
+        return False
+    if capability and capability not in (session.get("capabilities") or []):
+        return False
+    return True
+
+
+def destroy_admin_session(token: str | None) -> bool:
+    if not token:
+        return False
+    with ADMIN_SESSION_LOCK:
+        return ADMIN_SESSIONS.pop(str(token), None) is not None
+
+
 def verify_owner_token(token: str | None) -> bool:
     expected = settings().get("owner_token", "")
-    return bool(token) and hmac.compare_digest(str(token), str(expected))
+    if bool(token) and hmac.compare_digest(str(token), str(expected)):
+        return True
+    return verify_admin_session_token(token)
 
 
 def generate_owner_token() -> str:
@@ -2913,8 +3343,14 @@ class Handler(BaseHTTPRequestHandler):
     def owner_token_from(self, query: dict | None = None, payload: dict | None = None) -> str | None:
         if payload and payload.get("owner_token"):
             return str(payload.get("owner_token"))
+        if payload and payload.get("admin_session_token"):
+            return str(payload.get("admin_session_token"))
         if query and query.get("owner_token"):
             return str(query.get("owner_token", [""])[0])
+        if query and query.get("admin_session_token"):
+            return str(query.get("admin_session_token", [""])[0])
+        if self.headers.get("X-Admin-Session"):
+            return self.headers.get("X-Admin-Session")
         return self.headers.get("X-Owner-Token")
 
     def require_owner(self, query: dict | None = None, payload: dict | None = None) -> bool:
@@ -2971,6 +3407,19 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_json(200, {"version": APP_VERSION, "site_id": s["site_id"], "site_display_name": s["site_display_name"], "terminal_id": s["terminal_id"], "clock_events": sorted(EVENT_TYPES), "setup_warnings": setup_warnings()})
         if parsed.path == "/api/security/owner-token/status":
             return self.send_json(200, owner_token_security_status(self.is_local_computer_request()))
+        if parsed.path == "/api/admin/status":
+            return self.send_json(200, admin_security_status(self.is_local_computer_request()))
+        if parsed.path == "/api/admin/session":
+            token = self.owner_token_from(q)
+            session = admin_session_from_token(token)
+            if not session:
+                return self.send_json(401, {"ok": False, "error": "admin_session_invalid"})
+            return self.send_json(200, {"ok": True, "session": session})
+        if parsed.path == "/api/admin/operators":
+            token = self.owner_token_from(q)
+            if not verify_admin_session_token(token, "security_admin"):
+                return self.send_json(403, {"ok": False, "error": "security_admin_required"})
+            return self.send_json(200, {"ok": True, "operators": [public_admin_user(u) for u in admin_users()]})
         if parsed.path == "/api/owner/summary":
             if not self.require_owner(q):
                 return
@@ -3068,8 +3517,9 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 p = safe_guest_export_file(q.get("file", [""])[0])
                 body = p.read_bytes()
+                ctype = mimetypes.guess_type(p.name)[0] or "application/octet-stream"
                 self.send_response(200)
-                self.send_header("Content-Type", "text/csv; charset=utf-8")
+                self.send_header("Content-Type", ctype)
                 self.send_header("Content-Length", str(len(body)))
                 self.send_header("Content-Disposition", f"attachment; filename={p.name}")
                 self.end_headers()
@@ -3081,6 +3531,54 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         parsed = urlparse(self.path)
+        if parsed.path == "/api/admin/bootstrap":
+            try:
+                data = self.payload()
+                status = admin_security_status(self.is_local_computer_request())
+                if not status.get("can_bootstrap"):
+                    return self.send_json(403, {"ok": False, "error": "admin_bootstrap_not_allowed"})
+                user = create_admin_user(
+                    str(data.get("username", "")),
+                    str(data.get("pin", "")),
+                    str(data.get("display_name", "")),
+                    "admin",
+                )
+                return self.send_json(200, {"ok": True, "admin_user": user, "status": admin_security_status(self.is_local_computer_request())})
+            except ValueError as e:
+                return self.send_json(400, {"ok": False, "error": str(e)})
+            except Exception as e:
+                return self.send_json(400, {"ok": False, "error": str(e)})
+        if parsed.path == "/api/admin/login":
+            try:
+                data = self.payload()
+                result = authenticate_admin(str(data.get("username", "")), str(data.get("pin", "")))
+                return self.send_json(200, result)
+            except PermissionError as e:
+                return self.send_json(403, {"ok": False, "error": str(e)})
+            except Exception as e:
+                return self.send_json(400, {"ok": False, "error": str(e)})
+        if parsed.path == "/api/admin/logout":
+            data = self.payload()
+            token = self.owner_token_from(payload=data)
+            destroy_admin_session(token)
+            return self.send_json(200, {"ok": True})
+        if parsed.path == "/api/admin/operators":
+            try:
+                data = self.payload()
+                token = self.owner_token_from(payload=data)
+                if not verify_admin_session_token(token, "security_admin"):
+                    return self.send_json(403, {"ok": False, "error": "security_admin_required"})
+                user = create_admin_user(
+                    str(data.get("username", "")),
+                    str(data.get("pin", "")),
+                    str(data.get("display_name", "")),
+                    str(data.get("role", "manager")),
+                )
+                return self.send_json(200, {"ok": True, "operator": user, "operators": [public_admin_user(u) for u in admin_users()]})
+            except ValueError as e:
+                return self.send_json(400, {"ok": False, "error": str(e)})
+            except Exception as e:
+                return self.send_json(400, {"ok": False, "error": str(e)})
         if parsed.path == "/api/security/owner-token/generate":
             try:
                 data = self.payload()
@@ -3252,8 +3750,11 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 start = data.get("start")
                 end = data.get("end")
+                export_format = str(data.get("format", "xlsx")).strip().lower()
+                if export_format not in {"xlsx", "csv"}:
+                    raise ValueError("unsupported_guest_export_format")
                 period = reporting_range_contract(start, end)
-                path = export_guest_csv(start, end)
+                path = export_guest_xlsx(start, end) if export_format == "xlsx" else export_guest_csv(start, end)
                 sessions, _period = guest_sessions_for_reporting_period(start, end)
                 return self.send_json(
                     200,

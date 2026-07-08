@@ -6,15 +6,23 @@ const $ = (id) => document.getElementById(id);
 
 function localClockParts(){
   const now = new Date();
+  const parts = new Intl.DateTimeFormat([], {hour:"numeric", minute:"2-digit", second:"2-digit", hour12:true}).formatToParts(now);
+  const value = type => parts.find(part => part.type === type)?.value || "";
   return {
-    time: now.toLocaleTimeString([], {hour:"numeric", minute:"2-digit", second:"2-digit"}),
+    iso: now.toISOString(),
+    hourMinute: `${value("hour")}:${value("minute")}`,
+    seconds: `:${value("second")}`,
+    period: value("dayPeriod"),
     day: now.toLocaleDateString([], {weekday:"long", month:"long", day:"numeric", year:"numeric"})
   };
 }
 
 function tickClock(){
   const parts = localClockParts();
-  $("current_time").textContent = parts.time;
+  $("current_time").dateTime = parts.iso;
+  $("clock_hm").textContent = parts.hourMinute;
+  $("clock_seconds").textContent = parts.seconds;
+  $("clock_period").textContent = parts.period;
   $("business_day").textContent = parts.day;
 }
 

@@ -2,6 +2,8 @@ let lastBackupFile = null;
 let backendOnline = false;
 let ownerTokenSecurityState = null;
 let ownerSessionToken = "";
+let adminSecurityState = null;
+let adminSession = null;
 let lastTechnicalReceipt = null;
 let ownerLiveSocket = null;
 let ownerLiveSocketPort = null;
@@ -67,17 +69,25 @@ function backendOfflinePayload(message){
 
 function nowIsoLocalParts(){
   const d = new Date();
+  const parts = new Intl.DateTimeFormat([], { hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true }).formatToParts(d);
+  const value = type => parts.find(part => part.type === type)?.value || "";
   return {
-    time: d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
-    day: d.toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" })
+    iso: d.toISOString(),
+    hourMinute: `${value("hour")}:${value("minute")}`,
+    seconds: `:${value("second")}`,
+    period: value("dayPeriod"),
+    day: d.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric", year: "numeric" })
   };
 }
 function tickClock(){
   const p = nowIsoLocalParts();
-  if ($("current_time")) $("current_time").textContent = p.time;
+  if ($("current_time")) $("current_time").dateTime = p.iso;
+  if ($("clock_hm")) $("clock_hm").textContent = p.hourMinute;
+  if ($("clock_seconds")) $("clock_seconds").textContent = p.seconds;
+  if ($("clock_period")) $("clock_period").textContent = p.period;
   if ($("business_day")) $("business_day").textContent = p.day;
 }
-tickClock(); setInterval(tickClock, 15000);
+tickClock(); setInterval(tickClock, 1000);
 
 async function postJson(url, payload) {
   try {
@@ -92,63 +102,46 @@ async function postJson(url, payload) {
     return { ok:false, status:0, data };
   }
 }
-function ownerToken(){ return ownerSessionToken || ($("owner_token") ? $("owner_token").value.trim() : ""); }
+function ownerToken(){ return ownerSessionToken; }
+function currentOwnerToken(){ return $("security_owner_token") ? $("security_owner_token").value.trim() : ""; }
 function renderOwnerSession(active, message){
   const form = $("operator_access_form");
+  const firstRunForm = $("admin_first_run_form");
   const status = $("operator_session_status");
   const hint = $("operator_access_hint");
   const lock = document.querySelector(".owner-lock");
-  if (form) form.hidden = active;
+  const setupRequired = adminSecurityState && adminSecurityState.setup_required;
+  if (form) form.hidden = active || setupRequired;
+  if (firstRunForm) firstRunForm.hidden = active || !setupRequired;
   if (status) status.hidden = !active;
   if (hint) hint.textContent = message || (active
-    ? "Owner access is active for this browser tab. The token field has been cleared."
-    : "Enter the owner token once. It clears after validation and remains only in this browser tab's memory.");
-  if (lock) lock.textContent = active ? "Owner Access Active" : "Owner Token Required";
+    ? "Administrator access is active for this browser tab. The PIN field has been cleared."
+    : setupRequired
+      ? "Create the first administrator on this server computer before live operations are unlocked."
+      : "Enter an administrator username and PIN. Access stays only in this browser tab's memory.");
+  if (lock) lock.textContent = active ? "Administrator Active" : "Administrator Login Required";
+  const sessionLabel = $("operator_session_label");
+  if (sessionLabel) sessionLabel.textContent = active && adminSession ? `${adminSession.display_name || adminSession.username} active` : "Administrator active";
   const headerState = $("header_owner_state");
   if (headerState) {
     headerState.className = `header-owner-state ${active ? "active" : "locked"}`;
     const text = headerState.querySelector("span");
-    if (text) text.textContent = active ? "Owner active" : "Owner locked";
+    if (text) text.textContent = active ? "Admin active" : "Admin locked";
   }
-  if ($("owner_console_state")) $("owner_console_state").textContent = active ? "Live Operations Unlocked" : "Awaiting Owner Token";
+  if ($("owner_console_state")) $("owner_console_state").textContent = active ? "Live Operations Unlocked" : "Awaiting Administrator Login";
 }
 function lockOwnerSession(){
+  const token = ownerSessionToken;
   ownerSessionToken = "";
-  if ($("owner_token")) $("owner_token").value = "";
+  adminSession = null;
+  if (token) postJson("/api/admin/logout", { admin_session_token: token });
+  if ($("operator_username")) $("operator_username").value = "";
+  if ($("operator_pin")) $("operator_pin").value = "";
   if (ownerLiveSocket) ownerLiveSocket.close();
   ownerLiveSocket = null;
   ownerLiveSocketToken = null;
-  renderOwnerSession(false, "Session locked. Enter the owner token to reconnect live operations.");
+  renderOwnerSession(false, "Session locked. Enter an administrator username and PIN to reconnect live operations.");
   setLiveTransportState(false);
-}
-async function unlockOwnerSession(){
-  const input = $("owner_token");
-  const token = input ? input.value.trim() : "";
-  if (!token) {
-    renderOwnerSession(false, "Enter the owner token to unlock live operations.");
-    if (input) input.focus();
-    return;
-  }
-  const button = $("unlock_owner_btn");
-  if (button) { button.disabled = true; button.textContent = "Checking…"; }
-  try {
-    const res = await fetch("/api/owner/active-sessions", {cache:"no-store", headers:{"X-Owner-Token":token}});
-    const data = await res.json();
-    if (!res.ok || !data.ok) throw new Error(friendlyError(data));
-    ownerSessionToken = token;
-    input.value = "";
-    renderOwnerSession(true);
-    applyLiveRoster(data);
-    connectOwnerLive();
-    ownerNotice("success", "Owner access unlocked. Live employee and guest status is connected.");
-    renderOwnerActionSummary("success", "Live operations unlocked", "The owner token was accepted and removed from the visible field.", "Choose an operator task or review the onsite roster.");
-  } catch (err) {
-    input.value = "";
-    renderOwnerSession(false, err && err.message ? err.message : "Owner token was not accepted.");
-    input.focus();
-  } finally {
-    if (button) { button.disabled = false; button.textContent = "Unlock"; }
-  }
 }
 function renderOwnerTokenSecurity(state){
   ownerTokenSecurityState = state;
@@ -192,6 +185,24 @@ async function checkOwnerTokenSecurity(){
     renderOwnerTokenSecurity(null);
   }
 }
+async function checkAdminSecurity(){
+  try {
+    const res = await fetch("/api/admin/status", { cache:"no-store" });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error("admin status failed");
+    adminSecurityState = data;
+    renderOwnerSession(Boolean(ownerSessionToken));
+    if (data.setup_required) {
+      ownerNotice("warning", data.can_bootstrap
+        ? "First-run setup required. Create the first administrator before using the operator panel."
+        : "First-run administrator setup must be completed on the computer running the server.");
+      selectOwnerTask("security");
+    }
+  } catch {
+    adminSecurityState = null;
+    renderOwnerSession(Boolean(ownerSessionToken), "Administrator setup status is unavailable. Confirm the backend is running.");
+  }
+}
 async function copyPrivateText(text){
   if (navigator.clipboard && window.isSecureContext) {
     await navigator.clipboard.writeText(text);
@@ -229,15 +240,14 @@ function saveOwnerTokenRecoveryNote(token){
   URL.revokeObjectURL(url);
 }
 function showGeneratedOwnerToken(token, title, message, nextStep){
-  ownerSessionToken = token;
-  $("owner_token").value = "";
+  if ($("security_owner_token")) $("security_owner_token").value = "";
   $("generated_owner_token").value = token;
   $("owner_token_once_panel").hidden = false;
   $("owner_token_copy_status").textContent = "Copy the new owner token or save its private recovery note before leaving this page.";
   renderOwnerTokenSecurity({ configured:true, local_request:true });
   ownerNotice("success", message);
   renderOwnerActionSummary("success", title, message, nextStep);
-  renderOwnerSession(true, "New owner access is active for this browser tab. Save the one-time token shown in Security.");
+  renderOwnerSession(Boolean(ownerSessionToken), "Save the one-time owner token shown in Security.");
 }
 function showGeneratedBackupTokens(tokens, statusMessage){
   $("generated_backup_tokens").value = tokens.join("\n");
@@ -412,6 +422,11 @@ function friendlyError(data){
     owner_token_current_required_or_invalid: "Enter the current owner token before rotating it.",
     owner_token_initial_setup_local_only: "First-time token setup must be completed on the computer running BBTC.",
     owner_token_setup_required: "Generate the main owner token before creating backup tokens.",
+    admin_login_invalid: "Administrator username or PIN was not accepted.",
+    admin_username_required: "Operator username is required.",
+    admin_pin_too_short: "Operator PIN is shorter than the configured minimum.",
+    admin_username_already_exists: "That operator username already exists.",
+    security_admin_required: "Administrator security permission is required for that action.",
     backup_token_required: "Paste one unused backup token first.",
     backup_token_invalid_or_used: "That backup token is invalid or has already been used.",
     factory_reset_confirmation_invalid: "Type RESET BBTC exactly before running Factory Reset.",
@@ -484,9 +499,9 @@ function markOwnerCard(cardId, text, kind="success"){
 }
 function validateOwnerTokenPresent(){
   if (!ownerToken()) {
-    const message = "Owner token is required before running owner actions.";
+    const message = "Administrator login is required before running operator actions.";
     ownerNotice("error", message);
-    renderOwnerActionSummary("error", "Owner token required", message, "Enter the owner token, then retry the selected owner task.");
+    renderOwnerActionSummary("error", "Administrator login required", message, "Enter administrator username and PIN, then retry the selected task.");
     setOwnerFlow("review", "error");
     return false;
   }
@@ -589,6 +604,7 @@ async function checkBackendHealth(){
   }
 }
 checkBackendHealth();
+checkAdminSecurity();
 checkOwnerTokenSecurity();
 setInterval(checkBackendHealth, 30000);
 
@@ -616,13 +632,93 @@ document.querySelectorAll(".owner-task-rail [data-task-filter]").forEach(button 
 });
 selectOwnerTask("today");
 
+async function unlockOwnerSession(){
+  const usernameInput = $("operator_username");
+  const pinInput = $("operator_pin");
+  const username = usernameInput ? usernameInput.value.trim() : "";
+  const pin = pinInput ? pinInput.value.trim() : "";
+  if (!username || !pin) {
+    renderOwnerSession(false, "Enter administrator username and PIN to unlock live operations.");
+    if (!username && usernameInput) usernameInput.focus();
+    else if (pinInput) pinInput.focus();
+    return;
+  }
+  const button = $("unlock_owner_btn");
+  if (button) { button.disabled = true; button.textContent = "Checking..."; }
+  try {
+    const login = await postJson("/api/admin/login", { username, pin });
+    if (!login.ok || !login.data || !login.data.session_token) throw new Error(friendlyError(login.data));
+    ownerSessionToken = login.data.session_token;
+    adminSession = login.data.session || null;
+    if (pinInput) pinInput.value = "";
+    renderOwnerSession(true);
+    const res = await fetch("/api/owner/active-sessions", {cache:"no-store", headers:{"X-Admin-Session":ownerSessionToken}});
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error(friendlyError(data));
+    applyLiveRoster(data);
+    connectOwnerLive();
+    ownerNotice("success", "Administrator access unlocked. Live employee and guest status is connected.");
+    renderOwnerActionSummary("success", "Live operations unlocked", "The administrator PIN was accepted and cleared from the visible field.", "Choose an operator task or review the onsite roster.");
+  } catch (err) {
+    ownerSessionToken = "";
+    adminSession = null;
+    if (pinInput) pinInput.value = "";
+    renderOwnerSession(false, err && err.message ? err.message : "Administrator login was not accepted.");
+    if (pinInput) pinInput.focus();
+  } finally {
+    if (button) { button.disabled = false; button.textContent = "Unlock"; }
+  }
+}
+
+async function createFirstAdmin(){
+  const username = $("first_admin_username") ? $("first_admin_username").value.trim() : "";
+  const displayName = $("first_admin_display_name") ? $("first_admin_display_name").value.trim() : "";
+  const pin = $("first_admin_pin") ? $("first_admin_pin").value.trim() : "";
+  if (!username || !pin) {
+    renderOwnerSession(false, "First administrator username and PIN are required.");
+    if (!username && $("first_admin_username")) $("first_admin_username").focus();
+    else if ($("first_admin_pin")) $("first_admin_pin").focus();
+    return;
+  }
+  const button = $("create_first_admin_btn");
+  if (button) { button.disabled = true; button.textContent = "Creating..."; }
+  const result = await postJson("/api/admin/bootstrap", { username, display_name: displayName, pin });
+  if (button) { button.disabled = false; button.textContent = "Create First Admin"; }
+  if (result.ok && result.data && result.data.ok) {
+    if ($("first_admin_pin")) $("first_admin_pin").value = "";
+    adminSecurityState = result.data.status || { configured:true, setup_required:false };
+    ownerNotice("success", "First administrator created. Log in with that username and PIN.");
+    renderOwnerActionSummary("success", "Administrator created", "The first admin account is ready.", "Log in with the username and PIN you just created.");
+    renderOwnerSession(false);
+    if ($("operator_username")) $("operator_username").value = username;
+    if ($("operator_pin")) $("operator_pin").focus();
+  } else {
+    const message = friendlyError(result.data);
+    ownerNotice("error", message);
+    renderOwnerActionSummary("error", "Administrator was not created", message, "Correct the first-run setup fields and try again.");
+  }
+}
+
 if ($("unlock_owner_btn")) $("unlock_owner_btn").addEventListener("click", unlockOwnerSession);
-if ($("owner_token")) $("owner_token").addEventListener("keydown", event => {
+if ($("operator_pin")) $("operator_pin").addEventListener("keydown", event => {
   if (event.key === "Enter") {
     event.preventDefault();
     unlockOwnerSession();
   }
 });
+if ($("operator_username")) $("operator_username").addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if ($("operator_pin")) $("operator_pin").focus();
+  }
+});
+if ($("first_admin_pin")) $("first_admin_pin").addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    createFirstAdmin();
+  }
+});
+if ($("create_first_admin_btn")) $("create_first_admin_btn").addEventListener("click", createFirstAdmin);
 if ($("lock_owner_btn")) $("lock_owner_btn").addEventListener("click", lockOwnerSession);
 if ($("download_last_receipt_btn")) $("download_last_receipt_btn").addEventListener("click", downloadLastTechnicalReceipt);
 
@@ -632,17 +728,17 @@ if ($("generate_owner_token_btn")) $("generate_owner_token_btn").addEventListene
     await checkOwnerTokenSecurity();
     if (!ownerTokenSecurityState) return;
   }
-  if (ownerTokenSecurityState.configured && !ownerToken()) {
+  if (ownerTokenSecurityState.configured && !currentOwnerToken()) {
     const message = "Enter the current owner token below before rotating it.";
     ownerNotice("error", message);
     renderOwnerActionSummary("error", "Current token required", message, "Enter the current token, then choose Rotate & Save New Token.");
-    $("owner_token").focus();
+    $("security_owner_token").focus();
     return;
   }
   if (ownerTokenSecurityState.configured && !window.confirm("Rotate the owner token now? The current token will stop working immediately.")) return;
   button.disabled = true;
   button.textContent = ownerTokenSecurityState.configured ? "Rotating Token…" : "Creating Secure Token…";
-  const result = await postJson("/api/security/owner-token/generate", { owner_token: ownerToken() || null });
+  const result = await postJson("/api/security/owner-token/generate", { owner_token: currentOwnerToken() || null });
   if (result.ok && result.data && result.data.owner_token) {
     const token = result.data.owner_token;
     const initialBackupTokens = Array.isArray(result.data.backup_tokens) ? result.data.backup_tokens : [];
@@ -671,7 +767,7 @@ if ($("generate_owner_token_btn")) $("generate_owner_token_btn").addEventListene
   }
 });
 if ($("toggle_owner_token_btn")) $("toggle_owner_token_btn").addEventListener("click", () => {
-  const input = $("owner_token");
+  const input = $("security_owner_token");
   const button = $("toggle_owner_token_btn");
   const showing = input.type === "text";
   input.type = showing ? "password" : "text";
@@ -691,13 +787,47 @@ if ($("save_owner_token_note_btn")) $("save_owner_token_note_btn").addEventListe
   saveOwnerTokenRecoveryNote($("generated_owner_token").value);
   markOwnerCard("owner_token_copy_status", "Private recovery note saved. Move it to a secure location.", "success");
 });
-if ($("generate_backup_tokens_btn")) $("generate_backup_tokens_btn").addEventListener("click", async () => {
+if ($("add_operator_btn")) $("add_operator_btn").addEventListener("click", async () => {
   if (!validateOwnerTokenPresent()) return;
+  const payload = {
+    owner_token: ownerToken(),
+    username: $("new_operator_username").value.trim(),
+    display_name: $("new_operator_display_name").value.trim(),
+    pin: $("new_operator_pin").value.trim(),
+    role: $("new_operator_role").value,
+  };
+  if (!payload.username || !payload.pin) {
+    markOwnerCard("operator_admin_status", "Username and PIN are required.", "error");
+    (!payload.username ? $("new_operator_username") : $("new_operator_pin")).focus();
+    return;
+  }
+  const button = $("add_operator_btn");
+  button.disabled = true;
+  button.textContent = "Adding Operator...";
+  const result = await postJson("/api/admin/operators", payload);
+  button.disabled = false;
+  button.textContent = "Add Operator";
+  if (result.ok && result.data && result.data.ok) {
+    $("new_operator_pin").value = "";
+    markOwnerCard("operator_admin_status", `Operator ${result.data.operator.username} created as ${result.data.operator.role}.`, "success");
+    renderOwnerActionSummary("success", "Operator login created", `${result.data.operator.display_name || result.data.operator.username} can now log in with username and PIN.`, "Share the username and PIN privately.");
+  } else {
+    const message = friendlyError(result.data);
+    markOwnerCard("operator_admin_status", message, "error");
+    renderOwnerActionSummary("error", "Operator was not created", message, "Correct the operator fields and try again.");
+  }
+});
+if ($("generate_backup_tokens_btn")) $("generate_backup_tokens_btn").addEventListener("click", async () => {
+  if (!currentOwnerToken()) {
+    markOwnerCard("backup_tokens_copy_status", "Enter the current owner token before replacing backup tokens.", "error");
+    $("security_owner_token").focus();
+    return;
+  }
   if (!window.confirm("Generate a new set of 10 backup tokens? Any older backup set will stop working immediately.")) return;
   const button = $("generate_backup_tokens_btn");
   button.disabled = true;
   button.textContent = "Generating 10 Backup Tokens…";
-  const result = await postJson("/api/security/backup-tokens/generate", { owner_token: ownerToken() });
+  const result = await postJson("/api/security/backup-tokens/generate", { owner_token: currentOwnerToken() });
   button.disabled = false;
   button.textContent = "Generate New Set of 10";
   if (result.ok && result.data && Array.isArray(result.data.backup_tokens)) {
@@ -1085,9 +1215,9 @@ if ($("guest_export_btn")) $("guest_export_btn").addEventListener("click", async
   if (!validateOwnerTokenPresent()) return;
   const period = reportingPeriod();
   if (!period) return;
-  const result = await postJson("/api/owner/guests/export", {owner_token:ownerToken(), ...period});
+  const result = await postJson("/api/owner/guests/export", {owner_token:ownerToken(), format:"xlsx", ...period});
   show("owner_result", result.data);
-  renderOwnerResult(result.data, `Visitor CSV generated for ${readablePeriodDate(period.start)} through ${readablePeriodDate(period.end)}.`);
+  renderOwnerResult(result.data, `Visitor Excel workbook generated for ${readablePeriodDate(period.start)} through ${readablePeriodDate(period.end)}.`);
   const slot = $("guest_download_slot");
   if (result.data && result.data.ok && result.data.export_file) {
     slot.innerHTML = `<a class="download" href="/api/owner/guests/download?file=${encodeURIComponent(result.data.export_file)}&owner_token=${encodeURIComponent(ownerToken())}">Download ${safeHtml(result.data.export_file)}</a>`;
@@ -1124,15 +1254,15 @@ function resetOwnerScreen(){
   if ($("manager_guest_count")) $("manager_guest_count").textContent = "0";
   if ($("manager_completed_count")) $("manager_completed_count").textContent = "0";
   if ($("manager_total_hours")) $("manager_total_hours").textContent = "0.00";
-  if ($("active_session_list")) $("active_session_list").innerHTML = '<div class="empty-manager-state">Enter the owner token and open the summary.</div>';
+  if ($("active_session_list")) $("active_session_list").innerHTML = '<div class="empty-manager-state">Log in as an administrator and open the summary.</div>';
   if ($("summary_table")) $("summary_table").innerHTML = "No summary loaded.";
-  if ($("employee_management_table")) $("employee_management_table").textContent = "Enter the owner token and choose Manage Employees.";
-  if ($("owner_token")) $("owner_token").value = "";
+  if ($("employee_management_table")) $("employee_management_table").textContent = "Log in as an administrator and choose Manage Employees.";
+  if ($("security_owner_token")) $("security_owner_token").value = "";
   if ($("download_last_receipt_btn")) $("download_last_receipt_btn").disabled = true;
   if ($("owner_result")) $("owner_result").textContent = "Owner result appears hereâ€¦";
   markOwnerCard("factory_reset_result", "Screen reset complete. No employee, guest, or timeclock data was changed.", "success");
-  renderOwnerActionSummary("neutral", "Owner screen reset", "Browser-only fields and results were cleared.", "Enter the owner token when you are ready to continue.");
-  renderOwnerSession(false, "Screen reset complete. Enter the owner token to reconnect live operations.");
+  renderOwnerActionSummary("neutral", "Operator screen reset", "Browser-only fields and results were cleared.", "Log in as an administrator when you are ready to continue.");
+  renderOwnerSession(false, "Screen reset complete. Enter administrator username and PIN to reconnect live operations.");
   setLiveTransportState(false);
 }
 if ($("reset_screen_btn")) $("reset_screen_btn").addEventListener("click", resetOwnerScreen);

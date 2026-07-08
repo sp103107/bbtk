@@ -1,6 +1,8 @@
 # Local development-only artifacts (not release truth)
 development/local_library_bindings.json
 development/local_qr_posters/
+output/branding/
+output/company_zips/
 repo_scaffold/app/__pycache__/
 **/__pycache__/
 **/*.pyc

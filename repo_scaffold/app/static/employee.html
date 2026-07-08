@@ -15,7 +15,10 @@
         <span><strong>Best Buds</strong><small>Time Clock</small></span>
       </a>
       <div class="kiosk-clock" aria-label="Current local date and time">
-        <strong id="current_time">--:--:--</strong>
+        <span class="clock-label">Local time</span>
+        <time id="current_time" class="clock-face" datetime="">
+          <span id="clock_hm">--:--</span><span id="clock_seconds">:--</span><span id="clock_period">--</span>
+        </time>
         <span id="business_day">Loading date…</span>
       </div>
       <div id="kiosk_live_status" class="kiosk-live-status connecting" aria-live="polite">
